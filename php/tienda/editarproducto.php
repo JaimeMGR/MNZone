@@ -5,7 +5,7 @@ $id_producto = $_GET['id'];
 // URL del backend (API) con parámetros de paginación
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? (int)$_GET['limit'] : 10;
-$apiUrl = "http://localhost/Atarfe_Fighting/php/tienda/api_crud/api.php?id=$id_producto"; // Cambia esta URL al endpoint correcto
+$apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?id=$id_producto"; // Cambia esta URL al endpoint correcto
 // echo $apiUrl;
 
 // Si el formulario ha sido enviado, actualizamos la asignatura
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda - Atarfe Fighting</title>
+    <title>Tienda - MNZone</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="../../js/header.js" defer></script>
     <!-- <script src="app.js" defer></script> -->
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- styles css -->
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <?php

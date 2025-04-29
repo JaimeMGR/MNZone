@@ -29,7 +29,7 @@ if (isset($_POST['busqueda'])) {
 
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <h2 style="font-weight: bold;">Servicios</h2>

@@ -3,20 +3,29 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Markazi, "Helvetica Neue", Helvetica, Arial, ;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 body {
+    background-image: url(../imagenes/fondo.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center;
     line-height: 1.6;
 }
 
 /* Cabecera */
 header {
-    background-color: #216e9e;
+    background: #2c17eb;
+    width: 100%;
+    justify-self: center;
     color: white;
     padding: 1rem;
+    padding-left: 10%;
+    padding-right: 10%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     align-items: center;
 }
 
@@ -37,8 +46,16 @@ header {
 #enlaces {
     display: grid;
     gap: 1rem;
+    text-transform: uppercase;
     background: #333;
     justify-content: center;
+    width:100%;
+    justify-self: center;
+    margin-bottom: 2%;
+    -webkit-transform:;
+    -moz-transform:;
+    -ms-transform:;
+    -o-transform:;
 }
 
 #enlaces ul {
@@ -133,7 +150,7 @@ footer p {
 
 header img,
 footer img {
-    width: 200px;
+    width: auto;
     height: 200px;
     margin: auto;
 }
@@ -185,6 +202,10 @@ footer img {
     width: 100%;
 }
 
+.login-container{
+    padding-left: 640px;
+}
+
 .menu-items li a {
     color: white;
     text-decoration: none;
@@ -214,12 +235,16 @@ nav ul li a:hover {
 
 /* Contenido Principal */
 main {
-    background: #f4f4f9;
-    width: 65%;
+    background-color: #ffffffcc;
+    width: 80%;
+    padding: 5% 10% 5% 10%;
+    border-radius: 10px;
     padding-bottom: auto;
     margin: 0px auto;
-    padding: 2%;
-    padding-bottom: 10%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 main li {
@@ -246,6 +271,7 @@ main .register {
 }
 
 main h2 {
+    text-transform: uppercase;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -310,7 +336,8 @@ p {
 
 /* Footer */
 footer {
-    background-color: #216e9e;
+    margin-top:2%;
+    background-color: #5e17eb;
     color: #fff;
     padding: 50px;
 }
@@ -669,6 +696,9 @@ nav .flex-column {
 }
 
 .login-form {
+    display: flex;
+    flex-direction:column;
+    min-width: 500px;
     margin-top: 20px;
     text-align: center;
     background: #333;

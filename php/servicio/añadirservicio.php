@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <h2 style="font-weight: bold;">Nuevo servicio</h2>

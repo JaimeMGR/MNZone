@@ -30,7 +30,7 @@ $stmt->bind_result($codigo_servicio, $descripcion, $precio, $duracion, $imagen);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <h1 style="font-weight: bold; text-align:center">Modificar datos del servicio</h1>

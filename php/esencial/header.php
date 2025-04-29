@@ -5,56 +5,78 @@ if (isset($_GET["error"])) {
   $error = 0;
 }
 ?>
-<header class="text-white">
-  <nav class="navbar navbar-expand-lg navbar-dark container">
-    <a class="navbar-brand" href="../../index.php">
-      <img loading='lazy' class="logo" src="../../imagenes/Logo.png" alt="Logo Atarfe Fighting">
-    </a>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark container">
+      <a class="navbar-brand" href="#">
+        <img loading='lazy' class="logo" src="../../imagenes/Logo.png" alt="Logo MNZone">
+      </a>
+      <div id="menu">
+
+      </div>
+
+
+      <?php
+      if (isset($_GET["error"])) {
+        $error = $_GET['error'];
+      } else {
+        $error = 0;
+      }
+      ?>
+      <div class="header-content">
+        <?php
+
+        session_start();
+        require_once "utilidades.php";
+        $pagina_actual = basename($_SERVER['PHP_SELF']);
+
+
+
+
+        ?>
+      </div>
+      </div>
+    </nav>
+
 
 
     <?php
+
+    if (isset($_SESSION["nombre"])) {
+      echo formulario_sesion_iniciada($_SESSION["nombre"]);
+    } else {
+      echo   "<div class='login-container'>
+      <form class='login-form' action='iniciar_sesion.php' method='POST'>
+          <label for='username'>Usuario:</label>
+          <input type='text' id='username' name='username'  placeholder='Introduce tu usuario'>
+          <label for='password'>Contraseña:</label>
+          <input type='password' id='password' name='password'  placeholder='Introduce tu contraseña'>
+          <input type='hidden' id='origen' name='origen' value='$pagina_actual'>
+          <a href='php/socios/register.php'>¿No tienes cuenta?</a>";
+      if ($error == 1) {
+        echo "<p class='error' style='background:white; color:red'>Usuario o contraseña erróneos</p>
+              <button style='border-radius:5%'type='submit'>Iniciar sesión</button>";
+      } else if ($error == 2) {
+        echo "<p class='error' style='background:white; color:red'>Falta usuario o contraseña</p>
+              <button style='border-radius:5%'type='submit'>Iniciar sesión</button>";
+      } else {
+        echo "<button type='submit'>Iniciar sesión</button>";
+      }
+
+      echo "</form>
+      </div>";;
+    }
+
+
+
     if (isset($_GET["error"])) {
       $error = $_GET['error'];
     } else {
       $error = 0;
     }
     ?>
-    <div class="header-content">
-      <?php
+    <br>
 
-      session_start();
-      require_once "utilidades.php";
-      $pagina_actual = basename($_SERVER['PHP_SELF']);
-
-
-
-
-      ?>
-  
-    </div>
-  </nav>
-
-
-
-  <?php
-
-  if (isset($_SESSION["nombre"])) {
-    echo formulario_sesion_iniciada($_SESSION["nombre"]);
-  } else {
-    echo formulario_para_iniciar_sesion($pagina_actual, $error);
-  }
-
-
-
-  if (isset($_GET["error"])) {
-    $error = $_GET['error'];
-  } else {
-    $error = 0;
-  }
-  ?>
-  <br>
-
-</header>
+  </header>
 
 <nav id="enlaces" class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid" style="justify-content: center;">

@@ -30,7 +30,7 @@ while ($row = $result->fetch_assoc()) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atarfe Fighting</title>
+  <title>MNZone</title>
   <script src="js/header.js" defer></script>
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/app.js" defer></script>
@@ -39,7 +39,7 @@ while ($row = $result->fetch_assoc()) {
   <!-- llama a u -->
 </head>
 
-<body style="background:#f4f4f9">
+<body>
   <?php
   if (isset($_GET["error"])) {
     $error = $_GET['error'];
@@ -50,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
   <header class="text-white">
     <nav class="navbar navbar-expand-lg navbar-dark container">
       <a class="navbar-brand" href="#">
-        <img loading='lazy' class="logo" src="imagenes/Logo.png" alt="Logo Atarfe Fighting">
+        <img loading='lazy' class="logo" src="imagenes/Logo.png" alt="Logo MNZone">
       </a>
       <div id="menu">
 
@@ -94,17 +94,17 @@ while ($row = $result->fetch_assoc()) {
           <input type='password' id='password' name='password'  placeholder='Introduce tu contraseña'>
           <input type='hidden' id='origen' name='origen' value='$pagina_actual'>
           <a href='php/socios/register.php'>¿No tienes cuenta?</a>";
-          if ($error == 1) {
-              echo "<p class='error' style='background:white; color:red'>Usuario o contraseña erróneos</p>
+      if ($error == 1) {
+        echo "<p class='error' style='background:white; color:red'>Usuario o contraseña erróneos</p>
               <button style='border-radius:5%'type='submit'>Iniciar sesión</button>";
-          } else if ($error == 2) {
-            echo "<p class='error' style='background:white; color:red'>Falta usuario o contraseña</p>
+      } else if ($error == 2) {
+        echo "<p class='error' style='background:white; color:red'>Falta usuario o contraseña</p>
               <button style='border-radius:5%'type='submit'>Iniciar sesión</button>";
-          }else{
-          echo "<button type='submit'>Iniciar sesión</button>";
-          }
-          
-      echo"</form>
+      } else {
+        echo "<button type='submit'>Iniciar sesión</button>";
+      }
+
+      echo "</form>
       </div>";;
     }
 
@@ -128,7 +128,7 @@ while ($row = $result->fetch_assoc()) {
 
       <div class="collapse navbar-collapse" id="menuNav" style="text-align:center">
         <!-- Haz unbotón para cerrar el menú -->
-        <button class="btn btn-danger navbar-toggler" id="Cerrarmenu" type="button">Cerrar menú</button>
+        <button class="btn navbar-toggler" id="Cerrarmenu" type="button">Cerrar menú</button>
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="#" class="nav-link">Inicio</a>
@@ -161,12 +161,12 @@ while ($row = $result->fetch_assoc()) {
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
             <li class="nav-item">
-              <a href="php/socios/socios.php" class="nav-link"><?php if (isset($_SESSION["nombre"]) && $_SESSION["tipo"] == "socio") { 
-              echo "Mi perfil";
-            } else{
-              echo "Socios";
-            }
-            ?></a>
+              <a href="php/socios/socios.php" class="nav-link"><?php if (isset($_SESSION["nombre"]) && $_SESSION["tipo"] == "socio") {
+                                                                  echo "Mi perfil";
+                                                                } else {
+                                                                  echo "Socios";
+                                                                }
+                                                                ?></a>
             </li>
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
@@ -184,8 +184,10 @@ while ($row = $result->fetch_assoc()) {
 
 
     <!-- Sobre Nosotros -->
-    <section>
-      <p>Atarfe Fighting es un club dedicado al arte del combate, con un enfoque en disciplina, fuerza y técnica. Nos especializamos en entrenamientos de boxeo, Muay Thai, y otras disciplinas de combate. Únete a nosotros para mejorar tus habilidades, entrenar con profesionales y competir en torneos.</p>
+    <section style="text-align: center;">
+      <h1 >MNZzone</h1>
+      <p>Centro E-Sports y Gaming en Granada
+      Una experiencia de otro nivel para gamers en Granada. Disfruta de los ordenadores más potentes y el ping más bajo para jugar a máximo rendimiento</p>
     </section>
     <div id="carouselExampleCaptions" class="carousel slide">
       <div class="carousel-indicators">
@@ -220,15 +222,15 @@ while ($row = $result->fetch_assoc()) {
           echo "  <div style:background:'#ff00ff' class='carousel-caption d-none d-  md-block'>";
           echo "  </div>";
 
-          echo "<div class='btn btn-danger' style='border-radius:0;width:100%'>";
-          echo "    <h5>" . htmlspecialchars($titulo) . "</h5>";
+          echo "<div class='btn' style='background:#ff0000;border-radius:0;width:100%'>";
+          echo "    <h5 style='color:white'>" . htmlspecialchars($titulo) . "</h5>";
           $contenido = substr($contenido, 0, 100) . '...';
           echo "    <p style='color:white'>" . htmlspecialchars($contenido) . "</p>";
           if (isset($_SESSION["nombre"])) {
             echo "<a style='color:white;' href='php/noticia/noticiaentera.php?id=$id_noticia'>Leer más...</a>";
           }
           echo " </br>";
-          echo "    <small>Publicado el: " . htmlspecialchars($fecha_publicacion) . "</small>";
+          echo "    <small style='color:white'>Publicado el: " . htmlspecialchars($fecha_publicacion) . "</small>";
           echo "</div>";
           echo "</div>";
           $index++;
@@ -247,20 +249,115 @@ while ($row = $result->fetch_assoc()) {
       </button>
     </div>
 
-    <!-- Beneficios de Unirse -->
-    <section>
-      <h1>Beneficios de Unirse</h1>
-      <ul>
-        <li>Acceso a entrenadores certificados y con experiencia</li>
-        <li>Programas de entrenamiento personalizados</li>
-        <li>Ambiente inclusivo y motivador</li>
-        <li>Oportunidades para competir en torneos locales y nacionales</li>
-      </ul>
+
+
+    <section style="text-align: center;">
+      <h2>Precios</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 20px;">
+
+        <div>
+          <h3>Sala principal</h3>
+          <table class="table table-bordered" style="width: 100%; margin: auto;">
+            <thead class="table-dark">
+              <tr>
+                <th>1h</th>
+                <th>2h</th>
+                <th>5h</th>
+                <th>12h</th>
+                <th>28h</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3€</td>
+                <td>5€</td>
+                <td>10€</td>
+                <td>20€</td>
+                <td>40€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3>Sala VIP</h3>
+          <table class="table table-bordered" style="width: 100%; margin: auto;">
+            <thead class="table-dark">
+              <tr>
+                <th>1h</th>
+                <th>2h</th>
+                <th>5h</th>
+                <th>12h</th>
+                <th>28h</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>5€</td>
+                <td>8€</td>
+                <td>15€</td>
+                <td>30€</td>
+                <td>60€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3>PS5</h3>
+          <table class="table table-bordered" style="width: 100%; margin: auto;">
+            <thead class="table-dark">
+              <tr>
+                <th>1h</th>
+                <th>2h</th>
+                <th>5h</th>
+                <th>12h</th>
+                <th>28h</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3€</td>
+                <td>5€</td>
+                <td>10€</td>
+                <td>20€</td>
+                <td>40€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3>Simulador de coches</h3>
+          <table class="table table-bordered" style="width: 100%; margin: auto;">
+            <thead class="table-dark">
+              <tr>
+                <th>1h</th>
+                <th>2h</th>
+                <th>5h</th>
+                <th>12h</th>
+                <th>28h</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3€</td>
+                <td>5€</td>
+                <td>10€</td>
+                <td>20€</td>
+                <td>40€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
     </section>
+
     <br>
     <!-- Testimonios de Miembros -->
     <section>
-      <h1>Testimonios</h1>
+      <h2>Testimonios</h2>
 
       <div class="testimonio-container">
         <?php
@@ -365,7 +462,7 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Galería de Imágenes -->
     <section>
-      <h1>Galería</h1>
+      <h2>Galería</h2>
       <div class="gallery">
         <img loading="lazy" src="https://virtualboxingym.com/wp-content/uploads/2023/09/Sin-titulo-8-1.png" alt="Entrenamiento en el club">
         <img loading="lazy" src="https://muaythaigranada.es/wp-content/uploads/2022/01/MuaythaiClasesTodosNiveles-1.jpg" alt="Competencia de kickboxing">
@@ -461,7 +558,7 @@ while ($row = $result->fetch_assoc()) {
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2025 Copyright:
-      <a class="text-white">Atarfe Fighting</a>
+      <a class="text-white">MNZone</a>
     </div>
     <!-- Copyright -->
   </footer>

@@ -7,7 +7,7 @@ include '../esencial/conexion.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miembros - Atarfe Fighting</title>
+    <title>Miembros - MNZone</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="js/app.js" defer></script>
     <script src="../../js/header.js" defer></script>
@@ -15,11 +15,11 @@ include '../esencial/conexion.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <h2 style="font-weight: bold;">Entrenadores</h2>
-        <p>En Atarfe Fighting Club, contamos con un equipo de entrenadores altamente capacitados y dedicados a ayudarte a alcanzar tus metas deportivas. Cada uno de ellos aporta su experiencia y pasión por las artes marciales y el entrenamiento físico, ofreciendo una guía personalizada para todos nuestros socios, sin importar su nivel o categoría. Aquí podrás conocer a nuestros entrenadores, las categorías que lideran y un poco más sobre su rol en el club. ¡Estamos aquí para apoyarte en tu camino hacia el éxito y el crecimiento personal!</p>
+        <p>En MNZone Club, contamos con un equipo de entrenadores altamente capacitados y dedicados a ayudarte a alcanzar tus metas deportivas. Cada uno de ellos aporta su experiencia y pasión por las artes marciales y el entrenamiento físico, ofreciendo una guía personalizada para todos nuestros socios, sin importar su nivel o categoría. Aquí podrás conocer a nuestros entrenadores, las categorías que lideran y un poco más sobre su rol en el club. ¡Estamos aquí para apoyarte en tu camino hacia el éxito y el crecimiento personal!</p>
 
         <div class="entrenador-container">
             <?php

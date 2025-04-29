@@ -43,7 +43,7 @@ $stmt->bind_result($nombre, $usuario, $edad, $telefono, $foto);
 
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <h2 style="font-weight: bold;">Socios</h2>

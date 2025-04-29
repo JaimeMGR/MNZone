@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "clubdeportivo";
+$dbname = "mnzone_db";
 
 $conexion = new mysqli($servername, $username, $password, $dbname);
 

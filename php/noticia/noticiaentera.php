@@ -22,7 +22,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias - Atarfe Fighting</title>
+    <title>Noticias - MNZone</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="js/app.js" defer></script>
     <script src="../../js/header.js" defer></script>
@@ -30,7 +30,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php' ?>
     <main>
         <?php

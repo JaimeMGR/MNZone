@@ -29,7 +29,7 @@ $stmt->bind_result($telefono, $nombre, $contrasena, $usuario, $edad, $imagen);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background:#f4f4f9">
+<body>
     <?php include '../esencial/header.php';
 
     ?>

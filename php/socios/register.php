@@ -106,7 +106,7 @@ if (!isset($_SESSION['nombre'])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
 
-    <body style="background:#f4f4f9">
+    <body>
         <?php include '../esencial/header.php'; ?>
         <main>
             <h2 style="font-weight: bold;">Registro de Socio</h2>

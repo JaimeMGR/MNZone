@@ -8,15 +8,15 @@ $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? (int)$_GET['limit
 
 if (isset($_GET['categoria'])) {
   $categoria = $_GET['categoria'];
-  $apiUrl = "http://localhost/Atarfe_Fighting/php/tienda/api_crud/api.php?page=$page&limit=$limit&categoria=$categoria";
+  $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit&categoria=$categoria";
 } else if (isset($_GET['nombre_producto'])) {
   $nombre_producto = $_GET['nombre_producto'];
-  $apiUrl = "http://localhost/Atarfe_Fighting/php/tienda/api_crud/api.php?page=$page&limit=$limit&nombre_producto=$nombre_producto";
+  $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit&nombre_producto=$nombre_producto";
 } else if (isset($_GET['precio'])) {
   $precio = $_GET['precio'];
-  $apiUrl = "http://localhost/Atarfe_Fighting/php/tienda/api_crud/api.php?page=$page&limit=$limit&precio=$precio";
+  $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit&precio=$precio";
 } else {
-  $apiUrl = "http://localhost/Atarfe_Fighting/php/tienda/api_crud/api.php?page=$page&limit=$limit";
+  $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit";
 }
 
 // Extrae el valor del formulario usado para los filtros
@@ -51,7 +51,7 @@ $lista = [];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda - Atarfe Fighting</title>
+  <title>Tienda - MNZone</title>
   <link rel="stylesheet" href="../../css/styles.css">
   <script src="../../js/header.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -63,7 +63,7 @@ $lista = [];
   <!-- styles css -->
 </head>
 
-<body style="background:#f4f4f9">
+<body>
   <?php include '../esencial/header.php' ?>
   <main>
     <?php
