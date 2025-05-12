@@ -19,6 +19,16 @@ if (!isset($_SESSION['nombre'])) {
             $errores['nombre'] = "El nombre debe contener solo letras, entre 4 y 50 caracteres.";
         }
 
+        //El nombre no puede ser ni admin ni administrador
+        if (strtolower($nombre) == "admin" || strtolower($nombre) == "administrador") {
+            $errores['nombre'] = "El nombre no puede ser 'admin' o 'administrador'.";
+        }
+
+        //El username no puede ser ni admin ni administrador ni root
+        if (strtolower($usuario) == "admin" || strtolower($usuario) == "administrador" || strtolower($usuario) == "root") {
+            $errores['usuario'] = "El nombre de usuario no puede ser 'admin', 'administrador' o 'root'.";
+        }
+
         if (!preg_match('/^[a-zA-Z][a-zA-Z0-9]{4,19}$/', $usuario)) {
             $errores['usuario'] = "El usuario debe empezar con letra y tener entre 5 y 20 caracteres.";
         }

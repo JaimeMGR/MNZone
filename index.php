@@ -4,18 +4,18 @@ require_once "utilidades.php";
 
 
 $query = "SELECT c.fecha, c.hora, s.nombre as alumno, v.descripcion as clase 
-              FROM cita c
+              FROM reservas c
               JOIN socio s ON c.codigo_socio = s.id_socio
               JOIN servicio v ON c.codigo_servicio = v.codigo_servicio";
 
 $result = $conexion->query($query);
 
-$citas = [];
+$reservas = [];
 while ($row = $result->fetch_assoc()) {
   // Convertir la fecha y hora al formato deseado
   $formattedDate = date("d/m/Y", strtotime($row['fecha']));
   $formattedTime = date("H", strtotime($row['hora']));
-  $citas[] = [
+  $reservas[] = [
     'fecha' => $formattedDate,
     'hora' => $formattedTime,
     'alumno' => $row['alumno'],
@@ -31,7 +31,8 @@ while ($row = $result->fetch_assoc()) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MNZone</title>
-  <script src="js/header.js" defer></script>
+  <link rel="icon" type="image/ico" href="imagenes/Logo.ico"/>
+    <script src="js/header.js" defer></script>
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/app.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -140,7 +141,7 @@ while ($row = $result->fetch_assoc()) {
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
             <li class="nav-item">
-              <a href="php/cita/clases.php" class="nav-link">Citas</a>
+              <a href="php/reservas/Reservas.php" class="nav-link">Reservas</a>
             </li>
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
@@ -152,7 +153,7 @@ while ($row = $result->fetch_assoc()) {
             <a href="php/servicio/servicios.php" class="nav-link">Servicios</a>
           </li>
           <li class="nav-item">
-            <a href="php/entrenadores/entrenadores.php" class="nav-link">Entrenadores</a>
+            <a href="php/equipos/equipos.php" class="nav-link">Equipos</a>
           </li>
           <?php if (isset($_SESSION["nombre"])) { ?>
             <li class="nav-item">
@@ -185,9 +186,9 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Sobre Nosotros -->
     <section style="text-align: center;">
-      <h1 >MNZzone</h1>
+      <h1>MNZzone</h1>
       <p>Centro E-Sports y Gaming en Granada
-      Una experiencia de otro nivel para gamers en Granada. Disfruta de los ordenadores más potentes y el ping más bajo para jugar a máximo rendimiento</p>
+        Una experiencia de otro nivel para gamers en Granada. Disfruta de los ordenadores más potentes y el ping más bajo para jugar a máximo rendimiento</p>
     </section>
     <div id="carouselExampleCaptions" class="carousel slide">
       <div class="carousel-indicators">
@@ -264,7 +265,7 @@ while ($row = $result->fetch_assoc()) {
                 <th>2h</th>
                 <th>5h</th>
                 <th>12h</th>
-                <th>28h</th>
+                <th>24h</th>
               </tr>
             </thead>
             <tbody>
@@ -288,7 +289,7 @@ while ($row = $result->fetch_assoc()) {
                 <th>2h</th>
                 <th>5h</th>
                 <th>12h</th>
-                <th>28h</th>
+                <th>24h</th>
               </tr>
             </thead>
             <tbody>
@@ -312,7 +313,7 @@ while ($row = $result->fetch_assoc()) {
                 <th>2h</th>
                 <th>5h</th>
                 <th>12h</th>
-                <th>28h</th>
+                <th>24h</th>
               </tr>
             </thead>
             <tbody>
@@ -336,7 +337,7 @@ while ($row = $result->fetch_assoc()) {
                 <th>2h</th>
                 <th>5h</th>
                 <th>12h</th>
-                <th>28h</th>
+                <th>24h</th>
               </tr>
             </thead>
             <tbody>
@@ -476,11 +477,11 @@ while ($row = $result->fetch_assoc()) {
   </main>
   <footer class="bg text-white text-center text-lg-start">
     <!-- Grid container -->
-    <div class="container p-3">
+    <div class="container">
       <!--Grid row-->
       <div class="row">
         <!--Grid column-->
-        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
           <div class="logocontainer" style="text-align:center;">
             <img loading='lazy' src="imagenes/logo.png">
           </div>
@@ -488,7 +489,7 @@ while ($row = $result->fetch_assoc()) {
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <div id="enlaces_footer" class="col-lg-4 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Enlaces</h5>
 
           <ul class="list-unstyled mb-0">
@@ -502,7 +503,7 @@ while ($row = $result->fetch_assoc()) {
             <?php } ?>
             <?php if (isset($_SESSION["nombre"])) { ?>
               <li class="nav-item">
-                <a href="php/cita/clases.php" class="nav-link">Citas</a>
+                <a href="php/reserva/reservas.php" class="nav-link">Reservas</a>
               </li>
             <?php } ?>
             <?php if (isset($_SESSION["nombre"])) { ?>
@@ -514,7 +515,7 @@ while ($row = $result->fetch_assoc()) {
               <a href="php/servicio/servicios.php" class="nav-link">Servicios</a>
             </li>
             <li class="nav-item">
-              <a href="php/entrenadores/entrenadores.php" class="nav-link">Entrenadores</a>
+              <a href="php/equipos/equipos.php" class="nav-link">Equipos</a>
             </li>
             <?php if (isset($_SESSION["nombre"])) { ?>
               <li class="nav-item">
@@ -536,7 +537,7 @@ while ($row = $result->fetch_assoc()) {
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <div id="contacto" class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase mb-0">Contacto</h5>
 
           <ul class="list-unstyled">
@@ -554,7 +555,7 @@ while ($row = $result->fetch_assoc()) {
       <!--Grid row-->
     </div>
     <!-- Grid container -->
-
+    <br><br>
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2025 Copyright:

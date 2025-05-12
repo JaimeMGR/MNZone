@@ -10,6 +10,7 @@ include '../esencial/conexion.php';
     <title>Miembros - Atarfe Fighting</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="js/app.js" defer></script>
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="../../js/header.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -18,7 +19,7 @@ include '../esencial/conexion.php';
 <body>
     <?php include '../esencial/header.php' ?>
     <main>
-        <h2 style="font-weight: bold;"><?php if (isset($_SESSION["nombre"]) && $pagina_actual == "socios.php" && $_SESSION["tipo"] == "socio") { echo "Mi perfil";}else{ echo "Socios"; } ?></h2>
+        <h1><?php if (isset($_SESSION["nombre"]) && $pagina_actual == "socios.php" && $_SESSION["tipo"] == "socio") { echo "Mi perfil";}else{ echo "Socios"; } ?></h1>
         <section style="text-align:center">
             <?php
             if (isset($_SESSION["nombre"]) && $pagina_actual == "socios.php" && $_SESSION["tipo"] == "socio") {

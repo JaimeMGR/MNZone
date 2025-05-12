@@ -16,7 +16,7 @@ if (isset($_GET['categoria'])) {
   $precio = $_GET['precio'];
   $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit&precio=$precio";
 } else {
-  $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit";
+  $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?page=$page&limit=$limit&order=dsc";
 }
 
 // Extrae el valor del formulario usado para los filtros
@@ -99,27 +99,27 @@ $lista = [];
           echo '<table>';
           echo '<thead>';
           echo '<tr>';
-          echo '<th>ID</th>';
-          echo '<th>Nombre de producto</th>';
-          echo '<th>Compañía</th>';
-          echo '<th>Imagen</th>';
-          echo '<th>precio</th>';
-          echo '<th>Categoría</th>';
-          echo '<th>Acciones</th>';
+          echo '<th style="border: 1px solid black;">ID</th>';
+          echo '<th style="border: 1px solid black;">NOMBRE</th>';
+          echo '<th style="border: 1px solid black;">COMPAÑÍA</th>';
+          echo '<th style="border: 1px solid black;">IMAGEN</th>';
+          echo '<th style="border: 1px solid black;">PRECIO</th>';
+          echo '<th style="border: 1px solid black;">CATEGORÍA</th>';
+          echo '<th style="border: 1px solid black;"></th>';
           echo '</tr>';
           echo '</thead>';
           echo '<tbody>';
 
           // Procesamos y mostramos las productos
           foreach ($productosDisponibles as $producto) {
-            echo '<tr>';
-            echo '<td>' . $producto['id_producto'] . '</td>';
-            echo '<td>' . $producto['nombre_producto'] . '</td>';
-            echo '<td>' . $producto['compania'] . '</td>';
-            echo '<td><img src="' . $producto['imagen'] . '" width="100" height="100"></td>';
-            echo '<td>' . $producto['precio'] . '</td>';
-            echo '<td>' . $producto['categoria'] . '</td>';
-            echo '<td>';
+            echo '<tr style="border: 1px solid black;">';
+            echo '<td style="border: 1px solid black;">' . $producto['id_producto'] . '</td>';
+            echo '<td style="border: 1px solid black;">' . $producto['nombre_producto'] . '</td>';
+            echo '<td style="border: 1px solid black;">' . $producto['compania'] . '</td>';
+            echo '<td style="border: 1px solid black;"><img src="' . $producto['imagen'] . '" width="100" height="100"></td>';
+            echo '<td style="border: 1px solid black;">' . $producto['precio'] . '</td>';
+            echo '<td style="border: 1px solid black;">' . $producto['categoria'] . '</td>';
+            echo '<td style="border: 1px solid black;">';
             echo '<a href="editarproducto.php?id=' . $producto['id_producto'] . '" class="edit">Editar</a><br>';
             echo '<a href="api/borrar.php?id=' . $producto['id_producto'] . '" class="delete" onclick="return confirm(\'¿Seguro que quieres borrar esta producto?\');">Borrar</a>';
             echo '</td>';
@@ -176,13 +176,13 @@ $lista = [];
               <div class="input-group">
                 <select class="form-control" id="categoria" name="categoria">
                   <option value="" hidden>Todos</option>
-                  <option value="Guantes">Guantes</option>
-                  <option value="Pantalones">Pantalones</option>
-                  <option value="Rodilleras">Rodilleras</option>
-                  <option value="Zapatillas">Zapatillas</option>
-                  <option value="Tobilleras">Tobilleras</option>
-                  <option value="Bucales">Bucales</option>
-                  <option value="Suplementos">Suplementos</option>
+                  <option value="Bebida">Bebida</option>
+                  <option value="Comida">Comida</option>
+                  <option value="Play_Station_5">Play Station 5</option>
+                  <option value="Sala_VR">Sala VR</option>
+                  <option value="Sala_VIP">Sala VIP</option>
+                  <option value="Sala_principal">Sala principal</option>
+                  <option value="Simulador_coches">Simulador de coches</option>
                 </select>
                 <button type="submit" class="btn btn-warning">Filtrar</button>
               </div>
@@ -280,7 +280,7 @@ $lista = [];
               ?>
                 <article class="product">
                   <div class="product-container" data-id="<?php echo $producto['id_producto']; ?>">
-                    <img src="<?php echo $producto['imagen']; ?>" class="product-img img" alt="<?php echo $producto['nombre_producto']; ?>">
+                    <img src="<?php echo $producto['imagen']; ?>" class="product-img img" style="height: 100%;" alt="<?php echo $producto['nombre_producto']; ?>">
                     <div class="product-icons">
                       <button class="product-cart-btn product-icon">
                         <i class="fas fa-shopping-cart"></i>
@@ -305,7 +305,7 @@ $lista = [];
 
 
 
-          <div class="pagination">
+          <div class="pagination" style="display: flex; gap: 10px; margin-top: 20px;justify-content: center;">
             <?php
             // Enlace a la página anterior (si no estamos en la primera)
             if ($actual > 1) {
@@ -314,44 +314,44 @@ $lista = [];
                 echo '<a href="?categoria=' . $categoria . '&pagina=' . ($actual - 1) . '&limit=' . $limite . '" class="paginacion btn btn-warning">Anterior</a>';
               } else if (isset($nombre_producto)) {
                 echo '<a href="?nombre_producto=' . $nombre_producto . '&pagina=' . ($actual - 1) . '&limit=' . $limite . '" class="paginacion btn btn-warning">Anterior</a>';
-                } else if (isset($precio)) {
-                  echo '<a href="?precio=' . $precio . '&pagina=' . ($actual - 1) . '&limit=' . $limite . '" class="paginacion btn btn-warning">Anterior</a>';
+              } else if (isset($precio)) {
+                echo '<a href="?precio=' . $precio . '&pagina=' . ($actual - 1) . '&limit=' . $limite . '" class="paginacion btn btn-warning">Anterior</a>';
               } else {
-              echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual - 1) . '&limit=' . $limite . '">Anterior</a>';
+                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual - 1) . '&limit=' . $limite . '">Anterior</a>';
+              }
             }
-          }
 
             // Enlaces a las páginas
             for ($i = 1; $i <= $total; $i++) {
               if ($i == $actual) {
-                echo '<span class="current btn btn-warning">' . $i . '</span>';
+                echo '<span class="current btn btn-danger">' . $i . '</span>';
               } else {
                 if (isset($categoria)) {
-                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '&categoria=' . $categoria .'">' . $i . '</a>';
+                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '&categoria=' . $categoria . '">' . $i . '</a>';
                 } else if (isset($nombre_producto)) {
-                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '&nombre_producto=' . $nombre_producto .'">' . $i . '</a>';
+                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '&nombre_producto=' . $nombre_producto . '">' . $i . '</a>';
                 } else if (isset($precio)) {
-                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '&precio=' . $precio .'">' . $i . '</a>';
+                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '&precio=' . $precio . '">' . $i . '</a>';
                 } else {
-                echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '">' . $i . '</a>';
+                  echo '<a class="paginacion btn btn-warning" href="?page=' . $i . '&limit=' . $limite . '">' . $i . '</a>';
+                }
               }
             }
-          }
 
             // Enlace a la siguiente página (si no estamos en la última)
             if ($actual < $total) {
               if (isset($categoria)) {
-                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '&categoria=' . $categoria .'">Siguiente</a>';
-              }else if (isset($nombre_producto)) {
-                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '&nombre_producto=' . $nombre_producto .'">Siguiente</a>';
-              }else if (isset($precio)) {
-                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '&precio=' . $precio .'">Siguiente</a>';
-              }else{
-              echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '">Siguiente</a>';
+                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '&categoria=' . $categoria . '">Siguiente</a>';
+              } else if (isset($nombre_producto)) {
+                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '&nombre_producto=' . $nombre_producto . '">Siguiente</a>';
+              } else if (isset($precio)) {
+                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '&precio=' . $precio . '">Siguiente</a>';
+              } else {
+                echo '<a class="paginacion btn btn-warning" href="?page=' . ($actual + 1) . '&limit=' . $limite . '">Siguiente</a>';
+              }
             }
-          }
-          
-          
+
+
 
             ?></div><?php
                   } else {
@@ -375,7 +375,7 @@ $lista = [];
       } else {
         header("Location: ../../index.php");
       }
-    
+
 ?>
 </main>
 <?php include '../esencial/footer.php' ?>

@@ -14,7 +14,8 @@ $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 $offset = ($pagina_actual - 1) * $max_socios_por_pagina;
 
 // Realizar la consulta para contar el total de socios que coinciden con la búsqueda
-$query_count = "SELECT COUNT(*) FROM socio WHERE nombre LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%'";
+$query_count = "SELECT COUNT(*) FROM socio WHERE (nombre LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%') AND tipo = 'socio'";
+
 $result_count = $conexion->query($query_count);
 $total_socios = $result_count->fetch_row()[0];
 
@@ -22,7 +23,13 @@ $total_socios = $result_count->fetch_row()[0];
 $total_paginas = ceil($total_socios / $max_socios_por_pagina);
 
 // Realizar la consulta para obtener los socios de la página actual con límite y desplazamiento
-$query = "SELECT nombre, usuario, edad, telefono, foto FROM socio WHERE nombre LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' OR telefono LIKE '%$busqueda%' LIMIT $max_socios_por_pagina OFFSET $offset";
+$query = "SELECT nombre, usuario, edad, telefono, foto 
+          FROM socio 
+          WHERE (nombre LIKE '%$busqueda%' 
+                 OR usuario LIKE '%$busqueda%' 
+                 OR telefono LIKE '%$busqueda%') 
+          AND tipo = 'socio' 
+          LIMIT $max_socios_por_pagina OFFSET $offset";
 $stmt = $conexion->prepare($query);
 $stmt->execute();
 $stmt->bind_result($nombre, $usuario, $edad, $telefono, $foto);
@@ -38,6 +45,7 @@ $stmt->bind_result($nombre, $usuario, $edad, $telefono, $foto);
     <title>Miembros - Atarfe Fighting</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="../../js/header.js" defer></script>
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -46,7 +54,7 @@ $stmt->bind_result($nombre, $usuario, $edad, $telefono, $foto);
 <body>
     <?php include '../esencial/header.php' ?>
     <main>
-        <h2 style="font-weight: bold;">Socios</h2>
+        <h1 style="font-weight: bold;">Socios</h1>
         <section style="text-align:center">
             <a class="btn btn-warning" href="register.php">Añadir socio</a>
         </section>

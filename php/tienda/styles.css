@@ -325,8 +325,9 @@ Title
 product
 ===============
 */
-.product-img {
-  height: 15rem;
+.product-img{
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: var(--radius);
 }
@@ -438,11 +439,14 @@ Products Page
 ===============
 */
 .products {
-  width: 90vw;
+  width: 100%;
   grid-gap: 1rem;
   margin: 4rem auto;
   max-width: var(--max-width);
   position: relative;
+}
+.products-container .product-img .img {
+height: 100%;
 }
 .filters-container {
   position: sticky;

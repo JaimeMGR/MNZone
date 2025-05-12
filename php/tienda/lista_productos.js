@@ -1,314 +1,258 @@
 let lista = {
-    "97": {
-        "id_producto": 97,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/productos\/19acab40304695ce587d41ec2e1838ed.jpg",
-        "precio": 46,
-        "categoria": "Guantes"
+    "138": {
+        "id_producto": 138,
+        "nombre_producto": "1 hora - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/3110411fdf790fd235f5b97cbd692a6c.jpg",
+        "precio": 3,
+        "categoria": "Sala principal"
     },
-    "98": {
-        "id_producto": 98,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/productos\/55197d9fc61db5d73a7234a5e2bfa954.jpg",
-        "precio": 46,
-        "categoria": "Guantes"
+    "139": {
+        "id_producto": 139,
+        "nombre_producto": "1 hora - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/3110411fdf790fd235f5b97cbd692a6c.jpg",
+        "precio": 3,
+        "categoria": "Sala principal"
     },
-    "99": {
-        "id_producto": 99,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/productos\/e580b539c562718113763f43d66c2c6d.jpg",
-        "precio": 46,
-        "categoria": "Guantes"
+    "140": {
+        "id_producto": 140,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/290b18305d3e1761cc47b6c85c752efc.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "100": {
-        "id_producto": 100,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/2580293ddd3a65a8d9f9ed1e39c5e9ae.jpg",
-        "precio": 46,
-        "categoria": "Guantes"
+    "142": {
+        "id_producto": 142,
+        "nombre_producto": "5 hora - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/6749ac62f11588cbfae825cb193c66c5.jpg",
+        "precio": 10,
+        "categoria": "Sala_principal"
     },
-    "101": {
-        "id_producto": 101,
-        "nombre_producto": "Super zapatos",
-        "compania": "Adidas",
-        "imagen": "productos\/3016957cdea97c137406849d42ae71fa.jpg",
-        "precio": 40,
-        "categoria": "Rodilleras"
+    "143": {
+        "id_producto": 143,
+        "nombre_producto": "1 hora - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/c71b25040ec3cadbe0f6d03b4bafba43.jpg",
+        "precio": 3,
+        "categoria": "Sala_principal"
     },
-    "102": {
-        "id_producto": 102,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/9aecafd577122a196f9a8553beb27d76.jpg",
-        "precio": 40,
-        "categoria": "Guantes"
+    "144": {
+        "id_producto": 144,
+        "nombre_producto": "1 hora - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/37f3682b17d6c0c03c6c75bfa906cb99.jpg",
+        "precio": 3,
+        "categoria": "Sala_principal"
     },
-    "103": {
-        "id_producto": 103,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/e5e7708821e5c5eec785b5773f6533b4.jpg",
-        "precio": 40,
-        "categoria": "Guantes"
+    "145": {
+        "id_producto": 145,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/07a5ba631de31489d245417607ed6c01.jpg",
+        "precio": 5,
+        "categoria": "Sala principal"
     },
-    "104": {
-        "id_producto": 104,
-        "nombre_producto": "Guantes Leone 1947 New Maori negro",
-        "compania": "Leone",
-        "imagen": "productos\/619d4215ef818f6867cb3c6087836eab.jpg",
-        "precio": 40,
-        "categoria": "Guantes"
+    "146": {
+        "id_producto": 146,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/productos\/3110411fdf790fd235f5b97cbd692a6c.jpg",
+        "precio": 5,
+        "categoria": "Sala principal"
     },
-    "105": {
-        "id_producto": 105,
-        "nombre_producto": "Pantalon boxeo Leone1947 ESSENTIAL negro\/M",
-        "compania": "LEONE 1947",
-        "imagen": "productos\/f75b122f1272e4f1e0ee7cbdc773954a.jpg",
-        "precio": 25,
-        "categoria": "Pantalones"
+    "147": {
+        "id_producto": 147,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/c6cfad39dad85509c6b6eba9982341dc.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "106": {
-        "id_producto": 106,
-        "nombre_producto": "G",
-        "compania": "Leone",
-        "imagen": "productos\/producto-1738229068_6148uEuF+pL._AC_SX425_.jpg",
-        "precio": 50,
-        "categoria": "Bucales"
+    "148": {
+        "id_producto": 148,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/fd3ef0dc6568b6ab36a17e9307e0e889.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "107": {
-        "id_producto": 107,
-        "nombre_producto": "Gu",
-        "compania": "Leone",
-        "imagen": "productos\/producto-1738229068_6148uEuF+pL._AC_SX425_.jpg",
-        "precio": 50,
-        "categoria": "Bucales"
+    "149": {
+        "id_producto": 149,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/8f24abeca33133885d59364ced8a7595.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "108": {
-        "id_producto": 108,
-        "nombre_producto": "Gua",
-        "compania": "Leone",
-        "imagen": "productos\/producto-1738229068_6148uEuF+pL._AC_SX425_.jpg",
-        "precio": 50,
-        "categoria": "Bucales"
+    "150": {
+        "id_producto": 150,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/8371cd6ad903ba3684e7e307b72e6f45.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "109": {
-        "id_producto": 109,
-        "nombre_producto": "Guantes Thailand Piel Negros",
-        "compania": "Buddha",
-        "imagen": "productos\/9158430f4abbbd0395f8228db814bcc4.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "151": {
+        "id_producto": 151,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/c3585c3c7d6cb4e125a3b99eedc844b6.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "110": {
-        "id_producto": 110,
-        "nombre_producto": "Guantes Thailand Piel Amarillos",
-        "compania": "Buddha",
-        "imagen": "productos\/b873ab2a96221bd27fc096c037b3030c.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "152": {
+        "id_producto": 152,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/f4f31108fd232d11977282b1b47ef70d.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "111": {
-        "id_producto": 111,
-        "nombre_producto": "Guantes Thailand Piel Azulados",
-        "compania": "Buddha",
-        "imagen": "productos\/e4260da8628076aa860a0a0bd150dabb.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "153": {
+        "id_producto": 153,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/e8e2b476acc1a192b2d242a122c0c647.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "112": {
-        "id_producto": 112,
-        "nombre_producto": "Guantes Thailand Piel Blancos",
-        "compania": "Buddha",
-        "imagen": "productos\/5e2f8e9f003cf77fda4575fb0738b9a2.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "154": {
+        "id_producto": 154,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/5c8dfafe9d13522151ab7c0b9f9433b9.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "113": {
-        "id_producto": 113,
-        "nombre_producto": "Guantes Thailand Piel Azules",
-        "compania": "Buddha",
-        "imagen": "productos\/313585cba0d93df2a7cbba945f75a4d1.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "155": {
+        "id_producto": 155,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/3e9cd19085d6740fbae1d6dc72d04889.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "114": {
-        "id_producto": 114,
-        "nombre_producto": "Guantes Thailand Piel Rojos",
-        "compania": "Buddha",
-        "imagen": "productos\/01c687e47f8281a078fe2e550c841d71.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "156": {
+        "id_producto": 156,
+        "nombre_producto": "2 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/ee1eefa7c0b1e421db9e59d9cec7810c.jpg",
+        "precio": 5,
+        "categoria": "Sala_principal"
     },
-    "115": {
-        "id_producto": 115,
-        "nombre_producto": "Guantes de Boxeo Muay Thai Kick Boxing Top Premium Negro Mate",
-        "compania": "Buddha",
-        "imagen": "productos\/d3f092fdfa45a6cb6357d4e07cbee436.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
+    "157": {
+        "id_producto": 157,
+        "nombre_producto": "5 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/4cc32e36853445cb3744591996bade9a.jpg",
+        "precio": 10,
+        "categoria": "Sala principal"
     },
-    "116": {
-        "id_producto": 116,
-        "nombre_producto": "Guantes de Boxeo Muay Thai Kick Boxing Top Premium Azul Navy Mate",
-        "compania": "Buddha",
-        "imagen": "productos\/2ca28880fb68d608c0b0997d805157b4.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
-    },
-    "117": {
-        "id_producto": 117,
-        "nombre_producto": "Guantes de Boxeo Muay Thai Kick Boxing Epic Negros Piel",
-        "compania": "Buddha",
-        "imagen": "productos\/76f50a23e417e92c9139990288d27f4a.jpg",
-        "precio": 69,
-        "categoria": "Guantes"
-    },
-    "118": {
-        "id_producto": 118,
-        "nombre_producto": "Tobilleras de Muay Thai Kick Boxing K1 MMA Azules",
-        "compania": "Buddha",
-        "imagen": "productos\/14784cc27999739511ca9b1c06d461cf.jpg",
-        "precio": 9,
-        "categoria": "Tobilleras"
-    },
-    "119": {
-        "id_producto": 119,
-        "nombre_producto": "Tobilleras de Muay Thai Kick Boxing K1 MMA Rojas",
-        "compania": "Buddha",
-        "imagen": "productos\/c0ab1669631b43bfcc2a96ee4a68b4ba.jpg",
-        "precio": 9,
-        "categoria": "Tobilleras"
-    },
-    "120": {
-        "id_producto": 120,
-        "nombre_producto": "Tobilleras de Muay Thai Kick Boxing K1 MMA Amarillas",
-        "compania": "Buddha",
-        "imagen": "productos\/3438d5cf4a359de79a26bc411d03cf33.jpg",
-        "precio": 9,
-        "categoria": "Tobilleras"
-    },
-    "121": {
-        "id_producto": 121,
-        "nombre_producto": "Tobilleras de Muay Thai Kick Boxing K1 MMA Azul Cyan",
-        "compania": "Buddha",
-        "imagen": "productos\/88e3e5baab62e3c5a0d08ece16b28949.jpg",
-        "precio": 9,
-        "categoria": "Tobilleras"
-    },
-    "122": {
-        "id_producto": 122,
-        "nombre_producto": "Tobilleras de Muay Thai Kick Boxing K1 MMA Naranja",
-        "compania": "Buddha",
-        "imagen": "productos\/8110cfb52f23eb5e70881b95a0cad88f.jpg",
-        "precio": 9,
-        "categoria": "Tobilleras"
-    },
-    "123": {
-        "id_producto": 123,
-        "nombre_producto": "Venum x Demi Guantes de Boxeo - Azul Azur",
-        "compania": "Venum",
-        "imagen": "productos\/23d0ff7fd2cf9bc9fcbbf6a7a2b86ccf.jpg",
-        "precio": 89,
-        "categoria": "Guantes"
-    },
-    "124": {
-        "id_producto": 124,
-        "nombre_producto": "Venum Giant Muay Thai Pantalones Cortos - Morado oscuro",
-        "compania": "Venum",
-        "imagen": "productos\/7c3e062680c8e997aa2410f1f62b9949.jpg",
-        "precio": 64,
-        "categoria": "Pantalones"
-    },
-    "125": {
-        "id_producto": 125,
-        "nombre_producto": "Venum Giant Muay Thai Pantalones Cortos - Naranja",
-        "compania": "Venum",
-        "imagen": "productos\/f9125c8c772be025bce5bee52c33fc81.jpg",
-        "precio": 64,
-        "categoria": "Pantalones"
-    },
-    "126": {
-        "id_producto": 126,
-        "nombre_producto": "Venum Elite Zapatillas de Boxeo - Hielo\/Oro",
-        "compania": "Venum",
-        "imagen": "productos\/1c0775f423ee3eee419491396e2deab5.jpg",
-        "precio": 159,
-        "categoria": "Zapatillas"
-    },
-    "127": {
-        "id_producto": 127,
-        "nombre_producto": "Botas de boxeo Nike Machomai Blanco-Oro",
-        "compania": "Nike",
-        "imagen": "productos\/9aecd30522eea930c93d0fe98c3e8ad3.jpg",
-        "precio": 99,
-        "categoria": "Zapatillas"
-    },
-    "128": {
-        "id_producto": 128,
-        "nombre_producto": "Botas de boxeo Leone 1947 Premium CL110",
-        "compania": "Leone 1947",
-        "imagen": "productos\/c9e3590c4c87102b7d9115b52d3b0941.jpg",
-        "precio": 71,
-        "categoria": "Zapatillas"
-    },
-    "129": {
-        "id_producto": 129,
-        "nombre_producto": "QUAMTRAX PROTEIN BARS 35 GR",
-        "compania": "QUAMTRAX",
-        "imagen": "productos\/88cca73a7a8bc8c057e56a8fe95a629f.jpg",
-        "precio": 1,
-        "categoria": "Suplementos"
-    },
-    "130": {
-        "id_producto": 130,
-        "nombre_producto": "ZOOMAD WILD BEAST 240 TABLETAS",
-        "compania": "WILD BEAST",
-        "imagen": "productos\/383528335eea1eaaa054d64b063878d8.jpg",
-        "precio": 39,
-        "categoria": "Suplementos"
-    },
-    "131": {
-        "id_producto": 131,
-        "nombre_producto": "OPTIMUM NUTRITION CREATINE",
-        "compania": "OPTIUM",
-        "imagen": "productos\/00cd4eecfb6f132ff091183f45f8233a.jpg",
-        "precio": 31,
-        "categoria": "Suplementos"
-    },
-    "132": {
-        "id_producto": 132,
-        "nombre_producto": "LEONE 1947 Pd513 Protector bucal, Unisex Adulto",
-        "compania": "Leone 1947",
-        "imagen": "productos\/2c99e63fbbe06c6f73c09b2f2a4af8ff.jpg",
-        "precio": 12,
-        "categoria": "Bucales"
-    },
-    "133": {
-        "id_producto": 133,
-        "nombre_producto": "Venum Challenger 2.0 Protector Bucal Unisex, Talla única",
-        "compania": "Venum",
-        "imagen": "productos\/511e4a70376d6c0fb6dae0fff9da2916.jpg",
+    "158": {
+        "id_producto": 158,
+        "nombre_producto": "12 horas - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/86e9736efb0bedd65dfaef8045158d59.jpg",
         "precio": 20,
-        "categoria": "Bucales"
+        "categoria": "Sala principal"
     },
-    "134": {
-        "id_producto": 134,
-        "nombre_producto": "FIGHTECHNOLOGY RODILLERAS MUAY-THAI",
-        "compania": "FIGHTECHNOLOGY",
-        "imagen": "productos\/663f70d73da8c5da1f3e8199d71cb6e8.jpg",
-        "precio": 23,
-        "categoria": "Rodilleras"
+    "159": {
+        "id_producto": 159,
+        "nombre_producto": "1 hora - Sala Principal",
+        "compania": "MNZone",
+        "imagen": "productos\/de092c629b707879053336d471840983.jpg",
+        "precio": 40,
+        "categoria": "Sala principal"
     },
-    "135": {
-        "id_producto": 135,
-        "nombre_producto": "Rodilleras Muay Thai Protección Charlie",
-        "compania": "Charlie",
-        "imagen": "productos\/de7e21dc8798aa86f8a35b80d148ca62.jpg",
-        "precio": 13,
-        "categoria": "Rodilleras"
+    "160": {
+        "id_producto": 160,
+        "nombre_producto": "1 hora - Sala VIP",
+        "compania": "MNZone",
+        "imagen": "productos\/0c3a8897ba29f5c1555e4f9a3b54c017.jpg",
+        "precio": 5,
+        "categoria": "Sala VIP"
+    },
+    "161": {
+        "id_producto": 161,
+        "nombre_producto": "2 horas - Sala VIP",
+        "compania": "MNZone",
+        "imagen": "productos\/5c64482565632fc384d3d868efe2f1c1.jpg",
+        "precio": 8,
+        "categoria": "Sala VIP"
+    },
+    "162": {
+        "id_producto": 162,
+        "nombre_producto": "5 horas - Sala VIP",
+        "compania": "MNZone",
+        "imagen": "productos\/6ffbb474399cf704c2baab4e706b000c.jpg",
+        "precio": 15,
+        "categoria": "Sala VIP"
+    },
+    "163": {
+        "id_producto": 163,
+        "nombre_producto": "12 horas - Sala VIP",
+        "compania": "MNZone",
+        "imagen": "productos\/03bc57cf7615024f45e215fffe369961.jpg",
+        "precio": 30,
+        "categoria": "Sala VIP"
+    },
+    "164": {
+        "id_producto": 164,
+        "nombre_producto": "24 horas - Sala VIP",
+        "compania": "MNZone",
+        "imagen": "productos\/fdae6bb377d358cbac6ffe15d99279cf.jpg",
+        "precio": 60,
+        "categoria": "Sala VIP"
+    },
+    "165": {
+        "id_producto": 165,
+        "nombre_producto": "1 hora - PS5",
+        "compania": "MNZone",
+        "imagen": "productos\/9800b1b5eb5598e6ff209641dc71c400.jpg",
+        "precio": 3,
+        "categoria": "Play Station_5"
+    },
+    "166": {
+        "id_producto": 166,
+        "nombre_producto": "1 hora - PS5",
+        "compania": "MNZone",
+        "imagen": "productos\/5e4b755d1220815faced308cfd1b1089.jpg",
+        "precio": 3,
+        "categoria": "Play Station 5"
+    },
+    "167": {
+        "id_producto": 167,
+        "nombre_producto": "2 horas - PS5",
+        "compania": "MNZone",
+        "imagen": "productos\/8d6a814a9193023d219745130d755ef8.jpg",
+        "precio": 5,
+        "categoria": "Play Station 5"
+    },
+    "168": {
+        "id_producto": 168,
+        "nombre_producto": "5 horas - PS5",
+        "compania": "MNZone",
+        "imagen": "productos\/13604bcfddd4b2e4a523906f4f4224ff.jpg",
+        "precio": 10,
+        "categoria": "Play_Station_5"
+    },
+    "169": {
+        "id_producto": 169,
+        "nombre_producto": "12 horas - PS5",
+        "compania": "MNZone",
+        "imagen": "productos\/0fa0d8a08a8f60350c0cef0c6fc4da34.jpg",
+        "precio": 20,
+        "categoria": "Play_Station_5"
+    },
+    "170": {
+        "id_producto": 170,
+        "nombre_producto": "24 horas - PS5",
+        "compania": "MNZone",
+        "imagen": "productos\/75fed8b77a4fa882d7297e2eb863b592.jpg",
+        "precio": 40,
+        "categoria": "Play_Station_5"
     }
 };

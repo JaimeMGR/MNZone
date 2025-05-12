@@ -12,6 +12,7 @@ include '../esencial/conexion.php';
     <title>Nueva Noticia - MNZone</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="../../js/añadirnoticia.js" defer></script>
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="../../js/header.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -23,7 +24,7 @@ include '../esencial/conexion.php';
 <?php
     if (isset($_SESSION["nombre"]) && $pagina_actual == "añadirnoticia.php" &&  $_SESSION["tipo"] == "admin") {?>
     <main>
-        <h2 style="font-weight: bold;">Redactar noticia</h2>
+        <h1>Redactar noticia</h1>
 
         <form action="crearnoticia.php" method="post" enctype="multipart/form-data">
             <label for="titulo">Titulo:</label>

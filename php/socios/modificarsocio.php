@@ -24,6 +24,7 @@ $stmt->bind_result($telefono, $nombre, $contrasena, $usuario, $edad, $imagen);
     <title>Miembros - Atarfe Fighting</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="../../js/modificarsocio.js" defer></script>
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="../../js/header.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -25,6 +25,7 @@ $stmt->bind_result($codigo_servicio, $descripcion, $precio, $duracion, $imagen);
     <title>Miembros - Atarfe Fighting</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="js/app.js" defer></script>
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="../../js/header.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -33,7 +34,7 @@ $stmt->bind_result($codigo_servicio, $descripcion, $precio, $duracion, $imagen);
 <body>
     <?php include '../esencial/header.php' ?>
     <main>
-        <h1 style="font-weight: bold; text-align:center">Modificar datos del servicio</h1>
+        <h1>Modificar datos del servicio</h1>
         <?php if ($stmt->fetch()) {
             do {
 

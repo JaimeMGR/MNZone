@@ -67,11 +67,11 @@ if ($mes < 1) {
 
 
 
-// Consultar las citas con información adicional (con JOIN para obtener datos completos)
-if (isset($_SESSION["nombre"]) && $pagina_actual == "clases.php" && $_SESSION["tipo"] == "admin") {
+// Consultar las reservas con información adicional (con JOIN para obtener datos completos)
+if (isset($_SESSION["nombre"]) && $pagina_actual == "reservas.php" && $_SESSION["tipo"] == "admin") {
     $query = "
     SELECT 
-        c.id_cita,
+        c.id_reserva,
         c.fecha, 
         c.hora, 
         c.estado,
@@ -81,15 +81,15 @@ if (isset($_SESSION["nombre"]) && $pagina_actual == "clases.php" && $_SESSION["t
         srv.duracion AS servicio_duracion, 
         srv.imagen AS servicio_imagen
     FROM 
-        cita c
+        reservas c
     INNER JOIN socio s ON c.codigo_socio = s.id_socio
     INNER JOIN servicio srv ON c.codigo_servicio = srv.codigo_servicio
 ";
-} else if (isset($_SESSION["nombre"]) && $pagina_actual == "clases.php" && $_SESSION["tipo"] == "socio") {
+} else if (isset($_SESSION["nombre"]) && $pagina_actual == "reservas.php" && $_SESSION["tipo"] == "socio") {
     $nombre = $_SESSION['nombre'];
     $query = "
     SELECT 
-        c.id_cita,
+        c.id_reserva,
         c.fecha, 
         c.hora, 
         c.estado,
@@ -100,7 +100,7 @@ if (isset($_SESSION["nombre"]) && $pagina_actual == "clases.php" && $_SESSION["t
         srv.duracion AS servicio_duracion, 
         srv.imagen AS servicio_imagen
     FROM 
-        cita c
+        reservas c
     INNER JOIN socio s ON c.codigo_socio = s.id_socio
     INNER JOIN servicio srv ON c.codigo_servicio = srv.codigo_servicio
     WHERE s.usuario = '$nombre'
@@ -114,15 +114,15 @@ if (!$resultado) {
     die("Error en la consulta SQL: " . $conexion->error);
 }
 
-// Organizar citas por fecha
-$citasPorFecha = [];
+// Organizar reservas por fecha
+$reservasPorFecha = [];
 while ($fila = $resultado->fetch_array(MYSQLI_ASSOC)) {
     $fecha = $fila['fecha'];
-    if (!isset($citasPorFecha[$fecha])) {
-        $citasPorFecha[$fecha] = [];
+    if (!isset($reservasPorFecha[$fecha])) {
+        $reservasPorFecha[$fecha] = [];
     }
-    $citasPorFecha[$fecha][] = [
-        'id_cita' => $fila['id_cita'],
+    $reservasPorFecha[$fecha][] = [
+        'id_reserva' => $fila['id_reserva'],
         'hora' => substr($fila['hora'], 0, 5), // Hora formateada (hh:mm)
         'socio' => $fila['socio'],
         'telefono' => $fila['telefono'],
@@ -132,7 +132,7 @@ while ($fila = $resultado->fetch_array(MYSQLI_ASSOC)) {
 }
 
 // Función para generar el calendario
-function generarCalendario($anio, $mes, $citasPorFecha)
+function generarCalendario($anio, $mes, $reservasPorFecha)
 {
     $diasSemana = ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'DOMINGO'];
     $primerDiaMes = mktime(0, 0, 0, $mes, 1, $anio);
@@ -158,55 +158,55 @@ function generarCalendario($anio, $mes, $citasPorFecha)
         echo '<td style="vertical-align: top;">';
         echo "<div><strong>$dia</strong></div>";
 
-        // Verificar si hay citas para este día
-        if (isset($citasPorFecha[$fechaActual])) {
-            echo "<button onclick='mostrarPopup(\"$fechaActual\")' style='background: #e8f4ff; border: none; padding: 5px; cursor: pointer;'>Ver Citas</button>";
+        // Verificar si hay reservas para este día
+        if (isset($reservasPorFecha[$fechaActual])) {
+            echo "<button onclick='mostrarPopup(\"$fechaActual\")' style='background: #e8f4ff; border: none; padding: 5px; cursor: pointer;'>Ver reservas</button>";
 
             echo "<div id='popup-$fechaActual' class='popup' style='display:none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border: 2px solid #ccc; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); z-index: 10; max-width: 300px;'>";
             $contador = 0;
-            foreach ($citasPorFecha[$fechaActual] as $cita) {
-                if ($cita['estado'] == 0) {
+            foreach ($reservasPorFecha[$fechaActual] as $reserva) {
+                if ($reserva['estado'] == 0) {
                     $estado = "Cancelada";
                 } else {
                     $estado = "Pendiente";
                 }
                 $fechaHoy = date("Y-m-d");
                 if ($fechaActual < $fechaHoy) {
-                    $cita['estado'] == 0;
+                    $reserva['estado'] == 0;
                     $estado = "Finalizado";
                 }
                 $contador++;
-                echo "<h4>Detalles de la cita $contador</h4>";
-                echo "<div class='detalle'><strong>Hora:</strong> {$cita['hora']}</div>";
-                echo "<div class='detalle'><strong>Socio:</strong> {$cita['socio']}</div>";
-                echo "<div class='detalle'><strong>Teléfono:</strong> {$cita['telefono']}</div>";
-                echo "<div class='detalle'><strong>Servicio:</strong> {$cita['servicio_desc']}</div>";
+                echo "<h4>Detalles de la reserva $contador</h4>";
+                echo "<div class='detalle'><strong>Hora:</strong> {$reserva['hora']}</div>";
+                echo "<div class='detalle'><strong>Socio:</strong> {$reserva['socio']}</div>";
+                echo "<div class='detalle'><strong>Teléfono:</strong> {$reserva['telefono']}</div>";
+                echo "<div class='detalle'><strong>Servicio:</strong> {$reserva['servicio_desc']}</div>";
                 echo "<div class='detalle'><strong>Estado: </strong> {$estado}</div>";
                 echo "<br>";
 
 
-                // Verificar si la cita es futura, de lo contrario no mostrar el botón de eliminar
+                // Verificar si la reserva es futura, de lo contrario no mostrar el botón de eliminar
 
                 if ($fechaActual > $fechaHoy && $estado == "Pendiente") {
 ?>
-                    <!-- Botón para cancelar cita -->
-                    <form method="POST" action="../cita/acciones.php" style="display: inline;">
+                    <!-- Botón para cancelar reserva -->
+                    <form method="POST" action="../reservas/acciones.php" style="display: inline;">
                         <input type="hidden" name="accion" value="cancelar">
-                        <input type="hidden" name="id_cita" value="<?php echo $cita['id_cita']; ?>">
-                        <button type="submit" class="btn btn-danger">Cancelar cita</button>
+                        <input type="hidden" name="id_reserva" value="<?php echo $reserva['id_reserva']; ?>">
+                        <button type="submit" class="btn btn-danger">Cancelar reserva</button>
                     </form>
                     <br><br>
                 <?php
                 } else {
                     $estado = "Finalizada";
                 }
-                if ($fechaActual > $fechaHoy && $cita['estado'] == 0) {
+                if ($fechaActual > $fechaHoy && $reserva['estado'] == 0) {
                 ?>
-                    <!-- Botón para eliminar cita -->
-                    <form method="POST" action="../cita/acciones.php" style="display: inline;">
+                    <!-- Botón para eliminar reserva -->
+                    <form method="POST" action="../reservas/acciones.php" style="display: inline;">
                         <input type="hidden" name="accion" value="eliminar">
-                        <input type="hidden" name="id_cita" value="<?php echo $cita['id_cita']; ?>">
-                        <button type="submit" class="btn btn-danger">Eliminar cita</button>
+                        <input type="hidden" name="id_reserva" value="<?php echo $reserva['id_reserva']; ?>">
+                        <button type="submit" class="btn btn-danger">Eliminar reserva</button>
                     </form>
                     <br><br>
 <?php
@@ -250,21 +250,23 @@ if ($mesSiguiente > 12) {
 }
 
 // Mostrar el mes y año
-echo "<div style='text-align: center; margin: 20px 0;'>";
+echo "<div style='text-align: center; margin-bottom: 20px;'>";
 echo "<h2>" . $nombreMes . " de " . $anio . "</h2>";
 
-// Botones de navegación
-echo "<a href='?mes=$mesAnterior&anio=$anioAnterior' style='margin-right: 20px; text-decoration: none;'><button class='btn btn-danger'>Anterior</button></a>";
-echo "<a href='?mes=$mesSiguiente&anio=$anioSiguiente' style='text-decoration: none;'><button class='btn btn-danger'>Siguiente</button></a>";
+
 echo "</div>";
 
 // Generar el calendario
-generarCalendario($anio, $mes, $citasPorFecha);
-
+generarCalendario($anio, $mes, $reservasPorFecha);
+// Botones de navegación
+echo "<div style='text-align: center; margin-top: 20px;'>";
+echo "<a href='?mes=$mesAnterior&anio=$anioAnterior' style='margin-right: 20px; text-decoration: none;'><button class='btn btn-danger'>Anterior</button></a>";
+echo "<a href='?mes=$mesSiguiente&anio=$anioSiguiente' style='text-decoration: none;'><button class='btn btn-danger'>Siguiente</button></a>";
+echo "</div>";
 ?>
 
 <script>
-    // Mostrar el popup con las citas de un día específico
+    // Mostrar el popup con las reservas de un día específico
     function mostrarPopup(fecha) {
         document.getElementById('popup-' + fecha).style.display = 'block';
     }

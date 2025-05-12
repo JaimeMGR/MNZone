@@ -10,6 +10,7 @@ include '../esencial/conexion.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias - Atarfe Fighting</title>
     <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="js/app.js" defer></script>
     <script src="../../js/header.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -21,7 +22,7 @@ include '../esencial/conexion.php';
 <body>
     <?php include '../esencial/header.php' ?>
     <main>
-        <h2>Servicios</h2>
+        <h1>Servicios</h1>
         <?php
         if (isset($_SESSION["nombre"]) && $pagina_actual == "servicios.php" && $_SESSION["tipo"] == "admin") {
         ?>
@@ -50,34 +51,31 @@ include '../esencial/conexion.php';
         $contador = 0;
         // Procesar los resultados
         if ($stmt->fetch()) {
+            echo "<div class='lista-servicios'>";
             do {
                 $contador++;
         ?>
-
+                <!-- Tu contenido de tarjeta o "accordion" -->
                 <div class="accordion" id="accordion<?php echo $contador ?>">
-                    <header class="header" style="margin-left:10%;width:80%">
-                        <h2 class='servicio-title' style="text-transform:uppercase;font"><?php echo $descripcion ?></h2>
-
-                    </header>
+                    <div class="header_servicio">
+                        <h2 class='servicio-title' style="text-transform:uppercase;"><?php echo $descripcion ?></h2>
+                    </div>
                     <div style="background:#dfdfdf; margin-left:10%;width:80%" class="accordion-collapse" aria-labelledby="heading<?php echo $contador ?>" data-bs-parent="#accordionExample">
-                        <div class="accordion-body" style="width:80%;margin-left: 10%;">
-                            <div class='servicio-image' style="width:100%;"><img loading='lazy' src="<?php echo $imagen ?>" alt='<?php $descripcion ?>'></div>
+                        <div class="accordion-body" style="width:95%;justify-self:center;">
+                            <div class='servicio-image' style="width:100%;"><img loading='lazy' style="width:100%;height:300px" src="<?php echo $imagen ?>" alt='<?php echo $descripcion ?>'></div>
                             <div class='servicio-content' style="text-align:center;width:auto">
-
                                 <p class='servicio-timetable' style="color:black"> Clases de lunes a viernes a las <?php echo $precio ?></p>
                                 <p style="color:black"> Duración: <?php echo $duracion ?> minutos </p>
                                 <?php if (isset($_SESSION["nombre"]) && $pagina_actual == "servicios.php" && $_SESSION["tipo"] == "admin") { ?>
                                     <a style='color:black; width:60%;margin-left: 20%;margin-right:20%' href='modificarservicio.php?id=<?php echo $codigo_servicio ?>' type='button' class='btn btn-outline-success'>Modificar datos</a>
-                                <?php
-                                }
-                                ?>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br>
         <?php
             } while ($stmt->fetch());
+            echo "</div>"; // cierre del grid-container
         } else {
             echo "<p>No hay noticias disponibles.</p>";
         }

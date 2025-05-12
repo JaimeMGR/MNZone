@@ -7,7 +7,7 @@ if (isset($_GET["error"])) {
 ?>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="../../index.php">
         <img loading='lazy' class="logo" src="../../imagenes/Logo.png" alt="Logo MNZone">
       </a>
       <div id="menu">
@@ -45,7 +45,7 @@ if (isset($_GET["error"])) {
       echo formulario_sesion_iniciada($_SESSION["nombre"]);
     } else {
       echo   "<div class='login-container'>
-      <form class='login-form' action='iniciar_sesion.php' method='POST'>
+      <form class='login-form' action='../../iniciar_sesion.php' method='POST'>
           <label for='username'>Usuario:</label>
           <input type='text' id='username' name='username'  placeholder='Introduce tu usuario'>
           <label for='password'>Contraseña:</label>
@@ -98,7 +98,7 @@ if (isset($_GET["error"])) {
         <?php } ?>
         <?php if (isset($_SESSION["nombre"])) { ?>
           <li class="nav-item">
-            <a href="../cita/clases.php" class="nav-link">Citas</a>
+            <a href="../reservas/reservas.php" class="nav-link">Reservas</a>
           </li>
         <?php } ?>
         <?php if (isset($_SESSION["nombre"])) { ?>
@@ -110,7 +110,7 @@ if (isset($_GET["error"])) {
           <a href="../servicio/servicios.php" class="nav-link">Servicios</a>
         </li>
         <li class="nav-item">
-          <a href="../entrenadores/entrenadores.php" class="nav-link">Entrenadores</a>
+          <a href="../equipos/equipos.php" class="nav-link">Equipos</a>
         </li>
         <?php if (isset($_SESSION["nombre"])) { ?>
         <li class="nav-item">

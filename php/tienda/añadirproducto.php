@@ -11,6 +11,7 @@ include '../esencial/conexion.php';
     <title>Nuevo Producto - MNZone</title>
     <script src="../../js/header.js" defer></script>
     <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="../../js/añadirproducto.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -31,7 +32,7 @@ include '../esencial/conexion.php';
             <input type="text" name="compania" id="compania" placeholder="Introduce la compañía del producto" required>
 
             <label for="precio">Precio (€):</label>
-            <input type="number" step="0.01" name="precio" id="precio" placeholder="Introduce el precio" required>
+            <input type="number" name="precio" id="precio" placeholder="Introduce el precio" required>
 
             <label for="imagen">Imagen:</label>
             <input type="file" name="imagen" id="imagen" accept="imagen/*" required>
@@ -39,13 +40,14 @@ include '../esencial/conexion.php';
             <label for="categoria">Categoria:</label>
             <select name="categoria" id="categoria">
                 <option value="Todos">Todos</option>
-                <option value="Guantes">Guantes</option>
-                <option value="Pantalones">Pantalones</option>
-                <option value="Rodilleras">Rodilleras</option>
-                <option value="Zapatillas">Zapatillas</option>
-                <option value="Tobilleras">Tobilleras</option>
-                <option value="Bucales">Bucales</option>
-                <option value="Suplementos">Suplementos</option>
+                <option value="Bebida">Bebida</option>
+                <option value="Comida">Comida</option>
+                <option value="Play_Station_5">Play Station 5</option>
+                <option value="Sala_VR">Sala VR</option>
+                <option value="Sala_VIP">Sala VIP</option>
+                <option value="Sala_principal">Sala principal</option>
+                <option value="Simulador_coches">Simulador de coches</option>
+
             </select>
 
             <button type="submit" class="add">Añadir producto</button>

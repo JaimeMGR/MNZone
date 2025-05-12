@@ -11,7 +11,7 @@ $apiUrl = "http://localhost/MNZone/php/tienda/api_crud/api.php?id=$id_producto";
 // Si el formulario ha sido enviado, actualizamos la asignatura
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['nombre_asignatura']) && isset($_POST['creditos'])) {
-        $id_asignatura= (int)$_POST['id'];
+        $id_asignatura = (int)$_POST['id'];
         $nombre_asignatura = $_POST['nombre_asignatura'];
         $creditos = (int) $_POST['creditos'];
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         curl_close($ch);
 
-        
+
         if ($httpCode == 200) {
             $mensaje = $respuesta["mensaje"];
         } else {
@@ -88,36 +88,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($httpCode == 200) {
                 $respuesta["datos"];
 
-                    echo '            <form action="api/editar.php?id=' . $respuesta["datos"]['id_producto'] . '" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="' . $respuesta["datos"]['id_producto'] . '">
+                echo '            <form action="api/editar.php?id=' . $respuesta["datos"]['id_producto'] . '" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="' . $respuesta["datos"]['id_producto'] . '">
 
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" value="' . $respuesta['datos']["nombre_producto"] . '">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" value="' . $respuesta['datos']["nombre_producto"] . '">
 
-                        <label for="compania">Compañía:</label>
-                        <input type="text" name="compania" id="compania" value="' . $respuesta['datos']['compania'] . '"
+                <label for="compania">Compañía:</label>
+                <input type="text" name="compania" id="compania" value="' . $respuesta['datos']['compania'] . '"
 
-                        <label for="precio">Precio (€):</label>
-                        <input type="number" step="0.01" name="precio" id="precio" value="' . $respuesta['datos']['precio'] . '">
+                <label for="precio">Precio (€):</label>
+                <input type="number" step="0.01" name="precio" id="precio" value="' . $respuesta['datos']['precio'] . '">
 
-                        <label for="imagen">Imagen:</label>
-                        <input type="file" name="imagen"  id="imagen" accept="*.jpg" required>
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen"  id="imagen" accept="*.jpg" required>
 
-                        <label for="categoria">Categoria:</label>
-                        <select name="categoria" id="categoria">
-                            <option hidden value="'.$respuesta['datos']['categoria'] .'">Todos</option>
-                            <option value="Guantes">Guantes</option>
-                            <option value="Pantalones">Pantalones</option>
-                            <option value="Rodilleras">Rodilleras</option>
-                            <option value="Zapatillas">Zapatillas</option>
-                            <option value="Tobilleras">Tobilleras</option>
-                            <option value="Bucales">Bucales</option>
-                            <option value="Suplementos">Suplementos</option>
+                <label for="categoria">Categoria:</label>
+                <select name="categoria" id="categoria">
+                    <option hidden value="' . $respuesta['datos']['categoria'] . '">Todos</option>
+                    <option value="Bebida">Bebida</option>
+                    <option value="Comida">Comida</option>
+                    <option value="Play_Station_5">Play Station 5</option>
+                    <option value="Sala_VR">Sala VR</option>
+                    <option value="Sala_VIP">Sala VIP</option>
+                    <option value="Sala_principal">Sala principal</option>
+                    <option value="Simulador_coches">Simulador de coches</option>
                         </select>
 
                         <button type="submit" class="add">Añadir producto</button>
                     </form>';
-
             } else {
                 header("Location: ../../index.php");
             }

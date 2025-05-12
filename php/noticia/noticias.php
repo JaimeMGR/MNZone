@@ -36,6 +36,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
     <title>Noticias - MNZone</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="../../js/header.js" defer></script>
+    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <link rel="stylesheet" href="https://tailwindui.com/plus-assets/build/assets/app-V9ulzFuj.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -46,7 +47,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
     if (isset($_SESSION["nombre"]) && $pagina_actual == "noticias.php" && $_SESSION["tipo"] == "admin" || $_SESSION["tipo"] == "socio") {
     ?>
         <main>
-            <h2 style="font-weight: bold;">Noticias</h2>
+            <h1>Noticias</h1>
             <?php
             if (isset($_SESSION["nombre"]) && $pagina_actual == "noticias.php" && $_SESSION["tipo"] == "admin") {
             ?>
@@ -62,7 +63,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
                     do {
                         echo "<div class='noticia-item'>";
                         echo "<div class='noticia-image' ><img loading='lazy' src='" . '../../imagenes/' . $imagen . "' alt='" . $titulo . "'></div>";
-                        echo "<div class='btn' style='width:50%'>";
+                        echo "<div class='btn' style='width:50%; padding-top:100px;'>";
                         echo "<h3 class='noticia-title'>" . $titulo . "</h3>";
                         // Limitar el contenido de la noticia a 30 caracteres
                         $contenido_resumido = substr($contenido, 0, 30) . '...';
