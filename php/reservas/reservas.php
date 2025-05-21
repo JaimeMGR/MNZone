@@ -6,7 +6,7 @@ include '../esencial/conexion.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
   include 'php\esencial\conexion.php';
 
-  $query = "SELECT c.fecha, c.hora, s.nombre as socio, v.descripcion as servicio 
+  $query = "SELECT c.fecha, c.hora, s.nombre as socio, v.nombre as servicio 
               FROM reserva c
               JOIN socio s ON c.codigo_socio = s.id_socio
               JOIN servicio v ON c.codigo_servicio = v.codigo_servicio";
@@ -42,17 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
 <body>
   <?php include '../esencial/header.php' ?>
   <main>
+    <h1>Reservas</h1>
 
     <?php
     if (isset($_SESSION["nombre"]) && $pagina_actual == "reservas.php" && $_SESSION["tipo"] == "admin" && $_SESSION["nombre"] == "Admin") {
     ?>
       <form class="formbuscar" method="post" action="buscarcita.php">
-
         <label for="busqueda">
-          <h1>Buscar reserva</h1>
+          <p>Buscar reserva:</p>
         </label>
         <div class="input-group">
-          <input class="form-control" type="text" id="busqueda" name="busqueda" placeholder="Buscar por nombre, servicio, fecha o descripcion..." required>
+          <input class="form-control" type="text" id="busqueda" name="busqueda" placeholder="Buscar por nombre, servicio o fecha..." required>
           <button class="btn btn-warning" type="button|submit">Buscar</button>
         </div>
 
@@ -60,9 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
 
       <!-- Contenemos la estructura en un flex de dos columnas -->
       <div class="contenedor-reservas-calendario" style="margin-top: 100px; ">
-        <div style="width:49%" id="formulario">
+        <div style="width:49%;" id="formulario">
           <h2 style="font-weight: bold;">Haz tu reserva</h2>
-          <form action="crearreserva.php" method="post">
+          <form action="crearreserva.php" style="background:white;border-radius:25px; padding:25px" method="post">
             <label for="socio">Socio:</label>
             <select name="socio" id="socio" class="form-select" required>
               <option value="" hidden>Seleccione un socio</option>
@@ -99,14 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
               <option value="" hidden>Seleccione un servicio</option>
               <?php
               // Preparar la consulta con una declaración preparada
-              $queryservicio = "SELECT codigo_servicio, descripcion FROM servicio";
+              $queryservicio = "SELECT codigo_servicio, nombre FROM servicio";
               $stmt = $conexion->prepare($queryservicio);
 
               // Ejecutar la consulta
               $stmt->execute();
 
               // Enlazar las variables para recibir los resultados
-              $stmt->bind_result($codigo_servicio, $descripcion);
+              $stmt->bind_result($codigo_servicio, $nombre);
 
               $contador = 0;
 
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
               if ($stmt->fetch()) {
                 do {
                   $contador++;
-                  echo "<option value='$codigo_servicio'> $descripcion </option>";
+                  echo "<option value='$codigo_servicio'> $nombre </option>";
                 } while ($stmt->fetch());
               }
               // Cerrar la declaración y la conexión
@@ -124,17 +124,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
             </select>
             <label for="fecha">Fecha:</label>
             <input type="date" class="form-control" name="fecha" id="fecha" required>
-            <label for="horario">Horario:</label>
-            <select name="hora" class="form-control" id="hora" required>
-              <option value="" hidden>Seleccione un horario</option>
-              <option name="hora" value="9:30">9:30</option>
-              <option name="hora" value="10:30">10:30</option>
-              <option name="hora" value="12:00">12:00</option>
-              <option name="hora" value="17:00">17:00</option>
-              <option name="hora" value="18:00">18:00</option>
-              <option name="hora" value="19:00">19:00</option>
-              <option name="hora" value="20:00">20:00</option>
-            </select>
+            <label for="horario">Hora de llegada:</label>
+            <input type="time" name="hora" class="form-control" required>
 
             <input type="submit" class="btn btn-outline-secondary" value="Apuntarse">
           </form>
@@ -152,20 +143,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
     } else if (isset($_SESSION["nombre"]) && $pagina_actual == "reservas.php" && $_SESSION["tipo"] == "socio") {
     ?>
       <form class="formbuscar" method="post" action="buscarcita.php">
-
         <label for="busqueda">
-          <h1>Buscar reserva</h1>
+          <p>Buscar reserva:</p>
         </label>
         <div class="input-group">
-          <input class="form-control" type="text" id="busqueda" name="busqueda" placeholder="Buscar por nombre, servicio, fecha o descripcion..." required>
+          <input class="form-control" type="text" id="busqueda" name="busqueda" placeholder="Buscar por nombre, servicio o fecha..." required>
           <button class="btn btn-warning" type="button|submit">Buscar</button>
         </div>
 
       </form>
-      <div class="contenedor-reservas-calendario" style="margin-top: 100px; ">
+      <div class="contenedor-reservas-calendario" style="background:white;border-radius:25px;margin-top: 100px; ">
         <div style="width:49%" id="formulario">
           <h2 style="font-weight: bold;">Haz tu reserva</h2>
-          <form action="crearreserva.php" method="post">
+          <form action="crearreserva.php" style="background:white;border-radius:25px; padding:25px" method="post">
             <label for="Socio">Socio:</label>
             <select name="socio" id="socio" class="form-select" required>
               <option value="" hidden>Seleccione un socio</option>
@@ -200,14 +190,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
               <option value="" hidden>Seleccione un servicio</option>
               <?php
               // Preparar la consulta con una declaración preparada
-              $queryservicio = "SELECT codigo_servicio, descripcion FROM servicio";
+              $queryservicio = "SELECT codigo_servicio, nombre FROM servicio";
               $stmt = $conexion->prepare($queryservicio);
 
               // Ejecutar la consulta
               $stmt->execute();
 
               // Enlazar las variables para recibir los resultados
-              $stmt->bind_result($codigo_servicio, $descripcion);
+              $stmt->bind_result($codigo_servicio, $nombre);
 
               $contador = 0;
 
@@ -215,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
               if ($stmt->fetch()) {
                 do {
                   $contador++;
-                  echo "<option value='$codigo_servicio'> $descripcion </option>";
+                  echo "<option value='$codigo_servicio'> $nombre </option>";
                 } while ($stmt->fetch());
               }
               // Cerrar la declaración y la conexión
@@ -225,17 +215,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['getsocios'])) {
             </select>
             <label for="fecha">Fecha:</label>
             <input type="date" class="form-control" name="fecha" id="fecha" required>
-            <label for="horario">Horario:</label>
-            <select name="hora" class="form-control" id="hora" required>
-              <option value="" hidden>Seleccione un horario</option>
-              <option name="hora" value="9:30">9:30</option>
-              <option name="hora" value="10:30">10:30</option>
-              <option name="hora" value="12:00">12:00</option>
-              <option name="hora" value="17:00">17:00</option>
-              <option name="hora" value="18:00">18:00</option>
-              <option name="hora" value="19:00">19:00</option>
-              <option name="hora" value="20:00">20:00</option>
-            </select>
+            <label for="horario">Hora de llegada:</label>
+            <input type="time" name="hora" class="form-control" required>
+
 
             <input type="submit" class="btn btn-outline-secondary" value="Apuntarse">
           </form>

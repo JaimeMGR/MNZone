@@ -45,11 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1>Contacto</h1>
         <div class='lista-servicios'>
 
-            <div class="formulario">
+            <div class="formulario" style="background:#f8f8f8;border-radius:5px;padding:20px">
                 <?php if ($mensaje_enviado): ?>
                     <p>Gracias por tu mensaje, <?php echo htmlspecialchars($nombre); ?>. Nos pondremos en contacto contigo pronto.</p>
                 <?php else: ?>
-                    <form action="contacto.php" method="POST" style="background:#f8f8f8;border-radius:5px;padding:20px">
+
+                    <p>Si quieres más información, completa el siguuiente formulario y nos pondremos en contacto contigo próximamente</p>
+                    <form action="contacto.php" method="POST">
                         <label for="nombre">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" required>
 

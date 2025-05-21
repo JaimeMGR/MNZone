@@ -254,5 +254,45 @@ let lista = {
         "imagen": "productos\/75fed8b77a4fa882d7297e2eb863b592.jpg",
         "precio": 40,
         "categoria": "Play_Station_5"
+    },
+    "171": {
+        "id_producto": 171,
+        "nombre_producto": "1 hora - Volante",
+        "compania": "MNZone",
+        "imagen": "productos\/4631b316c7ff48208578e956c03588a4.jpg",
+        "precio": 3,
+        "categoria": "Simulador_coches"
+    },
+    "172": {
+        "id_producto": 172,
+        "nombre_producto": "2 horas - Volante",
+        "compania": "MNZone",
+        "imagen": "productos\/f3c2e209d069a2e7c5460a395220548c.jpg",
+        "precio": 5,
+        "categoria": "Simulador_coches"
+    },
+    "173": {
+        "id_producto": 173,
+        "nombre_producto": "5 horas - Volante",
+        "compania": "MNZone",
+        "imagen": "productos\/fb76e81d07c708937b804bf871e02fee.jpg",
+        "precio": 10,
+        "categoria": "Simulador_coches"
+    },
+    "174": {
+        "id_producto": 174,
+        "nombre_producto": "12 horas - Volante",
+        "compania": "MNZone",
+        "imagen": "productos\/2b60875c4c51d9c5738927d9af125375.jpg",
+        "precio": 20,
+        "categoria": "Simulador_coches"
+    },
+    "175": {
+        "id_producto": 175,
+        "nombre_producto": "24 horas - Volante",
+        "compania": "MNZone",
+        "imagen": "productos\/1fbfbe18140c7f60fde8d2f2f1c906c4.jpg",
+        "precio": 40,
+        "categoria": "Simulador_coches"
     }
 };

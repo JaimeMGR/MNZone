@@ -8,7 +8,7 @@ include '../esencial/conexion.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias - Atarfe Fighting</title>
+    <title>Servicios - Atarfe Fighting</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
     <script src="js/app.js" defer></script>
@@ -37,16 +37,17 @@ include '../esencial/conexion.php';
             <input class="form-control" type="text" id="busqueda" name="busqueda" placeholder="Buscar por nombre...">
             <button class="btn btn-warning" type="button|submit">Buscar</button>
         </form>
+        <br>
         <?php
         // Preparar la consulta con una declaración preparada
-        $query = "SELECT codigo_servicio, descripcion, duracion, imagen, precio FROM servicio";
+        $query = "SELECT codigo_servicio, nombre, descripcion, imagen FROM servicio";
         $stmt = $conexion->prepare($query);
 
         // Ejecutar la consulta
         $stmt->execute();
 
         // Enlazar las variables para recibir los resultados
-        $stmt->bind_result($codigo_servicio, $descripcion, $duracion, $imagen, $precio);
+        $stmt->bind_result($codigo_servicio, $nombre, $descripcion, $imagen);
 
         $contador = 0;
         // Procesar los resultados
@@ -58,14 +59,13 @@ include '../esencial/conexion.php';
                 <!-- Tu contenido de tarjeta o "accordion" -->
                 <div class="accordion" id="accordion<?php echo $contador ?>">
                     <div class="header_servicio">
-                        <h2 class='servicio-title' style="text-transform:uppercase;"><?php echo $descripcion ?></h2>
+                        <h2 class='servicio-title' style="text-transform:uppercase;"><?php echo $nombre ?></h2>
                     </div>
-                    <div style="background:#dfdfdf; margin-left:10%;width:80%" class="accordion-collapse" aria-labelledby="heading<?php echo $contador ?>" data-bs-parent="#accordionExample">
+                    <div style="background:#ffffff; margin-left:10%;width:80%" class="accordion-collapse" aria-labelledby="heading<?php echo $contador ?>" data-bs-parent="#accordionExample">
                         <div class="accordion-body" style="width:95%;justify-self:center;">
-                            <div class='servicio-image' style="width:100%;"><img loading='lazy' style="width:100%;height:300px" src="<?php echo $imagen ?>" alt='<?php echo $descripcion ?>'></div>
+                            <div class='servicio-image' style="width:100%;"><img loading='lazy' style="width:100%;height:300px" src="<?php echo $imagen ?>" alt='<?php echo $nombre ?>'></div>
                             <div class='servicio-content' style="text-align:center;width:auto">
-                                <p class='servicio-timetable' style="color:black"> Clases de lunes a viernes a las <?php echo $precio ?></p>
-                                <p style="color:black"> Duración: <?php echo $duracion ?> minutos </p>
+                                <h6 class='text-md-center'><?php echo $descripcion ?></h6>
                                 <?php if (isset($_SESSION["nombre"]) && $pagina_actual == "servicios.php" && $_SESSION["tipo"] == "admin") { ?>
                                     <a style='color:black; width:60%;margin-left: 20%;margin-right:20%' href='modificarservicio.php?id=<?php echo $codigo_servicio ?>' type='button' class='btn btn-outline-success'>Modificar datos</a>
                                 <?php } ?>

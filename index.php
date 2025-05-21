@@ -22,6 +22,29 @@ while ($row = $result->fetch_assoc()) {
     'clase' => $row['clase']
   ];
 }
+
+
+$mensaje_enviado = false;
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $nombre = $_POST['nombre'];
+  $email = $_POST['email'];
+  $mensaje = $_POST['mensaje'];
+
+  // Guardar mensaje en la base de datos (opcional)
+  $query = "INSERT INTO mensajes_contacto (nombre, email, mensaje) VALUES (?, ?, ?)";
+  $stmt = $conexion->prepare($query);
+  $stmt->bind_param("sss", $nombre, $email, $mensaje);
+
+  if ($stmt->execute()) {
+    $mensaje_enviado = true;
+  } else {
+    echo "Error: " . $stmt->error;
+  }
+
+  $stmt->close();
+  $conexion->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -141,7 +164,7 @@ while ($row = $result->fetch_assoc()) {
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
             <li class="nav-item">
-              <a href="php/reservas/Reservas.php" class="nav-link">Reservas</a>
+              <a href="php/reservas/reservas.php" class="nav-link">Reservas</a>
             </li>
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
@@ -172,7 +195,7 @@ while ($row = $result->fetch_assoc()) {
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
             <li class="nav-item">
-              <a href="php/contacto/contacto.php" class="nav-link">Contactos</a>
+              <a href="php/contacto/contacto.php" class="nav-link">Contacto</a>
             </li>
           <?php } ?>
         </ul>
@@ -181,178 +204,132 @@ while ($row = $result->fetch_assoc()) {
   </nav>
 
 
-  <main>
-
-
+<main>
     <!-- Sobre Nosotros -->
     <section style="text-align: center;">
-      <h1>MNZzone</h1>
+      <h1>MNZone</h1>
       <p>Centro E-Sports y Gaming en Granada
         Una experiencia de otro nivel para gamers en Granada. Disfruta de los ordenadores más potentes y el ping más bajo para jugar a máximo rendimiento</p>
     </section>
-    <div id="carouselExampleCaptions" class="carousel slide">
-      <div class="carousel-indicators">
-        <?php
-        // Consulta con límite de 3 noticias
-        $query = "SELECT id_noticia, titulo, contenido, imagen, fecha_publicacion FROM noticia ORDER BY fecha_publicacion DESC LIMIT 3";
-        $stmt = $conexion->prepare($query);
-        $stmt->execute();
-        $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion);
+    <section>
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <?php
+          // Consulta con límite de 3 noticias
+          $query = "SELECT id_noticia, titulo, contenido, imagen, fecha_publicacion FROM noticia ORDER BY fecha_publicacion DESC LIMIT 3";
+          $stmt = $conexion->prepare($query);
+          $stmt->execute();
+          $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion);
 
-        $index = 0; // Índice para los indicadores
-        while ($stmt->fetch()) {
-          echo "<button type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide-to='{$index}'" .
-            ($index === 0 ? " class='active' aria-current='true'" : "") .
-            " aria-label='Slide " . ($index + 1) . "'></button>";
-          $index++;
-        }
-        $stmt->close();
-        ?>
-      </div>
-      <div class="carousel-inner" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <?php
-        // Ejecutar nuevamente la consulta para las diapositivas con el mismo límite
-        $stmt = $conexion->prepare($query);
-        $stmt->execute();
-        $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion);
-
-        $index = 0;
-        while ($stmt->fetch()) {
-          echo "<div class='carousel-item " . ($index === 0 ? "active" : "") . "'>";
-          echo "  <img loading='lazy' src='" . "imagenes/" . $imagen . "' class='d-block w-100' alt='" . htmlspecialchars($titulo) . "'>";
-          echo "  <div style:background:'#ff00ff' class='carousel-caption d-none d-  md-block'>";
-          echo "  </div>";
-
-          echo "<div class='btn' style='background:#ff0000;border-radius:0;width:100%'>";
-          echo "    <h5 style='color:white'>" . htmlspecialchars($titulo) . "</h5>";
-          $contenido = substr($contenido, 0, 100) . '...';
-          echo "    <p style='color:white'>" . htmlspecialchars($contenido) . "</p>";
-          if (isset($_SESSION["nombre"])) {
-            echo "<a style='color:white;' href='php/noticia/noticiaentera.php?id=$id_noticia'>Leer más...</a>";
+          $index = 0; // Índice para los indicadores
+          while ($stmt->fetch()) {
+            echo "<button type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide-to='{$index}'" .
+              ($index === 0 ? " class='active' aria-current='true'" : "") .
+              " aria-label='Slide " . ($index + 1) . "'></button>";
+            $index++;
           }
-          echo " </br>";
-          echo "    <small style='color:white'>Publicado el: " . htmlspecialchars($fecha_publicacion) . "</small>";
-          echo "</div>";
-          echo "</div>";
-          $index++;
-        }
-        $stmt->close();
-        ?>
+          $stmt->close();
+          ?>
+        </div>
+        <div class="carousel-inner" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <?php
+          // Ejecutar nuevamente la consulta para las diapositivas con el mismo límite
+          $stmt = $conexion->prepare($query);
+          $stmt->execute();
+          $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion);
+
+          $index = 0;
+          while ($stmt->fetch()) {
+            echo "<div class='carousel-item " . ($index === 0 ? "active" : "") . "'>";
+            echo "  <img loading='lazy' src='" . "imagenes/" . $imagen . "' class='d-block w-100' alt='" . htmlspecialchars($titulo) . "'>";
+            echo "  <div style:background:'#ff00ff' class='carousel-caption d-none d-  md-block'>";
+            echo "  </div>";
+
+            echo "<div class='btn' style='background:#ff0000;border-radius:0;width:100%'>";
+            echo "    <h5 style='color:white'>" . htmlspecialchars($titulo) . "</h5>";
+            $contenido = substr($contenido, 0, 100) . '...';
+            echo "    <p style='color:white'>" . htmlspecialchars($contenido) . "</p>";
+            if (isset($_SESSION["nombre"])) {
+              echo "<a style='color:white;' href='php/noticia/noticiaentera.php?id=$id_noticia'>Leer más...</a>";
+            }
+            echo " </br>";
+            echo "    <small style='color:white'>Publicado el: " . htmlspecialchars($fecha_publicacion) . "</small>";
+            echo "</div>";
+            echo "</div>";
+            $index++;
+          }
+          $stmt->close();
+          ?>
+        </div>
+        <br>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <br>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
 
-
-
+    </section>
     <section style="text-align: center;">
       <h2>Precios</h2>
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 20px;">
+      <div>
 
         <div>
-          <h3>Sala principal</h3>
-          <table class="table table-bordered" style="width: 100%; margin: auto;">
-            <thead class="table-dark">
+          <table class="tablaprecios">
+            <thead>
               <tr>
-                <th>1h</th>
-                <th>2h</th>
-                <th>5h</th>
-                <th>12h</th>
-                <th>24h</th>
+                <th>Tiempo</th>
+                <th>Sala principal</th>
+                <th>Sala VIP</th>
+                <th>PS5</th>
+                <th>Volante</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>3€</td>
-                <td>5€</td>
-                <td>10€</td>
-                <td>20€</td>
-                <td>40€</td>
+                <td style="font-weight: 700;">1h</td>
+                <td class="precio">3€</td>
+                <td class="precio">5€</td>
+                <td class="precio">3€</td>
+                <td class="precio">3€</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700;">2h</td>
+                <td class="precio">5€</td>
+                <td class="precio">8€</td>
+                <td class="precio">5€</td>
+                <td class="precio">5€</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700;">5h</td>
+                <td class="precio">10€</td>
+                <td class="precio">15€</td>
+                <td class="precio">10€</td>
+                <td class="precio">10€</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700;">12h</td>
+                <td class="precio">20€</td>
+                <td class="precio">30€</td>
+                <td class="precio">20€</td>
+                <td class="precio">20€</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700;">24h</td>
+                <td class="precio">40€</td>
+                <td class="precio">60€</td>
+                <td class="precio">40€</td>
+                <td class="precio">40€</td>
               </tr>
             </tbody>
           </table>
-        </div>
 
-        <div>
-          <h3>Sala VIP</h3>
-          <table class="table table-bordered" style="width: 100%; margin: auto;">
-            <thead class="table-dark">
-              <tr>
-                <th>1h</th>
-                <th>2h</th>
-                <th>5h</th>
-                <th>12h</th>
-                <th>24h</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>5€</td>
-                <td>8€</td>
-                <td>15€</td>
-                <td>30€</td>
-                <td>60€</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
-        <div>
-          <h3>PS5</h3>
-          <table class="table table-bordered" style="width: 100%; margin: auto;">
-            <thead class="table-dark">
-              <tr>
-                <th>1h</th>
-                <th>2h</th>
-                <th>5h</th>
-                <th>12h</th>
-                <th>24h</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3€</td>
-                <td>5€</td>
-                <td>10€</td>
-                <td>20€</td>
-                <td>40€</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
-        <div>
-          <h3>Simulador de coches</h3>
-          <table class="table table-bordered" style="width: 100%; margin: auto;">
-            <thead class="table-dark">
-              <tr>
-                <th>1h</th>
-                <th>2h</th>
-                <th>5h</th>
-                <th>12h</th>
-                <th>24h</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3€</td>
-                <td>5€</td>
-                <td>10€</td>
-                <td>20€</td>
-                <td>40€</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
-
-      </div>
     </section>
 
     <br>
@@ -378,52 +355,20 @@ while ($row = $result->fetch_assoc()) {
         }
         if (isset($_SESSION["nombre"]) && $pagina_actual == "index.php" && $_SESSION["tipo"] == "socio") {
         ?>
-          <h2>Añadir un testimonio</h2>
-          <form action="php/testimonios/creartestimonio.php" method="post" enctype="multipart/form-data">
-            <label for="contenido">Contenido:</label>
-            <input type="text" name="contenido" id="contenido" placeholder="Escriba aquí">
-
-            <label for="socio">Socio:</label>
-            <select name="socio" id="socio" class="form-select" required>
-              <option value="" hidden>Seleccione un socio</option>
-
-              <?php
-
-              $nombreactual = $_SESSION['nombre'];
-              $query = "SELECT id_socio, nombre, usuario  FROM socio WHERE usuario = '$nombreactual'";
-              $stmt = $conexion->prepare($query);
-
-              // Ejecutar la consulta
-              $stmt->execute();
-
-              // Enlazar las variables para recibir los resultados
-              $stmt->bind_result($id_socio, $nombre, $usuario);
-
-              $contador = 0;
-
-              // Procesar los resultados
-              if ($stmt->fetch()) {
-                do {
-                  $contador++;
-                  echo "<option value='$id_socio'> $usuario </option>";
-                } while ($stmt->fetch());
-              }
-              ?>
-            </select>
-
-            <button class="btn btn-warning" type="submit">Añadir testimonio</button>
-          <?php
-          // Cerrar la declaración y la conexión
-          $stmt->close();
-        } else if (isset($_SESSION["nombre"]) && $pagina_actual == "index.php" && $_SESSION["tipo"] == "admin") { ?>
-            <h2>Añadir un testimonio</h2>
+          <div style="background:white; padding:15px; border-radius: 15px;">
+            <p>Añadir un testimonio</p>
             <form action="php/testimonios/creartestimonio.php" method="post" enctype="multipart/form-data">
+              <label for="contenido">Contenido:</label>
+              <input type="text" name="contenido" id="contenido" placeholder="Escriba aquí">
+
+              <label for="socio">Socio:</label>
               <select name="socio" id="socio" class="form-select" required>
                 <option value="" hidden>Seleccione un socio</option>
 
                 <?php
 
-                $query = "SELECT id_socio, nombre, usuario  FROM socio";
+                $nombreactual = $_SESSION['nombre'];
+                $query = "SELECT id_socio, nombre, usuario  FROM socio WHERE usuario = '$nombreactual'";
                 $stmt = $conexion->prepare($query);
 
                 // Ejecutar la consulta
@@ -443,22 +388,20 @@ while ($row = $result->fetch_assoc()) {
                 }
                 ?>
               </select>
-              <label for="contenido">Contenido:</label>
-              <div class="input-group">
-                <input type="text" name="contenido" id="contenido" placeholder="Escriba aquí">
 
-
-                <button class="btn btn-warning" type="submit">Añadir testimonio</button>
-              </div>
+              <button class="btn btn-warning" type="submit">Añadir testimonio</button>
             <?php
             // Cerrar la declaración y la conexión
-          } else {
-          }
+            $stmt->close();
+          } else if (isset($_SESSION["nombre"]) && $pagina_actual == "index.php" && $_SESSION["tipo"] == "admin") { 
+             
+              } else {
+              }
 
-            ?>
+                ?>
 
-            </form>
-
+                </form>
+              </div>
     </section>
 
     <!-- Galería de Imágenes -->
@@ -470,99 +413,129 @@ while ($row = $result->fetch_assoc()) {
         <img loading="lazy" src="https://i.blogs.es/bed467/boxeo-entrenamiento/840_560.jpg" alt="Miembros entrenando">
       </div>
     </section>
+    <section>
+      <h2>Contacto</h2>
+      <div class='lista-servicios'>
+
+        <div class="formulario" style="background:#f8f8f8;border-radius:5px;padding:20px">
+          <?php if ($mensaje_enviado): ?>
+            <p>Gracias por tu mensaje, <?php echo htmlspecialchars($nombre); ?>. Nos pondremos en contacto contigo pronto.</p>
+          <?php else: ?>
+
+            <p>Si quieres más información, completa el siguuiente formulario y nos pondremos en contacto contigo próximamente</p>
+            <form action="index.php" method="POST">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" required>
+
+              <label for="email">Correo electrónico:</label>
+              <input type="email" id="email" name="email" required>
+
+              <label for="mensaje">Mensaje:</label>
+              <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+              <input type="submit" class="btn btn-outline-secondary" value="Enviar">
+            </form>
+          <?php endif; ?>
+        </div>
+        <div class="formulario">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12716.530302999345!2d-3.619716512841848!3d37.1733202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fcbe0a2e22af%3A0x33bdec6485ad91a!2sArena%20Gaming!5e0!3m2!1ses!2ses!4v1746551479161!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
     <br>
     <section style="text-align:center">
       <a class="btn btn-warning" href="php/socios/register.php">¡Inscríbete ya!</a>
     </section>
-  </main>
-  <footer class="bg text-white text-center text-lg-start">
-    <!-- Grid container -->
-    <div class="container">
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-          <div class="logocontainer" style="text-align:center;">
-            <img loading='lazy' src="imagenes/logo.png">
+    </main>
+    <footer class="bg text-white text-center text-lg-start">
+      <!-- Grid container -->
+      <div class="container">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <div class="logocontainer" style="text-align:center;">
+              <img loading='lazy' src="imagenes/logo.png">
+            </div>
           </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div id="enlaces_footer" class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Enlaces</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li class="nav-item">
+                <a href="#" class="nav-link">Inicio</a>
+              </li>
+              <?php if (isset($_SESSION["nombre"])) { ?>
+                <li class="nav-item">
+                  <a href="php/noticia/noticias.php" class="nav-link">Noticias</a>
+                </li>
+              <?php } ?>
+              <?php if (isset($_SESSION["nombre"])) { ?>
+                <li class="nav-item">
+                  <a href="php/reservas/reservas.php" class="nav-link">Reservas</a>
+                </li>
+              <?php } ?>
+              <?php if (isset($_SESSION["nombre"])) { ?>
+                <li class="nav-item">
+                  <a href="php/tienda/tienda.php" class="nav-link">Tienda</a>
+                </li>
+              <?php } ?>
+              <li class="nav-item">
+                <a href="php/servicio/servicios.php" class="nav-link">Servicios</a>
+              </li>
+              <li class="nav-item">
+                <a href="php/equipos/equipos.php" class="nav-link">Equipos</a>
+              </li>
+              <?php if (isset($_SESSION["nombre"])) { ?>
+                <li class="nav-item">
+                  <a href="php/recetas/recetas.php" class="nav-link">Recetas</a>
+                </li>
+              <?php } ?>
+              <?php if (isset($_SESSION["nombre"])) { ?>
+                <li class="nav-item">
+                  <a href="php/socios/socios.php" class="nav-link">Socios</a>
+                </li>
+              <?php } ?>
+              <?php if (isset($_SESSION["nombre"])) { ?>
+                <li class="nav-item">
+                  <a href="php/contacto/contacto.php" class="nav-link">Contacto</a>
+                </li>
+              <?php } ?>
+            </ul>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div id="contacto" class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0">Contacto</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <h7><strong>Dirección:</strong> Calle Don Óscar 48,<br>Maracena, España</h7>
+              </li>
+              <br>
+              <li>
+                <h7><strong>Teléfono:</strong> +34 668533704 </h7>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div id="enlaces_footer" class="col-lg-4 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Enlaces</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li class="nav-item">
-              <a href="#" class="nav-link">Inicio</a>
-            </li>
-            <?php if (isset($_SESSION["nombre"])) { ?>
-              <li class="nav-item">
-                <a href="php/noticia/noticias.php" class="nav-link">Noticias</a>
-              </li>
-            <?php } ?>
-            <?php if (isset($_SESSION["nombre"])) { ?>
-              <li class="nav-item">
-                <a href="php/reserva/reservas.php" class="nav-link">Reservas</a>
-              </li>
-            <?php } ?>
-            <?php if (isset($_SESSION["nombre"])) { ?>
-              <li class="nav-item">
-                <a href="php/tienda/tienda.php" class="nav-link">Tienda</a>
-              </li>
-            <?php } ?>
-            <li class="nav-item">
-              <a href="php/servicio/servicios.php" class="nav-link">Servicios</a>
-            </li>
-            <li class="nav-item">
-              <a href="php/equipos/equipos.php" class="nav-link">Equipos</a>
-            </li>
-            <?php if (isset($_SESSION["nombre"])) { ?>
-              <li class="nav-item">
-                <a href="php/recetas/recetas.php" class="nav-link">Recetas</a>
-              </li>
-            <?php } ?>
-            <?php if (isset($_SESSION["nombre"])) { ?>
-              <li class="nav-item">
-                <a href="php/socios/socios.php" class="nav-link">Socios</a>
-              </li>
-            <?php } ?>
-            <?php if (isset($_SESSION["nombre"])) { ?>
-              <li class="nav-item">
-                <a href="php/contacto/contacto.php" class="nav-link">Contactos</a>
-              </li>
-            <?php } ?>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div id="contacto" class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-0">Contacto</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <h7><strong>Dirección:</strong> Calle Don Óscar 48,<br>Maracena, España</h7>
-            </li>
-            <br>
-            <li>
-              <h7><strong>Teléfono:</strong> +34 668533704 </h7>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
+        <!--Grid row-->
       </div>
-      <!--Grid row-->
-    </div>
-    <!-- Grid container -->
-    <br><br>
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2025 Copyright:
-      <a class="text-white">MNZone</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
+      <!-- Grid container -->
+      <br><br>
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2025 Copyright:
+        <a class="text-white">MNZone</a>
+      </div>
+      <!-- Copyright -->
+       
+    </footer>
 </body>
 
 </html>

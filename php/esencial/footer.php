@@ -52,7 +52,7 @@
             <?php } ?>
             <?php if (isset($_SESSION["nombre"])) { ?>
               <li class="nav-item">
-                <a href="../contacto/contacto.php" class="nav-link">Contactos</a>
+                <a href="../contacto/contacto.php" class="nav-link">Contacto</a>
               </li>
             <?php } ?>
           </ul>

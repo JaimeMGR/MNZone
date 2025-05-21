@@ -77,8 +77,7 @@ if (isset($_SESSION["nombre"]) && $pagina_actual == "reservas.php" && $_SESSION[
         c.estado,
         s.nombre AS socio, 
         s.telefono, 
-        srv.descripcion AS servicio_desc, 
-        srv.duracion AS servicio_duracion, 
+        srv.nombre AS servicio_desc, 
         srv.imagen AS servicio_imagen
     FROM 
         reservas c
@@ -96,8 +95,7 @@ if (isset($_SESSION["nombre"]) && $pagina_actual == "reservas.php" && $_SESSION[
         s.nombre AS socio, 
         s.usuario,
         s.telefono, 
-        srv.descripcion AS servicio_desc, 
-        srv.duracion AS servicio_duracion, 
+        srv.nombre AS servicio_desc, 
         srv.imagen AS servicio_imagen
     FROM 
         reservas c
@@ -160,7 +158,7 @@ function generarCalendario($anio, $mes, $reservasPorFecha)
 
         // Verificar si hay reservas para este día
         if (isset($reservasPorFecha[$fechaActual])) {
-            echo "<button onclick='mostrarPopup(\"$fechaActual\")' style='background: #e8f4ff; border: none; padding: 5px; cursor: pointer;'>Ver reservas</button>";
+            echo "<button onclick='mostrarPopup(\"$fechaActual\")' style='background: #e8f4ff; border: none; padding: 5px; cursor: pointer;font-size:12px'>Consultar</button>";
 
             echo "<div id='popup-$fechaActual' class='popup' style='display:none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border: 2px solid #ccc; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); z-index: 10; max-width: 300px;'>";
             $contador = 0;

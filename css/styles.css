@@ -15,6 +15,35 @@ body {
     line-height: 1.6;
 }
 
+.pagination {
+    justify-self: center;
+    padding-top: 1rem;
+    gap: 1rem;
+}
+
+section{
+    margin: 0 auto;
+    padding-bottom: 4rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.accordion-collapse {
+    border-radius: 0 0 15px 15px;
+}
+
+.header_servicio {
+    background: #2c17eb;
+    width: 80%;
+    justify-self: center;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+}
+
 /* Cabecera */
 header {
     background: #2c17eb;
@@ -59,16 +88,7 @@ footer img {
     border-radius: 5px;
 }
 
-.header_servicio {
-    background: #2c17eb;
-    width: 80%;
-    justify-self: center;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+
 
 .error {
     color: red;
@@ -167,7 +187,7 @@ footer img {
 }
 
 .servicio-title {
-    font-size: 25px;
+    font-size: 35px;
     color: white;
     text-align: center;
 }
@@ -202,6 +222,7 @@ footer p {
 .btn-light {
     margin: 10px;
 }
+
 
 .testimonio-card {
     border-radius: 5%;
@@ -265,14 +286,10 @@ nav ul li a:hover {
 main {
     background-color: #ffffffde;
     width: 80%;
-    padding: 5% 10% 5% 10%;
+    padding: 5% 5% 5% 5%;
     border-radius: 10px;
     padding-bottom: auto;
-    margin: 0px auto;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
+    justify-self: center;
 }
 
 main li {
@@ -286,6 +303,18 @@ main p {
     border: 0;
     border-radius: 4px;
     margin-bottom: 1rem;
+}
+
+.formbuscar {
+    width: 35%;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }
 
 main .register {
@@ -331,6 +360,28 @@ h2 {
 h3,
 h5 {
     font-style: oblique;
+}
+
+.tablaprecios {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+.tablaprecios thead tr th{
+    text-transform: uppercase;
+}
+
+.tablaprecios tbody tr td {
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 1px solid #000000;
+    font-size: larger;
+}
+
+.tablaprecios thead tr th{
+    background: #ff0000;
 }
 
 /* Formulario */
@@ -616,11 +667,6 @@ blockquote {
     box-shadow: 0 0 5px rgba(0, 0, 0);
 }
 
-section {
-    padding-top: 4%;
-    padding-bottom: 4%;
-}
-
 /* Contenedor de socio */
 .socio-container {
     display: flex;
@@ -813,13 +859,13 @@ nav .flex-column {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction:row;
+    flex-direction: row;
     margin-top: 2%;
     gap: 1rem;
 }
 
 @media (max-width: 1700px) {
     .contenedor-reservas-calendario {
-        flex-direction:column-reverse;
+        flex-direction: column-reverse;
     }
 }
