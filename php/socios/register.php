@@ -94,6 +94,30 @@ if (!isset($_SESSION['nombre'])) {
                 $errores['general'] = "Error en el registro: " . $stmt->error;
             }
 
+            // hacer un query para sacar el nuevo id del socio
+            // y crear los contadores por defecto
+            $query2 = "SELECT id_socio FROM socio WHERE usuario = ?";
+            $stmt2 = $conexion->prepare($query2);
+            $stmt2->bind_param("s", $usuario);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+            if ($result2->num_rows > 0) {
+                $row2 = $result2->fetch_assoc();
+                $id_socio = $row2['id_socio'];
+            } else {
+                $errores['general'] = "Error al obtener el ID del socio: " . $stmt2->error;
+            }
+            $stmt2->close();
+
+            // Crear contadores por defecto
+            // Se crean 4 contadores por defecto
+            $query3 = "INSERT INTO contador (id_socio, tipo, valor) VALUES (?, 'Sala_principal', 0), (?, 'Sala_VIP', 0), (?, 'Play_Station_5', 0), (?, 'Simulador_coches', 0)";
+            $stmt3 = $conexion->prepare($query3);
+            $stmt3->bind_param("iiii", $id_socio, $id_socio, $id_socio, $id_socio);
+            if (!$stmt3->execute()) {
+                $errores['contadores'] = "Error al crear contadores: " . $stmt3->error;
+            }
+            $stmt3->close();
             // Cerrar conexión
             $stmt->close();
             $conexion->close();

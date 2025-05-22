@@ -42,7 +42,7 @@
             </li>
             <?php if (isset($_SESSION["nombre"])) { ?>
               <li class="nav-item">
-                <a href="../recetas/recetas.php" class="nav-link">Recetas</a>
+                <a href="../contadores/contadores.php" class="nav-link">Contadores</a>
               </li>
             <?php } ?>
             <?php if (isset($_SESSION["nombre"])) { ?>

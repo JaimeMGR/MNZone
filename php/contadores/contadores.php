@@ -40,8 +40,12 @@ include '../esencial/conexion.php';
     curl_close($ch);
 
     if ($httpCode == 200) {
+      // Si hay contadores que no son definidos, los inicializamos a 0
+
+
+
       $SalaPrincipal = $respuesta["tiempos"]["Sala_principal"] ?: 0;
-      $SalaVip = $respuesta["tiempos"]["Sala_VIP"] ?: 0;
+      $SalaVip = $respuesta["tiempos"]["Sala_VIP"];
       $PS5 = $respuesta["tiempos"]['Play_Station_5'] ?: 0;
       $SimCoches = $respuesta["tiempos"]['Simulador_coches'] ?: 0;
 
@@ -122,98 +126,9 @@ include '../esencial/conexion.php';
         </div>
       </div>
 
-      <section class="contadores"></section>
-
-      <div class="container mt-4">
-        <form id="form-sala" class="mb-4">
-          <div class="row g-3 align-items-center">
-            <div class="col-auto">
-              <label for="sala" class="col-form-label fw-bold">Selecciona una sala:</label>
-            </div>
-            <div class="col-auto">
-              <select class="form-select" id="sala" required>
-                <option value="">-- Elige una sala --</option>
-                <option value="Sala_principal">Sala Principal</option>
-                <option value="Sala_VIP">Sala VIP</option>
-                <option value="Play_Station_5">Play Station 5</option>
-                <option value="Simulador_coches">Simulador de Coches</option>
-              </select>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-success">Iniciar sesión</button>
-            </div>
-          </div>
-        </form>
-
-        <div id="contador" class="alert alert-info d-none fw-bold"></div>
-      </div>
-
-      <!--alert-->
-      <div class="alerta"></div>
-
-      </section>
+      
   </main>
 
-  <script>
-    // Cuando se envia el formulario para elegir la sala, debe de comenzar un contador para restar el tiempo a la categoria elegida
-    document.getElementById("form-sala").addEventListener("submit", function(event) {
-      event.preventDefault();
-      const sala = document.getElementById("sala").value;
-      const contador = document.getElementById("contador");
-      const alerta = document.querySelector(".alerta");
-      // Hay 4 variables que contienen el tiempo total de cada sala, por lo que se debe de restar el tiempo a la sala elegida
-      let tiempoRestante = 0;
-      if (sala === "Sala_principal") {
-        tiempoRestante = SalaPrincipal;
-      } else if (sala === "Sala_VIP") {
-        tiempoRestante = SalaVip;
-      } else if (sala === "Play_Station_5") {
-        tiempoRestante = PS5;
-      } else if (sala === "Simulador_coches") {
-        tiempoRestante = SimCoches;
-      }
-      let tiempo = tiempoRestante * 60; // Convertir a segundos
-      let intervalo;
-      contador.classList.remove("d-none");
-      contador.innerHTML = `Tiempo restante: ${tiempoRestante} minutos`;
-      alerta.innerHTML = `<div class="alert alert-info">Has iniciado sesión en ${sala}</div>`;
-      alerta.classList.remove("d-none");
-      // Iniciar el contador
-      intervalo = setInterval(function() {
-        tiempo -= 1;
-        contador.innerHTML = `Tiempo restante: ${Math.floor(tiempo / 60)} minutos y ${tiempo % 60} segundos`;
-        if (tiempo <= 0) {
-          clearInterval(intervalo);
-          contador.innerHTML = "Tiempo agotado";
-          alerta.innerHTML = `<div class="alert alert-danger">Tu tiempo ha terminado en ${sala}</div>`;
-          alerta.classList.remove("d-none");
-        }
-        // Aquí puedes hacer una llamada AJAX para restar el tiempo en el servidor
-        fetch("restar_tiempo.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            sala: sala,
-            tiempoRestante: tiempo
-          })
-        })
-        .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              console.log("Tiempo restado en el servidor");
-            } else {
-              console.error("Error al restar tiempo en el servidor");
-            }
-          })
-          .catch(error => {
-            console.error("Error:", error);
-          });
-      }, 1000);
-    });
-
-  </script>
 <?php
     } else {
       echo "<p class='text-danger fw-bold'>No se encontraron tiempos para el usuario</p>";

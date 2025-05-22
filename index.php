@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </li>
           <?php if (isset($_SESSION["nombre"])) { ?>
             <li class="nav-item">
-              <a href="php/recetas/recetas.php" class="nav-link">Recetas</a>
+              <a href="php/contadores/contadores.php" class="nav-link">Contadores</a>
             </li>
           <?php } ?>
           <?php if (isset($_SESSION["nombre"])) { ?>
@@ -491,7 +491,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </li>
               <?php if (isset($_SESSION["nombre"])) { ?>
                 <li class="nav-item">
-                  <a href="php/recetas/recetas.php" class="nav-link">Recetas</a>
+                  <a href="php/contadores/contadores.php" class="nav-link">Contadores</a>
                 </li>
               <?php } ?>
               <?php if (isset($_SESSION["nombre"])) { ?>
