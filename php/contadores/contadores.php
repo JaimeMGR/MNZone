@@ -8,134 +8,125 @@ include '../esencial/conexion.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contadores - MNZone</title>
-  <link rel="stylesheet" href="../../css/styles.css">
+  <meta name="description" content="Descarga la aplicación de contadores de MNZone para gestionar tus tiempos de juego">
+  <title>MNZone | Descargas</title>
+  <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
   <script src="../../js/header.js" defer></script>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="js../../app.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css" />
-  <!-- font-awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
-  <!-- styles css -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-  <?php include '../esencial/header.php' ?>
-  <main>
-    <?php
-    $usuario = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : null;
-    $categoria = $_POST['categoria'] ?? null;
-    $apiUrl = "http://localhost/MNZone/php/contadores/api_crud/api.php?nombre=$usuario";
+  <?php include '../esencial/header.php'; ?>
 
-    $lista = [];
-    ?>
-    <h2 class="fw-bold">Contadores</h2>
-
-    <?php
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $apiUrl);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    $respuesta = json_decode(curl_exec($ch), true);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($httpCode == 200) {
-      // Si hay contadores que no son definidos, los inicializamos a 0
-
-
-
-      $SalaPrincipal = $respuesta["tiempos"]["Sala_principal"] ?: 0;
-      $SalaVip = $respuesta["tiempos"]["Sala_VIP"];
-      $PS5 = $respuesta["tiempos"]['Play_Station_5'] ?: 0;
-      $SimCoches = $respuesta["tiempos"]['Simulador_coches'] ?: 0;
-
-      $SalaPrincipal = $SalaPrincipal / 60;
-      $SalaVip = $SalaVip / 60;
-      $PS5 = $PS5 / 60;
-      $SimCoches = $SimCoches / 60;
-
-      // Añadir los valores a javascript
-      echo "<script>
-              var SalaPrincipal = $SalaPrincipal;
-              var SalaVip = $SalaVip;
-              var PS5 = $PS5;
-              var SimCoches = $SimCoches;
-            </script>";
-    ?>
-      <div class="container mt-4">
-        <div class="row">
-          <?php if ($SalaPrincipal > 0): ?>
-            <div class="col-md-6 mb-4">
-              <div class="card border-primary">
-                <div class="card-body">
-                  <h5 class="card-title text-primary fw-bold">Sala Principal</h5>
-                  <p class="card-text fw-semibold">Tiempo total: <?= $SalaPrincipal ?> minutos</p>
-                </div>
-              </div>
-            </div>
-          <?php else: ?>
-            <div class="col-12">
-              <div class="alert alert-danger fw-bold">No se encontraron tiempos para Sala Principal</div>
-            </div>
-          <?php endif; ?>
-
-          <?php if ($SalaVip > 0): ?>
-            <div class="col-md-6 mb-4">
-              <div class="card border-warning">
-                <div class="card-body">
-                  <h5 class="card-title text-warning fw-bold">Sala VIP</h5>
-                  <p class="card-text fw-semibold">Tiempo total: <?= $SalaVip ?> minutos</p>
-                </div>
-              </div>
-            </div>
-          <?php else: ?>
-            <div class="col-12">
-              <div class="alert alert-danger fw-bold">No se encontraron tiempos para Sala VIP</div>
-            </div>
-          <?php endif; ?>
-
-          <?php if ($PS5 > 0): ?>
-            <div class="col-md-6 mb-4">
-              <div class="card border-success">
-                <div class="card-body">
-                  <h5 class="card-title text-success fw-bold">Play Station 5</h5>
-                  <p class="card-text fw-semibold">Tiempo total: <?= $PS5 ?> minutos</p>
-                </div>
-              </div>
-            </div>
-          <?php else: ?>
-            <div class="col-12">
-              <div class="alert alert-danger fw-bold">No se encontraron tiempos para Play Station 5</div>
-            </div>
-          <?php endif; ?>
-
-          <?php if ($SimCoches > 0): ?>
-            <div class="col-md-6 mb-4">
-              <div class="card border-info">
-                <div class="card-body">
-                  <h5 class="card-title text-info fw-bold">Simulador de Coches</h5>
-                  <p class="card-text fw-semibold">Tiempo total: <?= $SimCoches ?> minutos</p>
-                </div>
-              </div>
-            </div>
-          <?php else: ?>
-            <div class="col-12">
-              <div class="alert alert-danger fw-bold">No se encontraron tiempos para Simulador de Coches</div>
-            </div>
-          <?php endif; ?>
+  <main class="container my-5">
+    <section class="download-section">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center mb-5">
+          <h1 class="display-4 fw-bold mb-3 text-primary">Descarga la App de MNZone</h1>
+          <p class="lead text-muted">Controla los tiempos de uso de las salas desde tu ordenador</p>
         </div>
       </div>
 
-      
+      <div class="row g-4">
+        <!-- Tarjeta de descarga -->
+        <div class="col-md-6">
+          <div class="download-card h-100 p-4 border rounded shadow-lg">
+            <div class="text-center">
+              <i class="download-icon fas fa-desktop fa-3x text-primary mb-3"></i>
+              <h2 class="text-secondary">Versión para Windows</h2>
+              <p class="mb-4 text-muted">Aplicación de escritorio compatible con Windows 10/11</p>
+
+              <div class="d-grid gap-2 col-md-8 mx-auto">
+                <a href="../../Files/App.zip" class="btn btn-primary download-btn" download="MNZone_App.zip">
+                  <i class="fas fa-download me-2"></i> Descargar (v1.0)
+                </a>
+              </div>
+
+              <div class="mt-4 text-muted small">
+                <p>Tamaño: ~15MB | Última actualización: <?php echo date("d/m/Y"); ?></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Características y requisitos del sistema -->
+        <div class="col-md-6">
+          <div class="h-100">
+            <h2 class="text-primary mb-3">Características principales</h2>
+            <ul class="features-list list-unstyled">
+              <li><i class="fas fa-check-circle text-success me-2"></i>Control de tiempos por sala en tiempo real</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Interfaz intuitiva y fácil de usar</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Sistema de inicio/pausa de contadores</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Visualización del tiempo restante</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Registro de uso por usuario</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Notificaciones de tiempo agotado</li>
+            </ul>
+
+            <div class="system-requirements mt-4">
+              <h2 class="text-primary mb-3">Requisitos del sistema</h2>
+              <ul class="features-list list-unstyled">
+                <li><i class="fas fa-cogs text-muted me-2"></i>Sistema operativo: Windows 10/11 (64-bit)</li>
+                <li><i class="fas fa-cogs text-muted me-2"></i>Procesador: 1 GHz o superior</li>
+                <li><i class="fas fa-cogs text-muted me-2"></i>Memoria RAM: 2 GB mínimo</li>
+                <li><i class="fas fa-cogs text-muted me-2"></i>Espacio en disco: 50 MB disponibles</li>
+                <li><i class="fas fa-cogs text-muted me-2"></i>Conexión a Internet para actualizaciones</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="card border-0 shadow-sm rounded">
+            <div class="card-body">
+              <h4 class="card-title mb-4 text-primary">Instrucciones de instalación</h4>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <div class="d-flex">
+                    <div class="me-3 text-primary">
+                      <i class="fas fa-download fa-2x"></i>
+                    </div>
+                    <div>
+                      <h5>Paso 1</h5>
+                      <p class="mb-0">Descarga el archivo .zip haciendo clic en el botón superior</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="d-flex">
+                    <div class="me-3 text-primary">
+                      <i class="fas fa-file-archive fa-2x"></i>
+                    </div>
+                    <div>
+                      <h5>Paso 2</h5>
+                      <p class="mb-0">Extrae el contenido del archivo ZIP en una carpeta</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="d-flex">
+                    <div class="me-3 text-primary">
+                      <i class="fas fa-rocket fa-2x"></i>
+                    </div>
+                    <div>
+                      <h5>Paso 3</h5>
+                      <p class="mb-0">Ejecuta el archivo "MNZone.exe" para iniciar la aplicación</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-<?php
-    } else {
-      echo "<p class='text-danger fw-bold'>No se encontraron tiempos para el usuario</p>";
-    }
-?>
-</main>
-<?php include '../esencial/footer.php' ?>
+  <?php include '../esencial/footer.php'; ?>
 </body>
 
 </html>

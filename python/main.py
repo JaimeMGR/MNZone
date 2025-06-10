@@ -8,7 +8,7 @@ from database import DatabaseManager
 class CountdownApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("MNZone - Gestión de Contadores")
+        self.root.title("MNZone - Gestión de contadores")
         self.root.geometry("700x600")
         self.root.minsize(600, 500)
         
@@ -62,7 +62,7 @@ class CountdownApp:
         main_frame.pack(expand=True, fill='both')
         
         # Logo o título
-        title = ttk.Label(main_frame, text="MNZone", style='Title.TLabel')
+        title = ttk.Label(main_frame, text="Iniciar sesión", style='Title.TLabel')
         title.pack(pady=(0, 20))
         
         form_frame = ttk.Frame(main_frame)
@@ -113,16 +113,57 @@ class CountdownApp:
             messagebox.showerror("Error", f"Ocurrió un error:\n{str(e)}")
     
     def setup_main_ui(self):
-        """Interfaz principal después del login"""
+        """Interfaz principal después del login con paleta de colores moderna"""
         self.clear_window()
         
+        # Configurar estilos modernos
+        self.style = ttk.Style()
+        
+        # Paleta de colores moderna
+        self.style.configure('.', background='#F5F7FA', foreground='#2D3748')
+        self.style.configure('TFrame', background='#F5F7FA')
+        self.style.configure('TLabel', background='#F5F7FA', foreground='#2D3748', font=('Segoe UI', 10))
+        self.style.configure('TButton', font=('Segoe UI', 9), borderwidth=1)
+        self.style.configure('TLabelframe', background='#F5F7FA', foreground='#4A5568', font=('Segoe UI', 10, 'bold'))
+        self.style.configure('TLabelframe.Label', background='#F5F7FA', foreground='#4A5568')
+        
+        # Estilos personalizados
+        self.style.configure('Active.TLabel', foreground='#3182CE', font=('Segoe UI', 10, 'bold'))
+        self.style.configure('TimeLabel.TLabel', foreground='#2C5282', font=('Segoe UI', 10, 'bold'))
+        self.style.configure('Countdown.TLabel', foreground='#2B6CB0', font=('Segoe UI', 24, 'bold'))
+        
+        # Estilos para botones
+        self.style.configure('Logout.TButton', foreground='#FFFFFF', background='#E53E3E', font=('Segoe UI', 9, 'bold'))
+        self.style.map('Logout.TButton', 
+            background=[('active', '#C53030'), ('pressed', '#9B2C2C')],
+            foreground=[('active', '#FFFFFF'), ('pressed', '#FFFFFF')]
+        )
+        
+        self.style.configure('Start.TButton', foreground='#FFFFFF', background='#38A169')
+        self.style.map('Start.TButton', 
+            background=[('active', '#2F855A'), ('pressed', '#276749'), ('disabled', '#CBD5E0')],
+            foreground=[('active', '#FFFFFF'), ('pressed', '#FFFFFF'), ('disabled', '#718096')]
+        )
+        
+        self.style.configure('Pause.TButton', foreground='#FFFFFF', background='#D69E2E')
+        self.style.map('Pause.TButton', 
+            background=[('active', '#B7791F'), ('pressed', '#975A16'), ('disabled', '#CBD5E0')],
+            foreground=[('active', '#FFFFFF'), ('pressed', '#FFFFFF'), ('disabled', '#718096')]
+        )
+        
+        self.style.configure('Stop.TButton', foreground='#FFFFFF', background='#E53E3E')
+        self.style.map('Stop.TButton', 
+            background=[('active', '#C53030'), ('pressed', '#9B2C2C'), ('disabled', '#CBD5E0')],
+            foreground=[('active', '#FFFFFF'), ('pressed', '#FFFFFF'), ('disabled', '#718096')]
+        )
+        
         # Frame principal con padding
-        main_frame = ttk.Frame(self.root, padding=10)
+        main_frame = ttk.Frame(self.root, padding=20)
         main_frame.pack(expand=True, fill='both')
         
         # Header con información del usuario
-        header_frame = ttk.Frame(main_frame)
-        header_frame.pack(fill='x', pady=(0, 10))
+        header_frame = ttk.Frame(main_frame, style='TFrame')
+        header_frame.pack(fill='x', pady=(0, 15))
         
         user_info = ttk.Label(
             header_frame, 
@@ -133,17 +174,17 @@ class CountdownApp:
         
         logout_btn = ttk.Button(
             header_frame, 
-            text="Cerrar Sesión", 
+            text="Cerrar sesión", 
             command=self.logout,
             style='Logout.TButton'
         )
         logout_btn.pack(side='right', padx=5)
         
-        # Panel de tiempos disponibles
+        # Panel de tiempos disponibles con sombra visual
         times_frame = ttk.LabelFrame(
             main_frame, 
-            text="Tiempos disponibles por sala", 
-            padding=15
+            text="Tiempos disponibles por sala (tiempo en minutos)", 
+            padding=(15, 10, 15, 15)
         )
         times_frame.pack(fill='both', expand=True, pady=5)
         
@@ -158,7 +199,7 @@ class CountdownApp:
         
         for i, (category, display_name) in enumerate(categories):
             row_frame = ttk.Frame(times_frame)
-            row_frame.grid(row=i, column=0, sticky='ew', pady=3)
+            row_frame.grid(row=i, column=0, sticky='ew', pady=5)
             
             ttk.Label(
                 row_frame, 
@@ -176,11 +217,11 @@ class CountdownApp:
             )
             self.time_labels[category].pack(side='left')
         
-        # Panel de control del contador
+        # Panel de control del contador con estilo moderno
         control_frame = ttk.LabelFrame(
             main_frame, 
-            text="Control de Contador", 
-            padding=15
+            text="Control de contador", 
+            padding=(15, 10, 15, 15)
         )
         control_frame.pack(fill='x', pady=10)
         
@@ -193,12 +234,13 @@ class CountdownApp:
             textvariable=self.category_var,
             values=[display for _, display in categories],
             state="readonly",
-            width=20
+            width=20,
+            font=('Segoe UI', 9)
         )
         self.category_combobox.grid(row=0, column=1, padx=5, sticky='w')
         self.category_combobox.bind("<<ComboboxSelected>>", self.on_category_selected)
         
-        # Botones de control
+        # Botones de control con estilo moderno
         button_frame = ttk.Frame(control_frame)
         button_frame.grid(row=1, column=0, columnspan=2, pady=10)
         
@@ -229,11 +271,11 @@ class CountdownApp:
         )
         self.stop_btn.pack(side='left', padx=5, ipadx=15)
         
-        # Panel de contador activo
+        # Panel de contador activo con estilo moderno
         self.active_countdown_frame = ttk.LabelFrame(
             main_frame, 
             text="Contador Activo", 
-            padding=15
+            padding=(15, 10, 15, 15)
         )
         self.active_countdown_frame.pack(fill='x', pady=10)
         
