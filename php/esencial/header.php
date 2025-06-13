@@ -43,16 +43,7 @@ if (isset($_GET["error"])) {
 
     if (isset($_SESSION["nombre"])) {
       echo formulario_sesion_iniciada($_SESSION["nombre"]);
-      // Realiza una consulta sql para extraer el id del usuario
-      $usuario = $_SESSION["nombre"];
-      $sql = "SELECT id_socio FROM socio WHERE usuario = '$usuario' LIMIT 1";
-      $resultado = $conexion->query($sql);
-      if ($resultado->num_rows > 0) {
-        $fila = $resultado->fetch_assoc();
-        $id_socio = $fila['id_socio'];
-      } else {
-        echo "<p class='error'>Error al obtener el ID del socio.</p>";
-      }
+
     } else {
       echo   "<div class='login-container'>
       <form class='login-form' action='../../iniciar_sesion.php' method='POST'>

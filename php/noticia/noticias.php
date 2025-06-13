@@ -44,7 +44,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
 
 <body>
     <?php include '../esencial/header.php';
-    if (isset($_SESSION["nombre"]) && $pagina_actual == "noticias.php" && $_SESSION["tipo"] == "admin" || $_SESSION["tipo"] == "socio") {
+    if (isset($_SESSION["nombre"]) && $pagina_actual == "noticias.php") {
     ?>
         <main>
             <h1>Noticias</h1>
@@ -62,25 +62,25 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
                 if ($stmt->fetch()) {
                     do {
                         echo "<div class='noticia-item'>";
-                        echo "<div class='noticia-image' ><img loading='lazy' src='" . '../../imagenes/' . $imagen . "' alt='" . $titulo . "'></div>";
-                        echo "<div class='btn' style='width:50%; padding-top:100px;'>";
+                        echo "<div class='noticia-image'><img loading='lazy' src='" . '../../imagenes/' . $imagen . "' alt='" . $titulo . "'></div>";
+                        echo "<div class='noticia-content'>";
                         echo "<h3 class='noticia-title'>" . $titulo . "</h3>";
-                        // Limitar el contenido de la noticia a 30 caracteres
-                        $contenido_resumido = substr($contenido, 0, 30) . '...';
-                        echo "<p style='color:white;'>" . $contenido_resumido . "</p>";
-                        echo "<a style='color:white;' href='noticiaentera.php?id=$id_noticia'>Leer más...</a>";
-                        echo "<br>";
-                        echo "<small>Publicado el: " . $fecha_publicacion . "</small>";
+                        $contenido_resumido = substr($contenido, 0, 100) . '...'; // Aumenté a 100 caracteres
+                        echo "<p class='noticia-excerpt'>" . $contenido_resumido . "</p>";
+                        echo "<div class='noticia-meta'>";
+                        echo "<a class='noticia-link' href='noticiaentera.php?id=$id_noticia'>Leer más <i class='fas fa-arrow-right'></i></a>";
+                        echo "<small class='noticia-date'>" . $fecha_publicacion . "</small>";
                         echo "</div>";
                         echo "</div>";
-                        echo "<br>";
+                        echo "</div>";
                     } while ($stmt->fetch());
                 } else {
-                    echo "<p>No hay noticias disponibles.</p>";
+                    echo "<p class='no-news'>No hay noticias disponibles.</p>";
                 }
                 $stmt->close();
                 $conexion->close();
                 ?>
+
             </div>
 
             <!-- Paginación -->
@@ -109,7 +109,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
 
                     <?php
                     // Mostrar la página anterior al actual, si existe
-                    if ($pagina_actual>2): ?>
+                    if ($pagina_actual > 2): ?>
                         <li class="page-item">
                             <a class="btn btn-warning" href="?pagina=<?= $pagina_actual - 1 ?>"><?= $pagina_actual - 1 ?></a>
                         </li>
@@ -126,7 +126,7 @@ $stmt->bind_result($id_noticia, $titulo, $contenido, $imagen, $fecha_publicacion
                     // Mostrar la página posterior al actual, si existe
                     if ($pagina_actual < $total_paginas): ?>
                         <li class="page-item">
-                            <a class="btn btn-warning" href="?pagina=<?= $pagina_actual + 1 ?>"><?=$pagina_actual + 1 ;?></a>
+                            <a class="btn btn-warning" href="?pagina=<?= $pagina_actual + 1 ?>"><?= $pagina_actual + 1; ?></a>
                         </li>
                     <?php endif; ?>
 

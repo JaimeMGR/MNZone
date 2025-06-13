@@ -7,6 +7,20 @@ $productos = json_decode($productos_json, true);
 
 $id_socio = null;
 
+    if (isset($_SESSION["nombre"])) {
+      echo formulario_sesion_iniciada($_SESSION["nombre"]);
+      // Realiza una consulta sql para extraer el id del usuario
+      $usuario = $_SESSION["nombre"];
+      $sql = "SELECT id_socio FROM socio WHERE usuario = '$usuario' LIMIT 1";
+      $resultado = $conexion->query($sql);
+      if ($resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        $id_socio = $fila['id_socio'];
+      } else {
+        echo "<p class='error'>Error al obtener el ID del socio.</p>";
+      }
+    }
+
 // Obtener el id_socio a partir del usuario en sesión (campo usuario = nickname)
 if (isset($_SESSION['nombre'])) {
   $usuario = $conexion->real_escape_string($_SESSION['nombre']);
@@ -104,11 +118,6 @@ foreach ($productos as $producto) {
       const idSocio = <?= json_encode($id_socio) ?>;
       const nombre = <?= json_encode($_SESSION['nombre'] ?? '') ?>;
       const total = document.getElementById('total').value;
-
-      if (!idSocio || !nombre) {
-        alert("Error: Usuario no identificado.");
-        return;
-      }
 
       let errores = [];
 
