@@ -11,7 +11,9 @@ const carrito_productos = document.querySelector(".cart-items");
 const abrir_carrito = document.querySelector(".toggle-cart");
 const vaciarcarrobtn = document.querySelector(".cart-checkout");
 const tramitarbtn = document.querySelector(".cart-tramitar");
+
 let preciototal = 0;
+
 
 document.addEventListener("click", () => {
   carrito.classList.remove("show");
@@ -40,6 +42,10 @@ let lista_carrito = JSON.parse(localStorage.getItem(carrito_local)) ?? [];
 for (let item of lista_carrito) {
   carrito_productos.appendChild(crearItemCarrito(item));
 }
+
+// Recalcular precio total
+preciototal = lista_carrito.reduce((total, item) => total + item.precio, 0);
+mostrarPrecioTotal(preciototal);
 
 
 //==================FUNCIONES AUXILIARES=====================================================
@@ -137,9 +143,9 @@ function mostrarMensaje(texto, clase) {
 
 // Si se cierra sesión se debe de eliminar el localstorage
 
-window.addEventListener("beforeunload", () => {
-  localStorage.clear()
-});
+// window.addEventListener("beforeunload", () => {
+//   localStorage.clear()
+// });
 
 // var slider = document.getElementById("precio");
 // var output = document.getElementById("demo");

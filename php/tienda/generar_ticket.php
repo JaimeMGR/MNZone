@@ -5,7 +5,9 @@ use Dompdf\Dompdf;
 session_start();
 
 if (!isset($_POST['productos']) || !isset($_POST['total'])) {
-    die("Datos incompletos.");
+    http_response_code(400);
+    echo "Datos incompletos.";
+    exit;
 }
 
 $productos = json_decode($_POST['productos'], true);
@@ -22,7 +24,9 @@ $html = "
 <tr><th>Producto</th><th>Precio (€)</th></tr>";
 
 foreach ($productos as $producto) {
-    $html .= "<tr><td>{$producto['nombre_producto']}</td><td>{$producto['precio']}</td></tr>";
+    $nombre = htmlspecialchars($producto['nombre_producto']);
+    $precio = htmlspecialchars($producto['precio']);
+    $html .= "<tr><td>{$nombre}</td><td>{$precio}</td></tr>";
 }
 
 $html .= "</table><h3>Total: {$total} €</h3>";
@@ -30,14 +34,13 @@ $html .= "</table><h3>Total: {$total} €</h3>";
 // Crear el PDF con Dompdf
 $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', orientation: 'portrait');
+$dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
-// Vaciar el carrito (esto depende de cómo lo tengas implementado; aquí es vía sesión)
-unset($_SESSION['carrito']); // si usabas $_SESSION['carrito']
+// Vaciar el carrito si usas sesión
+unset($_SESSION['carrito']);
 
 // Enviar el PDF al navegador
-$dompdf->stream("Ticket_Compra_MNZone.pdf", ["Attachment" => false]); // Cambia a true si quieres forzar descarga
+$dompdf->stream("Ticket_Compra_MNZone.pdf", ["Attachment" => false]);
+
 exit;
-
-

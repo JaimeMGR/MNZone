@@ -408,9 +408,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <section>
       <h2>Galería</h2>
       <div class="gallery">
-        <img loading="lazy" src="https://virtualboxingym.com/wp-content/uploads/2023/09/Sin-titulo-8-1.png" alt="Entrenamiento en el club">
-        <img loading="lazy" src="https://muaythaigranada.es/wp-content/uploads/2022/01/MuaythaiClasesTodosNiveles-1.jpg" alt="Competencia de kickboxing">
-        <img loading="lazy" src="https://i.blogs.es/bed467/boxeo-entrenamiento/840_560.jpg" alt="Miembros entrenando">
+        <img loading="lazy" src="https://www.arenagaming.es/wp-content/uploads/2017/03/ArenaGaming-21-scaled.jpg" alt="Instalaciones 1">
+        <img loading="lazy" src="https://gamingproject.blob.core.windows.net/public-production/portada/home_dRsQbjQ7pECdNJdFQmJtug/20220329_003530-11062022154915638-1500px.jpg" alt="Instalaciones 2">
+        <img loading="lazy" src="https://gamingproject.blob.core.windows.net/public-production/imagenes-de-fondo/gale_fG02IyLmHkOYNFTHkhiHVg/_JMP8958peke-11062022160353104-1500px.jpg" alt="Instalaciones 3">
       </div>
     </section>
     <section>
