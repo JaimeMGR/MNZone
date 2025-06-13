@@ -229,18 +229,18 @@ $lista = [];
             <button class="cart-close">
               <i class="fas fa-times"></i>
             </button>
-            <header>
-              <h3 class="text-slanted">Añadido hasta ahora</h3>
+            <header style="padding:10px">
+              <h2 class="text">Añadido hasta ahora</h2>
             </header>
             <!-- cart items -->
             <div class="cart-items"></div>
-            <footer>
+            <footer style="border-top:1px solid #ccc; padding:10px">
               <!-- muestra el precio total -->
-              <h3 class="cart-total">Total: <span class="total-price">
+              <h2 class="cart-total">Total: <span class="total-price">
 
-                </span></h3>
+                </span></h2>
               <button class="cart-checkout btn btn-danger">vaciar carro</button>
-              <button class="cart-checkout btn btn-light">Tramitar pedido</button>
+              <button class="cart-tramitar btn btn-light">Tramitar pedido</button>
             </footer>
           </aside>
         </div>
@@ -280,7 +280,7 @@ $lista = [];
               ?>
                 <article class="product">
                   <div class="product-container" data-id="<?php echo $producto['id_producto']; ?>">
-                    <img src="<?php echo $producto['imagen']; ?>" class="product-img img" style="height: 100%;" alt="<?php echo $producto['nombre_producto']; ?>">
+                    <img src="<?php echo $producto['imagen']; ?>" class="product-img img" style="height: 400px; image-orientation: ;" alt="<?php echo $producto['nombre_producto']; ?>">
                     <div class="product-icons">
                       <button class="product-cart-btn product-icon">
                         <i class="fas fa-shopping-cart"></i>

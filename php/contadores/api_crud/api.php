@@ -52,14 +52,20 @@ switch ($metodo) {
         if (
             isset($_GET["id_socio"]) && isset($_GET["nombre"]) && $_GET["id_producto"]
         ) {
-            $resultado = sumarTiempo(
-                $conn,
-                $_GET["id_socio"],
-                $_GET["nombre"],
-                $_GET["id_producto"]
-            );
-            http_response_code($resultado["http"]);
-            echo json_encode($resultado["respuesta"]);
+            // Si id_producto no es igual a alguno de los siguientes: 143 145 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 174 175, no se creará un nuevo contador
+            if (!in_array($_GET["id_producto"], [143, 145, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175])) {
+                http_response_code(400);
+                echo json_encode(["error" => "Producto no válido"]);
+            } else {
+                $resultado = sumarTiempo(
+                    $conn,
+                    $_GET["id_socio"],
+                    $_GET["nombre"],
+                    $_GET["id_producto"]
+                );
+                http_response_code($resultado["http"]);
+                echo json_encode($resultado["respuesta"]);
+            }
         } else {
             http_response_code(400);
             echo json_encode(["error" => "Faltan datos"]);
@@ -67,8 +73,7 @@ switch ($metodo) {
 
         break;
 
-    case 'PUT':
-        ;
+    case 'PUT':;
 
     case 'DELETE':
         if (isset($_GET["id"])) {

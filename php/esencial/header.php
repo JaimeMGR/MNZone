@@ -25,7 +25,6 @@ if (isset($_GET["error"])) {
       <div class="header-content">
         <?php
 
-        session_start();
         require_once "utilidades.php";
         $pagina_actual = basename($_SERVER['PHP_SELF']);
 

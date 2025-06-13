@@ -294,5 +294,69 @@ let lista = {
         "imagen": "productos\/1fbfbe18140c7f60fde8d2f2f1c906c4.jpg",
         "precio": 40,
         "categoria": "Simulador_coches"
+    },
+    "176": {
+        "id_producto": 176,
+        "nombre_producto": "Monster Energy Zero",
+        "compania": "Monster",
+        "imagen": "productos\/1899bf9f546964939cd4c1c0be0b21a7.jpg",
+        "precio": 2,
+        "categoria": "Bebida"
+    },
+    "177": {
+        "id_producto": 177,
+        "nombre_producto": "Monster mango loco",
+        "compania": "Monster",
+        "imagen": "productos\/0e56135f7a09b53654451ed1a0885ac8.jpg",
+        "precio": 2,
+        "categoria": "Bebida"
+    },
+    "178": {
+        "id_producto": 178,
+        "nombre_producto": "Monster ultra white",
+        "compania": "monster",
+        "imagen": "productos\/e5e5ca003d79194b1382570530cc94b3.jpg",
+        "precio": 2,
+        "categoria": "Bebida"
+    },
+    "179": {
+        "id_producto": 179,
+        "nombre_producto": "Monster ultra strawberry dreams",
+        "compania": "Monster",
+        "imagen": "productos\/3f928282f799602d6e974aa0129614e8.jpg",
+        "precio": 2,
+        "categoria": "Bebida"
+    },
+    "180": {
+        "id_producto": 180,
+        "nombre_producto": "Eneryeti sabor coco",
+        "compania": "Eneryeti",
+        "imagen": "productos\/88882b41565a43250faf9abfda576514.jpg",
+        "precio": 2,
+        "categoria": "Bebida"
+    },
+    "181": {
+        "id_producto": 181,
+        "nombre_producto": "Cheetos Pandilla",
+        "compania": "Cheetos",
+        "imagen": "productos\/dd3448e8e938aba479861577eedb9a42.jpg",
+        "precio": 2,
+        "categoria": "Comida"
+    },
+    "182": {
+        "id_producto": 182,
+        "nombre_producto": "Ruffles sabor a jamón",
+        "compania": "Ruffles",
+        "imagen": "productos\/94da1aa8438f00ac0acc81ea717b3d33.jpg",
+        "precio": 2,
+        "categoria": "Comida"
+    },
+    "183": {
+        "id_producto": 183,
+        "nombre_producto": "Ruffles sabor a jamón y queso",
+        "compania": "Ruffles",
+        "imagen": "productos\/d43d7c35d2a4ca652be13f4e8abe9750.jpg",
+        "precio": 2,
+        "categoria": "Comida"
     }
 };

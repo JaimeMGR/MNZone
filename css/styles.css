@@ -64,31 +64,53 @@ footer img {
 }
 
 .login-form {
-    margin-right: 10%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    text-align: center;
-    background: #333;
-    padding: 10px;
-    border-radius: 2%;
-    width: 250px;
+    width: 400px;
+    margin: 40px auto;
+    background-color: #1e1e2f;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
 }
 
 .login-form label {
-    color: white;
-    font-size: 1rem;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 15px;
+    font-weight: bold;
+    color:white;
 }
 
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
 
 .login-form button {
-    background: rgb(255, 255, 255);
-    padding: 3px;
-    border: 0;
-    border-radius: 5px;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-
+.login-form a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #ffffff;
+    text-decoration: none;
+}
 
 .error {
     color: red;

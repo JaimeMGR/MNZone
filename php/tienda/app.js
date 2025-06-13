@@ -10,6 +10,7 @@ const carrito_aside = document.querySelector("aside.cart");
 const carrito_productos = document.querySelector(".cart-items");
 const abrir_carrito = document.querySelector(".toggle-cart");
 const vaciarcarrobtn = document.querySelector(".cart-checkout");
+const tramitarbtn = document.querySelector(".cart-tramitar");
 let preciototal = 0;
 
 document.addEventListener("click", () => {
@@ -147,3 +148,17 @@ window.addEventListener("beforeunload", () => {
 // slider.oninput = function () {
 //   output.innerHTML = this.value;
 // }
+
+// Utilizando el botón const tramitarbtn = document.querySelector(".cart-tramitar"); necesito tramitar el pedido llevándote a un formulario para realizar el pago llevando con si todos los productos del carrito y el precio total.
+// Botón para tramitar el pedido
+tramitarbtn.addEventListener("click", () => {
+  if (lista_carrito.length === 0) {
+    mostrarMensaje("El carrito está vacío", "danger");
+    return;
+  }
+  // Redirigir a la página de pago
+  const url = new URL("pago.php", window.location.href);
+  url.searchParams.set("productos", JSON.stringify(lista_carrito));
+  url.searchParams.set("total", preciototal);
+  window.location.href = url.toString();
+});
