@@ -578,6 +578,8 @@ table {
         flex-direction: column;
         min-height: auto;
     }
+
+
     
     .noticia-image, .noticia-content {
         width: 100%;
@@ -600,9 +602,21 @@ table {
 }
 
 /* Adaptación para dispositivos móviles */
+@media (max-width: 992px) {
+
+    .products-container {
+        display:grid;
+    }
+
+
+}
+
+/* Adaptación para dispositivos móviles */
 @media (max-width: 869px) {
 
-
+    .products-container {
+        display:grid;
+    }
 
     header img,
     footer img {

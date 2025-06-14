@@ -84,7 +84,7 @@ class CountdownApp:
         
         login_btn = ttk.Button(
             button_frame, 
-            text="Iniciar Sesión", 
+            text="Iniciar sesión", 
             command=self.do_login,
             style='Start.TButton'
         )

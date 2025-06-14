@@ -229,20 +229,24 @@ $lista = [];
         <div class="cart-overlay">
           <aside class="cart">
             <button class="cart-close">
-              <i class="fas fa-times"></i>
+              <i class="fas fa-times" style="color: white;"></i>
             </button>
             <header style="padding:10px">
-              <h2 class="text">Añadido hasta ahora</h2>
+              <h2 class="text" style="oadding-top:1fr; font-style: normal; text-transform: none;">Mi cesta</h2>
             </header>
             <!-- cart items -->
             <div class="cart-items"></div>
-            <footer style="border-top:1px solid #ccc; padding:10px">
-              <!-- muestra el precio total -->
-              <h2 class="cart-total">Total: <span class="total-price">
+            <footer style="">
 
-                </span></h2>
-              <button class="cart-checkout btn btn-danger">vaciar carro</button>
-              <button class="cart-tramitar btn btn-light">Tramitar pedido</button>
+              <div class="precio_total">
+                Total (IVA incluido):
+                <span class="total-price" style="font-weight: 700; color: #fff;">0,00 €</span>
+              </div>
+
+              <div style="width: 100%;align-items: baseline;justify-items: center;">
+                <button class="cart-tramitar btn btn-light">Ver artículos en tu cesta</button>
+                <button class="cart-checkout btn btn-danger">Vaciar cesta</button>
+              </div>
             </footer>
           </aside>
         </div>

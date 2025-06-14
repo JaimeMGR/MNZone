@@ -1,34 +1,19 @@
 <?php
-include '../esencial/conexion.php';  // Aquí dentro está session_start();
+session_start(); // Asegúrate de iniciar la sesión al principio del archivo
+include '../esencial/conexion.php';      // session_start() aquí
 
 $productos_json = $_GET['productos'] ?? '[]';
-$total = $_GET['total'] ?? 0;
-$productos = json_decode($productos_json, true);
+$total          = $_GET['total']     ?? 0;
+$productos      = json_decode($productos_json, true);
 
 $id_socio = null;
-
-    if (isset($_SESSION["nombre"])) {
-      echo formulario_sesion_iniciada($_SESSION["nombre"]);
-      // Realiza una consulta sql para extraer el id del usuario
-      $usuario = $_SESSION["nombre"];
-      $sql = "SELECT id_socio FROM socio WHERE usuario = '$usuario' LIMIT 1";
-      $resultado = $conexion->query($sql);
-      if ($resultado->num_rows > 0) {
-        $fila = $resultado->fetch_assoc();
-        $id_socio = $fila['id_socio'];
-      } else {
-        echo "<p class='error'>Error al obtener el ID del socio.</p>";
-      }
-    }
-
-// Obtener el id_socio a partir del usuario en sesión (campo usuario = nickname)
 if (isset($_SESSION['nombre'])) {
   $usuario = $conexion->real_escape_string($_SESSION['nombre']);
-  $sql = "SELECT id_socio FROM socio WHERE usuario = '$usuario' LIMIT 1";
+  $sql     = "SELECT id_socio FROM socio WHERE usuario = '$usuario' LIMIT 1";
   $resultado = $conexion->query($sql);
-  if ($resultado && $resultado->num_rows > 0) {
-    $fila = $resultado->fetch_assoc();
-    $id_socio = $fila['id_socio'];
+  if ($resultado && $resultado->num_rows) {
+    $fila     = $resultado->fetch_assoc();
+    $id_socio = (int)$fila['id_socio'];   // ► casteamos a int
   }
 }
 
@@ -52,9 +37,9 @@ foreach ($productos as $producto) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pago - MNZone</title>
+  <title>Mi cesta - MNZone</title>
   <link rel="stylesheet" href="../../css/styles.css" />
-    <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
+  <link rel="icon" type="image/ico" href="../../imagenes/Logo.ico" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
   <script src="../../js/header.js" defer></script>
@@ -67,7 +52,8 @@ foreach ($productos as $producto) {
     if (isset($_SESSION["nombre"]) && ($_SESSION["tipo"] == "admin" || $_SESSION["tipo"] == "socio")) {
     ?>
       <section class="container">
-        <h1 class="text-center my-4">Resumen de tu compra</h1>
+        <h1 class="text-center my-4">Mi cesta</h1>
+        <br><br>
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <table class="table table-striped">
@@ -93,16 +79,18 @@ foreach ($productos as $producto) {
               </tbody>
             </table>
             <h3>Total: <?= htmlspecialchars($total) ?> €</h3>
+            <div class="text-center my-4">
+              <form id="formularioPago">
+                <input type="hidden" id="productos" value='<?= htmlspecialchars($productos_json) ?>'>
+                <input type="hidden" id="total" value='<?= htmlspecialchars($total) ?>'>
+                <button type="button" id="confirmarPago" class="btn btn-success" style="width: 150px;">Confirmar pago</button>
+              </form>
+            </div>
           </div>
+
         </div>
 
-        <div class="text-center my-4">
-          <form id="formularioPago">
-            <input type="hidden" id="productos" value='<?= htmlspecialchars($productos_json) ?>'>
-            <input type="hidden" id="total" value='<?= htmlspecialchars($total) ?>'>
-            <button type="button" id="confirmarPago" class="btn btn-success">Confirmar pago</button>
-          </form>
-        </div>
+
       </section>
 
     <?php
@@ -115,10 +103,11 @@ foreach ($productos as $producto) {
   <script>
     document.getElementById('confirmarPago').addEventListener('click', function() {
       const productos = JSON.parse(document.getElementById('productos').value);
-      const idSocio = <?= json_encode($id_socio) ?>;
+      const idSocio = <?= json_encode($id_socio) ?>; // mostrará 0, 47, 51…
       const nombre = <?= json_encode($_SESSION['nombre'] ?? '') ?>;
       const total = document.getElementById('total').value;
-
+      console.log("ID Socio:", idSocio);
+      console.log("Nombre Socio:", nombre);
       let errores = [];
 
       // Mostrar todos los datos en consola antes de enviar

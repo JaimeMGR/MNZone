@@ -131,7 +131,7 @@ function mostrarPrecioTotal($preciototal) {
 }
 
 function mostrarMensaje(texto, clase) {
-  alerta.innerHTML = `<h3>${texto}</h3>`;
+  alerta.innerHTML = `<h3 style="text-transform: none;">${texto}</h3>`;
 
   alerta.classList.add(clase);
   // remove alert
