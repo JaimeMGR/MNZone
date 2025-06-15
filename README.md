@@ -19,20 +19,6 @@
 
 ---
 
-## ✨ Tabla de contenidos
-1. [Demo en vivo](#-demo-en-vivo)
-2. [Características](#-características-principales)
-3. [Stack tecnológico](#-stack-tecnológico)
-4. [Estructura del repositorio](#-estructura-del-repositorio)
-5. [Modelo de datos](#-modelo-de-datos)
-6. [Instalación rápida](#-instalación-rápida)
-7. [Uso diario](#-uso-diario)
-8. [Contribuir](#-contribuir)
-9. [Roadmap](#-roadmap)
-10. [Licencia](#-licencia)
-
----
-
 ## 🚀 Características principales
 | Módulo | ¿Qué hace? |
 |--------|------------|
