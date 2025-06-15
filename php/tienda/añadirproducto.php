@@ -24,7 +24,7 @@ include '../esencial/conexion.php';
         <h1>Añadir Nuevo Producto</h1>
 
 
-        <form action="api/agregar.php" method="POST" enctype="multipart/form-data">
+        <form action="api/agregar.php" method="POST" enctype="multipart/form-data" style="width:500px; justify-self:center;">
             <label for="nombre_producto">Nombre:</label>
             <input type="text" name="nombre_producto" id="nombre_producto" placeholder="Introduce el nombre del producto" required>
 
@@ -50,7 +50,7 @@ include '../esencial/conexion.php';
 
             </select>
 
-            <button type="submit" class="add">Añadir producto</button>
+            <button type="submit" class="add btn btn-warning" style="width:150px">Añadir producto</button>
         </form>
 
         <a style="color:darkgreen" href="tienda.php">Volver al listado</a>

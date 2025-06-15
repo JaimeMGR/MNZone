@@ -25,8 +25,8 @@ include '../esencial/conexion.php';
     <section class="download-section">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center mb-5">
-          <h1 class="display-4 fw-bold mb-3 text-primary">Descarga la App de MNZone</h1>
-          <p class="lead text-muted">Controla los tiempos de uso de las salas desde tu ordenador</p>
+          <h1>Descarga la App de MNZone</h1>
+          <p >Controla los tiempos de uso de las salas desde tu ordenador</p>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ include '../esencial/conexion.php';
           <div class="download-card h-100 p-4 border rounded shadow-lg">
             <div class="text-center">
               <i class="download-icon fas fa-desktop fa-3x text-primary mb-3"></i>
-              <h2 class="text-secondary">Versión para Windows</h2>
+              <h2>Versión para Windows</h2>
               <p class="mb-4 text-muted">Aplicación de escritorio compatible con Windows 10/11</p>
 
               <div class="d-grid gap-2 col-md-8 mx-auto">
@@ -55,7 +55,7 @@ include '../esencial/conexion.php';
         <!-- Características y requisitos del sistema -->
         <div class="col-md-6">
           <div class="h-100">
-            <h2 class="text-primary mb-3">Características principales</h2>
+            <h2>Características principales</h2>
             <ul class="features-list list-unstyled">
               <li><i class="fas fa-check-circle text-success me-2"></i>Control de tiempos por sala en tiempo real</li>
               <li><i class="fas fa-check-circle text-success me-2"></i>Interfaz intuitiva y fácil de usar</li>
@@ -66,7 +66,7 @@ include '../esencial/conexion.php';
             </ul>
 
             <div class="system-requirements mt-4">
-              <h2 class="text-primary mb-3">Requisitos del sistema</h2>
+              <h2>Requisitos del sistema</h2>
               <ul class="features-list list-unstyled">
                 <li><i class="fas fa-cogs text-muted me-2"></i>Sistema operativo: Windows 10/11 (64-bit)</li>
                 <li><i class="fas fa-cogs text-muted me-2"></i>Procesador: 1 GHz o superior</li>
@@ -83,7 +83,7 @@ include '../esencial/conexion.php';
         <div class="col-12">
           <div class="card border-0 shadow-sm rounded">
             <div class="card-body">
-              <h4 class="card-title mb-4 text-primary">Instrucciones de instalación</h4>
+              <h4>Instrucciones de instalación</h4>
               <div class="row">
                 <div class="col-md-4 mb-3">
                   <div class="d-flex">

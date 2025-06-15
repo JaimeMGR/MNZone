@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main>
         <h1>Nuevo servicio</h1>
 
-        <form action="añadirservicio.php" method="post" enctype="multipart/form-data">
+        <form action="añadirservicio.php" method="post" enctype="multipart/form-data" style="width:500px; justify-self:center;">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" placeholder="Introduzca el título de la noticia">
 
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="foto">Imagen:</label>
             <input type="file" name="foto" id="foto" accept="image/*">
 
-            <button type="submit">Registrar</button>
+            <button type="submit" class="btn btn-warning" style="width:150px">Registrar</button>
         </form>
     </main>
     <?php include '../esencial/footer.php'; ?>

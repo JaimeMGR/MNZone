@@ -1,6 +1,5 @@
 <?php
 include '../esencial/conexion.php';
-require_once "../contadores/api_crud/funciones.php";
 
 $errores = [];
 
@@ -15,15 +14,17 @@ if (!isset($_SESSION['nombre'])) {
         $telefono = trim($_POST['telefono']);
         $foto = $_FILES['foto'];
 
-        // Validaciones (se mantienen iguales)
+        // Validaciones
         if (!preg_match('/^[a-zA-Z\s]{4,50}$/', $nombre)) {
             $errores['nombre'] = "El nombre debe contener solo letras, entre 4 y 50 caracteres.";
         }
 
+        //El nombre no puede ser ni admin ni administrador
         if (strtolower($nombre) == "admin" || strtolower($nombre) == "administrador") {
             $errores['nombre'] = "El nombre no puede ser 'admin' o 'administrador'.";
         }
 
+        //El username no puede ser ni admin ni administrador ni root
         if (strtolower($usuario) == "admin" || strtolower($usuario) == "administrador" || strtolower($usuario) == "root") {
             $errores['usuario'] = "El nombre de usuario no puede ser 'admin', 'administrador' o 'root'.";
         }
@@ -53,7 +54,7 @@ if (!isset($_SESSION['nombre'])) {
             $errores['foto'] = "La foto no debe superar los 5MB.";
         }
 
-        // Verificar si el usuario o el teléfono ya existen
+        // Verificar si el usuario o el teléfono ya existen en la base de datos
         $query_check = "SELECT * FROM socio WHERE usuario = ? OR telefono = ?";
         $stmt_check = $conexion->prepare($query_check);
         $stmt_check->bind_param("ss", $usuario, $telefono);
@@ -72,124 +73,115 @@ if (!isset($_SESSION['nombre'])) {
         }
         $stmt_check->close();
 
-        // Si no hay errores, proceder con el registro
+        // Si no hay errores, insertar en la base de datos
         if (empty($errores)) {
             // Hashear contraseña
             $contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
 
-            // Guardar la foto
+            // Guardar la foto con un nombre único
             $fotoNombre = time() . "_" . basename($foto['name']);
             move_uploaded_file($foto['tmp_name'], "../../imagenes/$fotoNombre");
 
-            // Iniciar transacción para asegurar la integridad de los datos
-            $conexion->begin_transaction();
+            // Insertar en la base de datos
+            $query = "INSERT INTO socio (nombre, edad, contrasena, usuario, telefono, foto) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $conexion->prepare($query);
+            $stmt->bind_param("sissss", $nombre, $edad, $contrasenaHash, $usuario, $telefono, $fotoNombre);
 
-            try {
-                // Insertar en la tabla socio
-                $query = "INSERT INTO socio (nombre, edad, contrasena, usuario, telefono, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, 'socio')";
-                $stmt = $conexion->prepare($query);
-                $stmt->bind_param("sissss", $nombre, $edad, $contrasenaHash, $usuario, $telefono, $fotoNombre);
-                $stmt->execute();
-                $id_socio = $stmt->insert_id;
-                $stmt->close();
-
-                // Insertar contadores en la tabla tiempos_sala
-                $categorias = ['Sala_principal', 'Sala_VIP', 'Play_Station_5', 'Simulador_coches'];
-                $stmt_tiempos = $conexion->prepare("INSERT INTO tiempos_sala (id_socio, usuario, categoria, tiempo_total) VALUES (?, ?, ?, 0)");
-                
-                foreach ($categorias as $categoria) {
-                    $stmt_tiempos->bind_param("iss", $id_socio, $usuario, $categoria);
-                    $stmt_tiempos->execute();
-                }
-                $stmt_tiempos->close();
-
-                // Llamadas a la API para los productos especiales (176-179)
-                $productos_ids = [176, 177, 178, 179];
-                $api_url = "http://localhost/MNZone/php/contadores/api_crud/api.php";
-                $id_producto = 176;
-                
-                foreach ($productos_ids as $id_producto) {
-                    
-                    $url = $api_url . "?id_socio=" . $id_socio . "&nombre=" . urlencode($usuario) . "&id_producto=" . $id_producto;
-                    echo $url . "<br>";
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HEADER, false);
-                    curl_exec($ch);
-                    curl_close($ch);
-                    $id_producto++;
-                }
-
-                // Confirmar la transacción
-                $conexion->commit();
-                header("Location: ../../index.php?registro=exitoso"); // Redirigir al usuario a la página de inicio con mensaje de éxito
-                // Redirigir al usuario
+            if ($stmt->execute()) {
+                header("Location: ../../index.php");
                 exit();
-            } catch (Exception $e) {
-                // Si hay algún error, revertir la transacción
-                $conexion->rollback();
-                $errores['general'] = "Error en el registro: " . $e->getMessage();
-                
-                // Eliminar la foto subida en caso de error
-                if (file_exists("../../imagenes/$fotoNombre")) {
-                    unlink("../../imagenes/$fotoNombre");
-                }
+            } else {
+                $errores['general'] = "Error en el registro: " . $stmt->error;
             }
+
+            // hacer un query para sacar el nuevo id del socio
+            // y crear los contadores por defecto
+            $query2 = "SELECT id_socio FROM socio WHERE usuario = ?";
+            $stmt2 = $conexion->prepare($query2);
+            $stmt2->bind_param("s", $usuario);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+            if ($result2->num_rows > 0) {
+                $row2 = $result2->fetch_assoc();
+                $id_socio = $row2['id_socio'];
+            } else {
+                $errores['general'] = "Error al obtener el ID del socio: " . $stmt2->error;
+            }
+            $stmt2->close();
+
+            // Crear contadores por defecto
+            // Se crean 4 contadores por defecto
+            $query3 = "INSERT INTO contador (id_socio, tipo, valor) VALUES (?, 'Sala_principal', 0), (?, 'Sala_VIP', 0), (?, 'Play_Station_5', 0), (?, 'Simulador_coches', 0)";
+            $stmt3 = $conexion->prepare($query3);
+            $stmt3->bind_param("iiii", $id_socio, $id_socio, $id_socio, $id_socio);
+            if (!$stmt3->execute()) {
+                $errores['contadores'] = "Error al crear contadores: " . $stmt3->error;
+            }
+            $stmt3->close();
+            // Cerrar conexión
+            $stmt->close();
+            $conexion->close();
         }
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Atarfe Fighting</title>
-    <link rel="stylesheet" href="../../css/styles.css">
-    <script src="../../js/register.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <?php include '../esencial/header.php'; ?>
-    <main>
-        <h2 style="font-weight: bold;">Registro de Socio</h2>
-        <form action="register.php" method="post" enctype="multipart/form-data">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>" required>
-            <p class="error"><?= $errores['nombre'] ?? '' ?></p>
 
-            <label for="usuario">Usuario:</label>
-            <input type="text" name="usuario" id="usuario" value="<?= htmlspecialchars($_POST['usuario'] ?? '') ?>" required>
-            <p class="error"><?= $errores['usuario'] ?? '' ?></p>
 
-            <label for="edad">Edad:</label>
-            <input type="number" name="edad" id="edad" value="<?= htmlspecialchars($_POST['edad'] ?? '') ?>" required>
-            <p class="error"><?= $errores['edad'] ?? '' ?></p>
+    <!DOCTYPE html>
+    <html lang="es">
 
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" name="contrasena" id="contrasena" required>
-            <p class="error"><?= $errores['contrasena'] ?? '' ?></p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro - Atarfe Fighting</title>
+        <link rel="stylesheet" href="../../css/styles.css">
+        <script src="../../js/register.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" id="telefono" value="<?= htmlspecialchars($_POST['telefono'] ?? '') ?>" required>
-            <p class="error"><?= $errores['telefono'] ?? '' ?></p>
+    <body>
+        <?php include '../esencial/header.php'; ?>
+        <main>
+            <h2 style="font-weight: bold;">Registro de Socio</h2>
+            <form action="register.php" method="post" enctype="multipart/form-data" style="width:500px; justify-self:center;gap:5px;">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>" required>
+                <p class="error"><?= $errores['nombre'] ?? '' ?></p>
 
-            <label for="foto">Foto:</label>
-            <input type="file" name="foto" id="foto" accept="image/jpeg" required>
-            <p class="error"><?= $errores['foto'] ?? '' ?></p>
+                <label for="usuario">Usuario:</label>
+                <input type="text" name="usuario" id="usuario" value="<?= htmlspecialchars($_POST['usuario'] ?? '') ?>" required>
+                <p class="error"><?= $errores['usuario'] ?? '' ?></p>
 
-            <button type="submit">Registrar</button>
-        </form>
-    </main>
-    <?php include '../esencial/footer.php'; ?>
-</body>
-</html>
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" id="edad" value="<?= htmlspecialchars($_POST['edad'] ?? '') ?>" required>
+                <p class="error"><?= $errores['edad'] ?? '' ?></p>
+
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" name="contrasena" id="contrasena" required>
+                <p class="error"><?= $errores['contrasena'] ?? '' ?></p>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="text" name="telefono" id="telefono" value="<?= htmlspecialchars($_POST['telefono'] ?? '') ?>" required>
+                <p class="error"><?= $errores['telefono'] ?? '' ?></p>
+
+                <label for="foto">Foto:</label>
+                <input type="file" name="foto" id="foto" accept="image/jpeg" required>
+                <p class="error"><?= $errores['foto'] ?? '' ?></p>
+
+                <button type="submit" class="btn btn-warning" style="width:150px">Registrar</button>
+            </form>
+
+
+        </main>
+        <?php include '../esencial/footer.php'; ?>
+    </body>
+
+    </html>
 
 <?php
 } else {
-    header("Location: ../../index.php");
+    
     exit();
 }
 ?>

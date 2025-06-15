@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($httpCode == 200) {
                 $respuesta["datos"];
 
-                echo '            <form action="api/editar.php?id=' . $respuesta["datos"]['id_producto'] . '" method="POST" enctype="multipart/form-data">
+                echo '            <form action="api/editar.php?id=' . $respuesta["datos"]['id_producto'] . '" method="POST" enctype="multipart/form-data" style="width:500px; justify-self:center;">
                 <input type="hidden" name="id" value="' . $respuesta["datos"]['id_producto'] . '">
 
                 <label for="nombre">Nombre:</label>
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <option value="Simulador_coches">Simulador de coches</option>
                         </select>
 
-                        <button type="submit" class="add">Añadir producto</button>
+                        <button type="submit" class="add btn btn-warning" style="width:150px">Añadir producto</button>
                     </form>';
             } else {
                 header("Location: ../../index.php");

@@ -26,7 +26,7 @@ include '../esencial/conexion.php';
     <main>
         <h1>Redactar noticia</h1>
 
-        <form action="crearnoticia.php" method="post" enctype="multipart/form-data">
+        <form action="crearnoticia.php" method="post" enctype="multipart/form-data" style="width:500px; justify-self:center;">
             <label for="titulo">Titulo:</label>
             <input type="text" name="titulo" id="titulo">
 
@@ -36,13 +36,13 @@ include '../esencial/conexion.php';
             <label for="imagen">Imagen:</label>
             <input type="file" name="imagen" id="imagen" accept="*.jpeg">
 
-            <button type="submit">Registrar</button>
+            <button type="submit" class="btn btn-warning" style="width:150px">Registrar</button>
         </form>
     </main>
     <?php }else{
         header("Location:../../index.php");
-    }; ?>
+    };
+  ?>
 <?php include '../esencial/footer.php' ?>
 </body>
-
 </html>

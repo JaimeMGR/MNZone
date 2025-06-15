@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2025 a las 16:59:52
+-- Tiempo de generación: 15-06-2025 a las 20:53:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,7 +40,8 @@ CREATE TABLE `equipos` (
 
 INSERT INTO `equipos` (`id`, `nombre`, `caracteristicas`, `foto`) VALUES
 (1, 'PC Gamer', 'Caja: Tempest Mirage RGB Mesh Torre ATX Negra<br>\nFuente de alimentación: Forgeon SI Series PSU 650W 80+ Bronze<br>\nProcesador: Intel Core i5-12400F 2.5 GHz<br>\nPlaca base: Gigabyte B760M DS3H DDR4<br>\nDisco duro: WD Blue SN580 1TB SSD M.2 PCIe 4.0 NVMe<br>\nMemoria RAM: Kingston FURY Beast DDR4 3200 MHz 32GB 2x16GB CL16<br>\nTarjeta gráfica: GeForce RTX 4060 WINDFORCE 8GB GDDR6 DLSS3<br>\nTarjeta de sonido: Integrada<br>\nRefrigeración CPU: Tempest Cooler 4Pipes 120mm RGB Ventilador CPU Negro<br>\nTarjeta de Red: ASUS PCE-AX1800 Adaptador PCIe AX1800 WiFi 6 + Bluetooth 5.2', 'pc.webp'),
-(2, 'Simulador racing', 'Volante + pedales: Logitech G29  Driving Force<br>Palanca de cambios: Logitech Driving Force Shifter', 'conjunto_volante.webp');
+(2, 'Simulador racing', 'Volante + pedales: Logitech G29  Driving Force<br>Palanca de cambios: Logitech Driving Force Shifter', 'conjunto_volante.webp'),
+(4, 'Play Station 5', 'La PlayStation 5 (PS5) es la última consola de videojuegos de sobremesa de Sony Interactive Entertainment. Ofrece una experiencia de juego más inmersiva y rápida gracias a su SSD de velocidad ultrarrápida, retroalimentación háptica, gatillos adaptativos y audio 3D. Además, cuenta con gráficos espectaculares y compatibilidad con una amplia gama de juegos, tanto de PS5 como de generaciones anteriores. ', 'play5.jpg');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,9 @@ CREATE TABLE `noticia` (
 --
 
 INSERT INTO `noticia` (`id_noticia`, `titulo`, `contenido`, `imagen`, `fecha_publicacion`) VALUES
-(27, 'GTA 6 no debería tener nuevo tráiler antes de su lanzamiento y un ex de Rockstar explica por qué', 'Obbe Vermeij, exdirector técnico en el estudio, da su opinión sobre la campaña de marketing de Grand Theft Auto VI y la decisión que él tomaría para aumentar más el hype del sandbox.Sí, estamos a punto de llegar a mayo de 2025 y aún no tenemos nueva información sobre Grand Theft Auto VI, el que es sin duda el juego más esperado del año del que, por ahora, solo tenemos un primer tráiler y la reconfirmación de Take Two de que llegará en otoño del 2025. Mientras la ausencia de información tiene como locos a los aficionados hay gente de la industria apuntando a que Take Two ha cambiado el enfoque de su estrategia de marketing e incluso un ex de Rockstar ha salido a la palestra para asegurar que, si él tuviese que tomar la decisión, no publicaría ningún tráiler más del juego hasta el lanzamiento para aumentar la expectación del juego.', 'grand-theft-auto-vi-20231251505956_1.jpg.webp', '2025-04-29');
+(27, 'GTA 6 no debería tener nuevo tráiler antes de su lanzamiento y un ex de Rockstar explica por qué', 'Obbe Vermeij, exdirector técnico en el estudio, da su opinión sobre la campaña de marketing de Grand Theft Auto VI y la decisión que él tomaría para aumentar más el hype del sandbox.Sí, estamos a punto de llegar a mayo de 2025 y aún no tenemos nueva información sobre Grand Theft Auto VI, el que es sin duda el juego más esperado del año del que, por ahora, solo tenemos un primer tráiler y la reconfirmación de Take Two de que llegará en otoño del 2025. Mientras la ausencia de información tiene como locos a los aficionados hay gente de la industria apuntando a que Take Two ha cambiado el enfoque de su estrategia de marketing e incluso un ex de Rockstar ha salido a la palestra para asegurar que, si él tuviese que tomar la decisión, no publicaría ningún tráiler más del juego hasta el lanzamiento para aumentar la expectación del juego.', 'grand-theft-auto-vi-20231251505956_1.jpg.webp', '2025-04-29'),
+(32, 'Esta PS5 parece una PS2, pero no es oficial: Modifica la consola de Sony con un espectacular aspecto retro', 'Un usuario ha personalizado el aspecto de su PlayStation 5 utilizando cubiertas no oficiales y otras modificaciones para que se parezca a la PlayStation 2 estándar.   PlayStation 2 es la consola más vendida de la historia con más de 160 millones de unidades distribuidas en todo el mundo, por lo que no es de extrañar que haya videojugadores que recuerdan con cariño la segunda consola de sobremesa de Sony. Ese es el caso de un usuario que ha mostrado en Reddit su PlayStation 5 modificada al estilo de PS2, un trabajo que recuerda al que la empresa japonesa hizo para conmemorar el 30 aniversario de la marca PlayStation.  En el subreddit dedicado a las videoconsolas, los juegos y todo lo relacionado con los productos de Sony Interactive Entertainment, el usuario \"Gokeez\" enseña un par de fotografías de su PlayStation 5 al lado de una PS2, el modelo original lanzado en el 2000, también conocido extraoficialmente como \"PS2 FAT\".La PS5 (el modelo estrenado en 2020 con lector de discos Blu-ray) es de un color negro mate casi idéntico al de PS2, también en la franja de plástico negro que recorre el centro de la consola; dicho plástico es reflectante en una PlayStation 5 sin modificar. En esa zona aparece el logo de Sony de la misma manera en la que se mostraba en PS2, así como el icono clásico de PlayStation (con los colores rojo, azul y amarillo), que el usuario ha extraído de un DualSense del 30º Aniversario de la marca.  Las cubiertas utilizadas no son oficiales, sino de la marca DBrand: el círculo que deja a la vista el ventilador no es una modificación del usuario. En dicha cubierta ha replicado la tipografía de PS2, aquella de bordes pronunciados y con una gama de azules, para poner: \"PS5\". También ha modificado un DualSense para que sea de color negro reflectante y para que los botones frontales tengan colores (el triángulo verde, la cruz azul, etcétera).', 'i-customized-my-ps5-to-look-like-a-ps2-v0-rlinmknt2v1f1.webp', '2025-06-15'),
+(33, 'Recuerda a los Resident Evil clásicos y ya puedes probarlo gratis en Steam: Así es PHASE ZERO', 'Si recuerdas con nostalgia los primeros Resident Evil, esto te interesa, porque la desarrolladora independiente SPINE ha lanzado una demostración jugable de su próximo proyecto: un survival horror que recuerda a los clásicos de Capcom de los años 90. Se trata de PHASE ZERO, con dinámicas de juego old-school y un apartado gráfico que nos trae las sensaciones de la era de los 32 bits.  PHASE ZERO se basa en los ángulos de cámara fijos tan habituales por aquel entonces en este género, además los entornos prerrenderizados y un control muy característico, con el uso de objetos, una exploración laberíntica y la resolución de algunos puzles. Tiene todo eso que tanto nos gustó de otros videojuegos tan conocidos e importantes como Dino Crisis o Parasite Eve.', '202561016254726_1.jpg.webp', '2025-06-15');
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,15 @@ INSERT INTO `productos` (`id_producto`, `nombre_producto`, `compania`, `imagen`,
 (172, '2 horas - Volante', 'MNZone', 'productos/f3c2e209d069a2e7c5460a395220548c.jpg', 5.00, 'Simulador_coches', 7200),
 (173, '5 horas - Volante', 'MNZone', 'productos/fb76e81d07c708937b804bf871e02fee.jpg', 10.00, 'Simulador_coches', 18000),
 (174, '12 horas - Volante', 'MNZone', 'productos/2b60875c4c51d9c5738927d9af125375.jpg', 20.00, 'Simulador_coches', 43200),
-(175, '24 horas - Volante', 'MNZone', 'productos/1fbfbe18140c7f60fde8d2f2f1c906c4.jpg', 40.00, 'Simulador_coches', 86400);
+(175, '24 horas - Volante', 'MNZone', 'productos/1fbfbe18140c7f60fde8d2f2f1c906c4.jpg', 40.00, 'Simulador_coches', 86400),
+(176, 'Monster Energy Zero', 'Monster', 'productos/1899bf9f546964939cd4c1c0be0b21a7.jpg', 2.00, 'Bebida', 0),
+(177, 'Monster mango loco', 'Monster', 'productos/0e56135f7a09b53654451ed1a0885ac8.jpg', 2.00, 'Bebida', 0),
+(178, 'Monster ultra white', 'monster', 'productos/e5e5ca003d79194b1382570530cc94b3.jpg', 2.00, 'Bebida', 0),
+(179, 'Monster ultra strawberry dreams', 'Monster', 'productos/3f928282f799602d6e974aa0129614e8.jpg', 2.00, 'Bebida', 0),
+(180, 'Eneryeti sabor coco', 'Eneryeti', 'productos/88882b41565a43250faf9abfda576514.jpg', 2.00, 'Bebida', 0),
+(181, 'Cheetos Pandilla', 'Cheetos', 'productos/dd3448e8e938aba479861577eedb9a42.jpg', 2.00, 'Comida', 0),
+(182, 'Ruffles sabor a jamón', 'Ruffles', 'productos/94da1aa8438f00ac0acc81ea717b3d33.jpg', 2.00, 'Comida', 0),
+(183, 'Ruffles sabor a jamón y queso', 'Ruffles', 'productos/d43d7c35d2a4ca652be13f4e8abe9750.jpg', 2.00, 'Comida', 0);
 
 -- --------------------------------------------------------
 
@@ -139,8 +150,10 @@ CREATE TABLE `registros_uso` (
 --
 
 INSERT INTO `registros_uso` (`id`, `id_socio`, `categoria`, `inicio`, `fin`, `segundos_utilizados`) VALUES
-(1, 47, 'Sala_principal', '2025-05-22 19:15:59', '2025-05-22 19:16:16', 13),
-(2, 46, 'Sala_principal', '2025-05-22 19:17:45', '2025-05-22 19:17:58', 11);
+(2, 46, 'Sala_principal', '2025-05-22 19:17:45', '2025-05-22 19:17:58', 11),
+(3, 46, 'Sala_principal', '2025-06-12 16:56:25', '2025-06-12 16:56:29', 2),
+(4, 46, 'Sala_principal', '2025-06-14 00:36:33', '2025-06-14 00:36:37', 2),
+(5, 46, 'Sala_principal', '2025-06-14 15:09:25', '2025-06-14 15:10:42', 11);
 
 -- --------------------------------------------------------
 
@@ -185,8 +198,7 @@ INSERT INTO `servicio` (`codigo_servicio`, `nombre`, `descripcion`, `imagen`) VA
 (1, 'Sala principal', 'Nuestra sala principal está equipada con potentes ordenadores gaming, periféricos de alta gama y conexión de alta velocidad. Ideal para jugar en grupo, participar en torneos o simplemente disfrutar de tus videojuegos favoritos con la mejor experiencia.\n\n', '../../imagenes/Salaciber.webp'),
 (2, 'PS5', 'Disfruta de la última generación de consolas con nuestra zona exclusiva de PS5. Vive una experiencia envolvente con títulos de alto nivel gráfico, mandos DualSense y pantallas de gran tamaño. ¡Perfecto para jugar solo o en compañía!\n\n', '../../imagenes/juegos-ps5.webp'),
 (3, 'Volante', '¿Te apasiona la velocidad? Ponte al volante con nuestro simulador de carreras profesional. Volante con retroalimentación, pedales y asiento ergonómico para una experiencia de conducción ultra realista. Ideal para los fanáticos del automovilismo.\n\n', '../../imagenes/Racing.webp'),
-(4, 'Sala VIP', 'Un espacio exclusivo con iluminación LED, equipos de alto rendimiento y ambiente más privado. Perfecta para gamers exigentes, equipos competitivos o sesiones de juego sin interrupciones.\n\n', '../../imagenes/Sala-vip.webp'),
-(8, 'Sala VR', 'Sumérgete en la realidad virtual con nuestros dispositivos VR de última generación. Espacio amplio, sensores de movimiento y una selección de juegos inmersivos para vivir una experiencia única. ¡Juega, muévete y siente el juego!\n\n', '../../imagenes/Sala-vr.avif');
+(4, 'Sala VIP', 'Un espacio exclusivo con iluminación LED, equipos de alto rendimiento y ambiente más privado. Perfecta para gamers exigentes, equipos competitivos o sesiones de juego sin interrupciones.\n\n', '../../imagenes/Sala-vip.webp');
 
 -- --------------------------------------------------------
 
@@ -212,10 +224,8 @@ CREATE TABLE `socio` (
 INSERT INTO `socio` (`id_socio`, `nombre`, `edad`, `contrasena`, `usuario`, `telefono`, `foto`, `tipo`) VALUES
 (0, 'Administrador', 22, '$2y$10$ARmorzzYJD1t3NMdqGBm1.IEtSHnZ6NFnNDcL2H2UEg8G9QrG1la2', 'Admin', '+34668533704', '453348409_695213336114147_1710011270050425164_n.jpeg', 'admin'),
 (46, 'Jaime Molina Granados', 22, '$2y$10$HiY.jLECSmgRhtv2DNMkPuKar7bMmJSHDGwHFvX6lIu77fTk9J/am', 'JaimeMGR', '+34666777888', 'jaime.jpg', 'socio'),
-(47, 'Jaime', 22, 'molina2002', 'Mambanegra', '+34123456789', '1747775255_R.jpg', 'socio'),
-(48, 'Jaime', 22, '$2y$10$FDlaZjgQpR6sgLV9Os.rLOAaFIE5AdRDPrlQE53WDGWcWM4G0zcU2', 'Jaime2', '+34102938475', '1747936105_Imagen de WhatsApp 2025-05-11 a las 22.04.30_e910a75f.jpg', 'socio'),
-(49, 'JaimeGuapo', 22, '$2y$10$ogAPcagzSs86Y0reR8F3oOqi39CTdzaAGc8hZH18y3XNJ749Jx9WG', 'Jaime3', '+34867554322', '1747936252_EnTTOtyXIAI8Ckc.jpeg', 'socio'),
-(50, 'JaimeGuapo', 22, '$2y$10$EB286i5FcLSpAKRf9s.liu0smu0jdawgQN5JpcYxouRg9WvRfjABW', 'Jaime34', '+34867554323', '1747936309_EnTTOtyXIAI8Ckc.jpeg', 'socio');
+(51, 'Carmelo Molina Granados', 25, '$2y$10$LQ04.PgRZF4mWI0B4wD/PuCnsoLU.3S7F5WU4PfLi0mSZd7Q7n.F2', 'CarmeloMGR', '+34785432612', '1750012673_Goku.jpg', 'socio'),
+(52, 'Alex Arrabal Cano', 21, '$2y$10$zrwsdvjdjZCK0plGYLVGb.mQWeWICNfcwJDwd888FgCa03mGN.W3K', 'AlexGinger0', '+34827364098', '1750013471_4.jpg', 'socio');
 
 -- --------------------------------------------------------
 
@@ -229,6 +239,13 @@ CREATE TABLE `testimonio` (
   `contenido` text NOT NULL,
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `testimonio`
+--
+
+INSERT INTO `testimonio` (`id_testimonio`, `autor`, `contenido`, `fecha`) VALUES
+(52, 46, 'Muy contento con el servicio', '2025-06-13');
 
 -- --------------------------------------------------------
 
@@ -249,11 +266,8 @@ CREATE TABLE `tiempos_sala` (
 --
 
 INSERT INTO `tiempos_sala` (`id`, `id_socio`, `usuario`, `categoria`, `tiempo_total`) VALUES
-(1, 46, 'JaimeMGR', 'Sala_principal', 10789),
-(2, 47, 'Mambanegra', 'Sala_principal', 14387),
-(3, 47, 'Mambanegra', 'Sala_VIP', 43200),
-(7, 47, 'Mambanegra', 'Play_Station_5', 3600),
-(8, 47, 'Mambanegra', 'Simulador_coches', 43200);
+(22, 46, 'JaimeMGR', 'Sala_principal', 14387),
+(66, 46, 'JaimeMGR', 'Simulador_coches', 86400);
 
 --
 -- Índices para tablas volcadas
@@ -334,7 +348,7 @@ ALTER TABLE `tiempos_sala`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes_contacto`
@@ -346,25 +360,25 @@ ALTER TABLE `mensajes_contacto`
 -- AUTO_INCREMENT de la tabla `noticia`
 --
 ALTER TABLE `noticia`
-  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT de la tabla `registros_uso`
 --
 ALTER TABLE `registros_uso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
@@ -376,19 +390,19 @@ ALTER TABLE `servicio`
 -- AUTO_INCREMENT de la tabla `socio`
 --
 ALTER TABLE `socio`
-  MODIFY `id_socio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_socio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `testimonio`
 --
 ALTER TABLE `testimonio`
-  MODIFY `id_testimonio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_testimonio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `tiempos_sala`
 --
 ALTER TABLE `tiempos_sala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Restricciones para tablas volcadas
