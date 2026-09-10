@@ -1,116 +1,101 @@
+# 🎮 MNZone
 
-<!-- Banner -->
-<p align="center">
-  <img src="imagenes/Logo.png" width="80" alt="MNZone logo">
-</p>
+**Plataforma web para la gestión integral de un centro gaming**
 
-<h1 align="center">MNZone – Centro E‑Sports & Gaming en Granada 🕹️</h1>
-<p align="center">
-  Proyecto de Fin de Grado Superior en Desarrollo de Aplicaciones Web.<br>
-  Plataforma full‑stack para la gestión integral de un local gaming: reservas, tienda, noticias, administración y más.
-</p>
+MNZone es un proyecto desarrollado como **Trabajo de Fin de Grado de Desarrollo de Aplicaciones Web (DAW)**. La plataforma permite gestionar diferentes servicios de un centro gaming y centraliza funcionalidades para usuarios y administradores.
 
-<p align="center">
-  <a href="https://img.shields.io/badge/PHP-8.2-blue"> </a>
-  <a href="https://img.shields.io/badge/MySQL-MariaDB-orange"> </a>
-  <a href="https://img.shields.io/badge/License-MIT-green"> </a>
-  <a href="https://img.shields.io/github/languages/top/JaimeMGR/MNZone"> </a>
-</p>
+## ✨ Funcionalidades
 
----
+### 👤 Usuarios
 
-## 🚀 Características principales
-| Módulo | ¿Qué hace? |
-|--------|------------|
-| **Inicio** | Landing con *slider* de noticias dinámicas, tabla de precios y testimonios de socios. :contentReference[oaicite:0]{index=0} |
-| **Noticias** | CRUD de artículos con editor WYSIWYG e imágenes. |
-| **Reservas** | Calendario interactivo, control de disponibilidad y estados (`pendiente`, `aceptada`, `cancelada`). |
-| **Tienda** | Carrito temporizado: productos físicos y “packs de tiempo” para salas, PS5 o simulador. |
-| **Servicios & Equipos** | Catálogo autogestionable de salas y hardware gaming (PC Gamer, simulador racing, etc.). |
-| **Socios / Roles** | Autenticación con hashing `bcrypt`; roles `admin` y `socio` para proteger rutas. |
-| **Panel de control** | Estadísticas de uso (segundos por sala), testimonios y gestor de reservas. |
-| **Contacto** | Formulario que almacena mensajes en DB y envía notificación por correo. |
+* Registro e inicio de sesión
+* Gestión de perfil
+* Consulta de servicios y equipos disponibles
+* Reserva de horas de juego
+* Compra de productos y servicios
+* Valoraciones y comentarios
+* Consulta de noticias y novedades
 
----
+### 🔐 Administración
 
-## 🛠️ Stack tecnológico
-| Capa | Tecnologías |
-|------|-------------|
-| **Frontend** | HTML5, CSS3, Bootstrap 5, JavaScript ES6 |
-| **Backend** | PHP 8.2 (estilo procedural + MySQLi preparados) |
-| **Base de datos** | MariaDB 10.4 (`mnzone_db`) |
-| **Dependencias** | Composer (PHPMailer, Dotenv, Dompdf, etc.) |
-| **Scripts extra** | Automatizaciones en Python (carpeta `python/`) |
-| **Stats** | 67 % PHP, 13 % CSS, 10 % JS, 9 % Python :contentReference[oaicite:1]{index=1} |
+* Gestión de usuarios
+* Gestión de productos y servicios
+* Gestión de equipos
+* Gestión de reservas
+* Gestión de noticias y contenido
+* Operaciones CRUD sobre la información de la plataforma
 
----
+### ⚙️ Funcionalidades adicionales
 
-## 🗂️ Estructura del repositorio
+* Validación de formularios
+* Gestión de sesiones
+* API interna
+* Aplicación complementaria en Python para la gestión de tiempos de uso
+
+## 🛠️ Tecnologías
+
+| Área                    | Tecnologías            |
+| ----------------------- | ---------------------- |
+| Frontend                | HTML5, CSS, JavaScript |
+| Backend                 | PHP                    |
+| Base de datos           | MySQL                  |
+| Aplicación auxiliar     | Python                 |
+| Gestión de dependencias | Composer               |
+| Control de versiones    | Git / GitHub           |
+
+## 🏗️ Estructura
+
+```text
+MNZone/
+├── css/
+├── imagenes/
+├── js/
+├── php/
+├── python/
+├── index.php
+├── iniciar_sesion.php
+├── cerrar_sesion.php
+├── utilidades.php
+├── composer.json
+└── mnzone_db.sql
 ```
 
-├── css/           # Hojas de estilo y utilidades
-├── js/            # Scripts vanilla JS
-├── php/           # Endpoints AJAX / submódulos PHP
-├── python/        # Herramientas y tareas batch
-├── imagenes/      # Recursos multimedia
-├── vendor/        # Librerías instaladas vía Composer
-├── index.php      # Landing (punto de entrada)
-├── utilidades.php # Funciones comunes (DB, sesiones, helpers)
-└── mnzone\_db.sql  # Script de creación y datos de ejemplo
+## 🎯 Objetivos del proyecto
 
-````
+* Desarrollar una plataforma web completa desde cero.
+* Aplicar una arquitectura cliente-servidor.
+* Gestionar usuarios, reservas, productos y servicios.
+* Diseñar y utilizar una base de datos relacional.
+* Implementar autenticación, sesiones y validaciones.
+* Integrar una aplicación auxiliar desarrollada en Python.
 
----
+## 📸 Capturas
 
-## 🗄️ Modelo de datos
-El proyecto se apoya en **13 tablas** que cubren reservas, socios, tienda, testimonios, etc.  
-Las principales:
+> Añadir aquí 3-5 capturas de las principales pantallas de la aplicación.
 
-| Tabla | Propósito rápido |
-|-------|------------------|
-| `socio` | Usuarios y roles |
-| `servicio` | Salas y experiencias ofertadas |
-| `productos` | Packs de tiempo y snacks |
-| `reservas` | Turnos reservados/consumidos |
-| `registros_uso` & `tiempos_sala` | Métricas de tiempo efectivamente usado |
-| `noticia`, `testimonio` | Marketing y feedback |
-| ... | (Consulta `mnzone_db.sql` para verlas todas)  |
+## 🚀 Instalación
 
-> **Tip:** Puedes importar el dump con  
-> `mysql -u root -p mnzone_db < mnzone_db.sql`.
+### Requisitos
 
----
+* PHP
+* MySQL
+* Apache
+* Composer
 
-## ⚡ Instalación rápida
+### Configuración
+
+1. Clonar el repositorio.
+2. Configurar el servidor Apache.
+3. Crear la base de datos MySQL utilizando el script incluido.
+4. Configurar las credenciales de conexión.
+5. Instalar las dependencias:
+
 ```bash
-# 1. Clona el proyecto
-git clone https://github.com/JaimeMGR/MNZone.git
-cd MNZone
-
-# 2. Instala dependencias PHP
 composer install
+```
 
-# 3. Crea la base de datos
-mysql -u root -p < mnzone_db.sql
+6. Iniciar la aplicación desde el servidor local.
 
-# 4. Configura credenciales
-cp .env.example .env      # (o edita utilidades.php)
-# DB_HOST, DB_USER, DB_PASS, DB_NAME
+## 📚 Proyecto académico
 
-# 5. Arranca servidor local
-php -S localhost:8000
-````
-
-> Visita `http://localhost:8000` y prueba a entrar con el usuario demo:
-> **Usuario**: `Admin` · **Contraseña**: `admin123` (cámbiala después).
-
----
-
-## 🧑‍💻 Uso diario
-
-| Rol     | Puede…                                                          |
-| ------- | --------------------------------------------------------------- |
-| `socio` | Reservar, añadir testimonios, ver consumos                      |
-| `admin` | Gestionar socios, noticias, servicios, tienda, aceptar reservas |
-
----
+Trabajo de Fin de Grado del **CFGS Desarrollo de Aplicaciones Web (DAW)**.
