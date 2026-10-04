@@ -222,10 +222,10 @@ CREATE TABLE `socio` (
 --
 
 INSERT INTO `socio` (`id_socio`, `nombre`, `edad`, `contrasena`, `usuario`, `telefono`, `foto`, `tipo`) VALUES
-(0, 'Administrador', 22, '$2y$10$ARmorzzYJD1t3NMdqGBm1.IEtSHnZ6NFnNDcL2H2UEg8G9QrG1la2', 'Admin', '+34668533704', '453348409_695213336114147_1710011270050425164_n.jpeg', 'admin'),
-(46, 'Jaime Molina Granados', 22, '$2y$10$HiY.jLECSmgRhtv2DNMkPuKar7bMmJSHDGwHFvX6lIu77fTk9J/am', 'JaimeMGR', '+34666777888', 'jaime.jpg', 'socio'),
-(51, 'Carmelo Molina Granados', 25, '$2y$10$LQ04.PgRZF4mWI0B4wD/PuCnsoLU.3S7F5WU4PfLi0mSZd7Q7n.F2', 'CarmeloMGR', '+34785432612', '1750012673_Goku.jpg', 'socio'),
-(52, 'Alex Arrabal Cano', 21, '$2y$10$zrwsdvjdjZCK0plGYLVGb.mQWeWICNfcwJDwd888FgCa03mGN.W3K', 'AlexGinger0', '+34827364098', '1750013471_4.jpg', 'socio');
+(0, 'Administrador Demo', 25, '$2y$12$o5t3Cpd/wh3487s5TARZR.PI7GAVkpLrTDL.3kBf3O.z6X2De3I/O', 'Admin', '', '', 'admin'),
+(46, 'Usuario Demo', 25, '$2y$12$X9wFKYLG9zmDVae62Go8D.Rfhl59VemEhPmIV0Z55q/yluJyP6gUO', 'DemoUser', '', '', 'socio'),
+(51, 'Usuario Demo 2', 25, '$2y$12$1HJmcHSh0IuftL6R.Km/LuXFbQYt/4smhDBRhEY5W8ZLGSi6cnruC', 'DemoUser2', '', '', 'socio'),
+(52, 'Usuario Demo 3', 25, '$2y$12$1HJmcHSh0IuftL6R.Km/LuXFbQYt/4smhDBRhEY5W8ZLGSi6cnruC', 'DemoUser3', '', '', 'socio');
 
 -- --------------------------------------------------------
 
@@ -266,7 +266,7 @@ CREATE TABLE `tiempos_sala` (
 --
 
 INSERT INTO `tiempos_sala` (`id`, `id_socio`, `usuario`, `categoria`, `tiempo_total`) VALUES
-(22, 46, 'JaimeMGR', 'Sala_principal', 14387),
+(22, 46, 'DemoUser', 'Sala_principal', 14387),
 (66, 46, 'JaimeMGR', 'Simulador_coches', 86400);
 
 --
