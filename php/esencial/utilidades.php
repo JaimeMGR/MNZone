@@ -69,10 +69,13 @@ function formulario_para_iniciar_sesion2($pagina_actual, $error)
 
 function formulario_sesion_iniciada($nombre_usuario)
 {
-    return "<div class='login-container'>
-                            <form class='login-form' action='../../cerrar_sesion.php' method='POST'>
-                                 <label  for=>Usuario logueado: $nombre_usuario</label>
-                                <button type='submit' class='btn btn-warning'>Cerrar sesión</button>
+    return "<div class='login-container login-container--logged'>
+                            <form class='login-form login-form--logged' action='../../cerrar_sesion.php' method='POST'>
+                                <div class='logged-user'>
+                                  <span class='logged-user__label'>Usuario</span>
+                                  <strong class='logged-user__name'>" . htmlspecialchars($nombre_usuario, ENT_QUOTES, 'UTF-8') . "</strong>
+                                </div>
+                                <button type='submit' class='logged-user__logout'>Cerrar sesión</button>
                             </form>
                           </div>";
 }

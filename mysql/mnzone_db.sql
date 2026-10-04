@@ -223,9 +223,8 @@ CREATE TABLE `socio` (
 
 INSERT INTO `socio` (`id_socio`, `nombre`, `edad`, `contrasena`, `usuario`, `telefono`, `foto`, `tipo`) VALUES
 (0, 'Administrador Demo', 25, '$2y$12$o5t3Cpd/wh3487s5TARZR.PI7GAVkpLrTDL.3kBf3O.z6X2De3I/O', 'Admin', '', '', 'admin'),
-(46, 'Usuario Demo', 25, '$2y$12$X9wFKYLG9zmDVae62Go8D.Rfhl59VemEhPmIV0Z55q/yluJyP6gUO', 'DemoUser', '', '', 'socio'),
-(51, 'Usuario Demo 2', 25, '$2y$12$1HJmcHSh0IuftL6R.Km/LuXFbQYt/4smhDBRhEY5W8ZLGSi6cnruC', 'DemoUser2', '', '', 'socio'),
-(52, 'Usuario Demo 3', 25, '$2y$12$1HJmcHSh0IuftL6R.Km/LuXFbQYt/4smhDBRhEY5W8ZLGSi6cnruC', 'DemoUser3', '', '', 'socio');
+(46, 'Usuario Demo', 25, '$2y$12$LLmb5DXHk0mlaEb4GgxGH.6eCQ4pgB9vt7OoZaNgQ/iHDwM9kUqPO', 'DemoUser', '', '', 'socio'),
+(51, 'Usuario Demo 2', 25, '$2y$12$d/Y1sLssyfEBgs4cogRixu1x5vt4NYi/3eQqgOfqNdK66zUx2i7aS', 'DemoUser2', '', '', 'socio');
 
 -- --------------------------------------------------------
 
@@ -266,7 +265,7 @@ CREATE TABLE `tiempos_sala` (
 --
 
 INSERT INTO `tiempos_sala` (`id`, `id_socio`, `usuario`, `categoria`, `tiempo_total`) VALUES
-(22, 46, 'DemoUser', 'Sala_principal', 14387),
+(22, 46, 'JaimeMGR', 'Sala_principal', 14387),
 (66, 46, 'JaimeMGR', 'Simulador_coches', 86400);
 
 --

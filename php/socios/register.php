@@ -133,7 +133,7 @@ if (!isset($_SESSION['nombre'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro - Atarfe Fighting</title>
+        <title>Registro - MNZone</title>
         <link rel="stylesheet" href="../../css/styles.css">
         <script src="../../js/register.js" defer></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -142,38 +142,64 @@ if (!isset($_SESSION['nombre'])) {
 
     <body>
         <?php include '../esencial/header.php'; ?>
-        <main>
-            <h2 style="font-weight: bold;">Registro de Socio</h2>
-            <form action="register.php" method="post" enctype="multipart/form-data" style="width:500px; justify-self:center;gap:5px;">
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>" required>
-                <p class="error"><?= $errores['nombre'] ?? '' ?></p>
 
-                <label for="usuario">Usuario:</label>
-                <input type="text" name="usuario" id="usuario" value="<?= htmlspecialchars($_POST['usuario'] ?? '') ?>" required>
-                <p class="error"><?= $errores['usuario'] ?? '' ?></p>
+        <main class="registration-page">
+            <div class="registration-card">
+                <div class="registration-header">
+                    <span class="registration-kicker">MNZone · Área de socios</span>
+                    <h1>Crear cuenta</h1>
+                    <p>Regístrate para reservar, comprar servicios y gestionar tu experiencia en MNZone.</p>
+                </div>
 
-                <label for="edad">Edad:</label>
-                <input type="number" name="edad" id="edad" value="<?= htmlspecialchars($_POST['edad'] ?? '') ?>" required>
-                <p class="error"><?= $errores['edad'] ?? '' ?></p>
+                <?php if (!empty($errores['general'])): ?>
+                    <div class="registration-alert" role="alert">
+                        <?= htmlspecialchars($errores['general']) ?>
+                    </div>
+                <?php endif; ?>
 
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" name="contrasena" id="contrasena" required>
-                <p class="error"><?= $errores['contrasena'] ?? '' ?></p>
+                <form class="registration-form" action="register.php" method="post" enctype="multipart/form-data">
+                    <div class="form-field">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>" required>
+                        <?php if (!empty($errores['nombre'])): ?><p class="error"><?= htmlspecialchars($errores['nombre']) ?></p><?php endif; ?>
+                    </div>
 
-                <label for="telefono">Teléfono:</label>
-                <input type="text" name="telefono" id="telefono" value="<?= htmlspecialchars($_POST['telefono'] ?? '') ?>" required>
-                <p class="error"><?= $errores['telefono'] ?? '' ?></p>
+                    <div class="form-field">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" name="usuario" id="usuario" value="<?= htmlspecialchars($_POST['usuario'] ?? '') ?>" required>
+                        <?php if (!empty($errores['usuario'])): ?><p class="error"><?= htmlspecialchars($errores['usuario']) ?></p><?php endif; ?>
+                    </div>
 
-                <label for="foto">Foto:</label>
-                <input type="file" name="foto" id="foto" accept="image/jpeg" required>
-                <p class="error"><?= $errores['foto'] ?? '' ?></p>
+                    <div class="form-field">
+                        <label for="edad">Edad</label>
+                        <input type="number" name="edad" id="edad" value="<?= htmlspecialchars($_POST['edad'] ?? '') ?>" required>
+                        <?php if (!empty($errores['edad'])): ?><p class="error"><?= htmlspecialchars($errores['edad']) ?></p><?php endif; ?>
+                    </div>
 
-                <button type="submit" class="btn btn-warning" style="width:150px">Registrar</button>
-            </form>
+                    <div class="form-field">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" name="contrasena" id="contrasena" required>
+                        <?php if (!empty($errores['contrasena'])): ?><p class="error"><?= htmlspecialchars($errores['contrasena']) ?></p><?php endif; ?>
+                    </div>
 
+                    <div class="form-field">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" name="telefono" id="telefono" value="<?= htmlspecialchars($_POST['telefono'] ?? '') ?>" placeholder="+34600123456" required>
+                        <?php if (!empty($errores['telefono'])): ?><p class="error"><?= htmlspecialchars($errores['telefono']) ?></p><?php endif; ?>
+                    </div>
 
+                    <div class="form-field">
+                        <label for="foto">Foto de perfil</label>
+                        <input class="file-input" type="file" name="foto" id="foto" accept="image/jpeg" required>
+                        <small>Formato JPG · máximo 5 MB</small>
+                        <?php if (!empty($errores['foto'])): ?><p class="error"><?= htmlspecialchars($errores['foto']) ?></p><?php endif; ?>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning registration-submit">Crear cuenta</button>
+                </form>
+            </div>
         </main>
+
         <?php include '../esencial/footer.php'; ?>
     </body>
 

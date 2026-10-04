@@ -43,6 +43,8 @@ for (let item of lista_carrito) {
   carrito_productos.appendChild(crearItemCarrito(item));
 }
 
+mostrarEstadoCarrito();
+
 // Recalcular precio total
 preciototal = lista_carrito.reduce((total, item) => total + item.precio, 0);
 mostrarPrecioTotal(preciototal);
@@ -80,6 +82,7 @@ function crearItemCarrito(datos_item) {
       localStorage.setItem(carrito_local, JSON.stringify(lista_carrito));
 
       nuevo_item.remove();
+      mostrarEstadoCarrito();
 
       mostrarMensaje("Producto eliminado del carrito", "danger");
     }
@@ -95,6 +98,7 @@ vaciarcarrobtn.addEventListener("click", () => {
   lista_carrito = [];
   // Ahora se vacía el contenido del carrito_productos
   carrito_productos.innerHTML = "";
+  mostrarEstadoCarrito();
 
   // y se reinicia el precio total
   preciototal = 0;
@@ -113,6 +117,7 @@ for (let carrito_boton of añadir_carrito) {
 
       let nuevo_item = crearItemCarrito(seleccionado);
       carrito_productos.appendChild(nuevo_item);
+      mostrarEstadoCarrito();
 
       lista_carrito.push(seleccionado);
 
@@ -122,6 +127,22 @@ for (let carrito_boton of añadir_carrito) {
       mostrarMensaje("Producto añadido al carrito", "success");
     }
   )
+}
+
+function mostrarEstadoCarrito() {
+  const existente = carrito_productos.querySelector(".cart-empty");
+  if (lista_carrito.length === 0) {
+    if (!existente) {
+      carrito_productos.innerHTML = `
+        <div class="cart-empty">
+          <i class="fas fa-shopping-basket"></i>
+          <h3>Tu cesta está vacía</h3>
+          <p>Añade productos desde la tienda para verlos aquí.</p>
+        </div>`;
+    }
+  } else if (existente) {
+    existente.remove();
+  }
 }
 
 function mostrarPrecioTotal($preciototal) {

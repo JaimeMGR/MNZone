@@ -108,7 +108,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php
 
     if (isset($_SESSION["nombre"])) {
-      echo formulario_sesion_iniciada($_SESSION["nombre"]);
+      echo "<div class='login-container login-container--logged'>
+        <form class='login-form login-form--logged' action='cerrar_sesion.php' method='POST'>
+          <div class='logged-user'>
+            <span class='logged-user__label'>Usuario</span>
+            <strong class='logged-user__name'>" . htmlspecialchars($_SESSION["nombre"], ENT_QUOTES, 'UTF-8') . "</strong>
+          </div>
+          <button type='submit' class='logged-user__logout'>Cerrar sesión</button>
+        </form>
+      </div>";
     } else {
       echo   "<div class='login-container'>
       <form class='login-form' action='iniciar_sesion.php' method='POST'>
@@ -447,94 +455,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <a class="btn btn-warning" href="php/socios/register.php">¡Inscríbete ya!</a>
     </section>
     </main>
-    <footer class="bg text-white text-center text-lg-start">
-      <!-- Grid container -->
-      <div class="container">
-        <!--Grid row-->
-        <div class="row">
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <div class="logocontainer" style="text-align:center;">
-              <img loading='lazy' src="imagenes/logo.png">
-            </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div id="enlaces_footer" class="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Enlaces</h5>
-
-            <ul class="list-unstyled mb-0">
-              <li class="nav-item">
-                <a href="#" class="nav-link">Inicio</a>
-              </li>
-              <?php if (isset($_SESSION["nombre"])) { ?>
-                <li class="nav-item">
-                  <a href="php/noticia/noticias.php" class="nav-link">Noticias</a>
-                </li>
-              <?php } ?>
-              <?php if (isset($_SESSION["nombre"])) { ?>
-                <li class="nav-item">
-                  <a href="php/reservas/reservas.php" class="nav-link">Reservas</a>
-                </li>
-              <?php } ?>
-              <?php if (isset($_SESSION["nombre"])) { ?>
-                <li class="nav-item">
-                  <a href="php/tienda/tienda.php" class="nav-link">Tienda</a>
-                </li>
-              <?php } ?>
-              <li class="nav-item">
-                <a href="php/servicio/servicios.php" class="nav-link">Servicios</a>
-              </li>
-              <li class="nav-item">
-                <a href="php/equipos/equipos.php" class="nav-link">Equipos</a>
-              </li>
-              <?php if (isset($_SESSION["nombre"])) { ?>
-                <li class="nav-item">
-                  <a href="php/contadores/contadores.php" class="nav-link">Contadores</a>
-                </li>
-              <?php } ?>
-              <?php if (isset($_SESSION["nombre"])) { ?>
-                <li class="nav-item">
-                  <a href="php/socios/socios.php" class="nav-link">Socios</a>
-                </li>
-              <?php } ?>
-              <?php if (isset($_SESSION["nombre"])) { ?>
-                <li class="nav-item">
-                  <a href="php/contacto/contacto.php" class="nav-link">Contacto</a>
-                </li>
-              <?php } ?>
-            </ul>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div id="contacto" class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-0">Contacto</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <h7><strong>Dirección:</strong> Calle Don Óscar 48,<br>Maracena, España</h7>
-              </li>
-              <br>
-              <li>
-                <h7><strong>Teléfono:</strong> +34 668533704 </h7>
-              </li>
-            </ul>
-          </div>
-          <!--Grid column-->
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="footer-brand">
+          <img loading="lazy" src="imagenes/logo.png" alt="MNZone E-sport Gaming">
+          <p>Centro eSports &amp; Gaming</p>
+          <span>Juega, reserva y compite desde una misma plataforma.</span>
         </div>
-        <!--Grid row-->
+
+        <div class="footer-links">
+          <h5>Enlaces</h5>
+          <ul class="list-unstyled mb-0">
+            <li><a href="#" class="nav-link">Inicio</a></li>
+            <?php if (isset($_SESSION["nombre"])) { ?>
+              <li><a href="php/noticia/noticias.php" class="nav-link">Noticias</a></li>
+              <li><a href="php/reservas/reservas.php" class="nav-link">Reservas</a></li>
+              <li><a href="php/tienda/tienda.php" class="nav-link">Tienda</a></li>
+            <?php } ?>
+            <li><a href="php/servicio/servicios.php" class="nav-link">Servicios</a></li>
+            <li><a href="php/equipos/equipos.php" class="nav-link">Equipos</a></li>
+            <?php if (isset($_SESSION["nombre"])) { ?>
+              <li><a href="php/contadores/contadores.php" class="nav-link">Contadores</a></li>
+              <li><a href="php/socios/socios.php" class="nav-link">Socios</a></li>
+              <li><a href="php/contacto/contacto.php" class="nav-link">Contacto</a></li>
+            <?php } ?>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h5>Contacto</h5>
+          <div class="footer-contact-item">
+            <strong>Dirección</strong>
+            <span>Calle Don Óscar 48,<br>Maracena, España</span>
+          </div>
+          <div class="footer-contact-item">
+            <strong>Teléfono</strong>
+            <a href="tel:+34668533704">+34 668 533 704</a>
+          </div>
+        </div>
       </div>
-      <!-- Grid container -->
-      <br><br>
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2025 Copyright:
-        <a class="text-white">MNZone</a>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <span>© 2025 MNZone</span>
+          <span>Centro eSports &amp; Gaming</span>
+        </div>
       </div>
-      <!-- Copyright -->
-       
     </footer>
 </body>
 
